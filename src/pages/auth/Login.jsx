@@ -1,11 +1,10 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useNavigator } from "react-router-dom";
+
 
 function Login() {
     const [formElements, setFormElements] = useState({});
 
-    const navigate = useNavigator();
 
     const handleSubmit = () => {
         // try {
@@ -13,7 +12,6 @@ function Login() {
         //         .post(`http://localhost:8080/admin/login`, formElements)
         //         .then((res) => {
         //             console.log("Login Success");
-        //             navigate("/login");
         //         });
         // } catch (error) {
         //     console.log(error);
