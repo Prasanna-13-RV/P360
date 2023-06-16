@@ -2,20 +2,24 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/home/Home';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
-import Calender from './pages/home/Calender';
-import Roadmap from './pages/home/Roadmap'
-import Roadmap2 from './pages/home/Roadmap2'
-import Roadmap3 from './pages/home/Roadmap3'
+import ViewInternship from './pages/internship/ViewInternship';
+import AddInternship from './pages/internship/AddInternship';
+import Filter from './pages/filter/Filter';
+
 function App() {
   return (
     <>
       <Router>
         <Routes>
           <Route path="/" element={<Home />}></Route>
+          {/* auth */}
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
-          <Route path="/calender" element={<Calender />}></Route>
-          <Route path="/roadmap" element={<Roadmap3 />}></Route>
+          {/* internship */}
+          <Route path="/internship" element={<ViewInternship />}></Route>
+          <Route path="/internship/create" element={<AddInternship />}></Route>
+          {/* Filter */}
+          <Route path="/filter" element={<Filter />}></Route>
         </Routes>
       </Router>
     </>

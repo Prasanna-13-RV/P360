@@ -1,6 +1,23 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
+
 
 function Login() {
+    const [formElements, setFormElements] = useState({});
+
+
+    const handleSubmit = () => {
+        // try {
+        //     axios
+        //         .post(`http://localhost:8080/admin/login`, formElements)
+        //         .then((res) => {
+        //             console.log("Login Success");
+        //         });
+        // } catch (error) {
+        //     console.log(error);
+        // }
+    };
+
     return (
         <>
             <section className="bg-gray-50">
@@ -16,7 +33,10 @@ function Login() {
                             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
                                 Sign in to your account
                             </h1>
-                            <form class="space-y-4 md:space-y-6" action="#">
+                            <form
+                                class="space-y-4 md:space-y-6"
+                                onSubmit={handleSubmit}
+                            >
                                 <div>
                                     <label
                                         for="email"
@@ -31,6 +51,15 @@ function Login() {
                                         class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                         placeholder="name@company.com"
                                         required=""
+                                        onChange={(e) => {
+                                            setFormElements((prev) => {
+                                                return {
+                                                    ...prev,
+                                                    [e.target.name]:
+                                                        e.target.value,
+                                                };
+                                            });
+                                        }}
                                     />
                                 </div>
                                 <div>
@@ -47,6 +76,15 @@ function Login() {
                                         placeholder="••••••••"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                         required=""
+                                        onChange={(e) => {
+                                            setFormElements((prev) => {
+                                                return {
+                                                    ...prev,
+                                                    [e.target.name]:
+                                                        e.target.value,
+                                                };
+                                            });
+                                        }}
                                     />
                                 </div>
                                 <div className="flex items-center justify-between">
@@ -58,6 +96,15 @@ function Login() {
                                                 type="checkbox"
                                                 class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300"
                                                 required=""
+                                                onChange={(e) => {
+                                                    setFormElements((prev) => {
+                                                        return {
+                                                            ...prev,
+                                                            [e.target.name]:
+                                                                e.target.value,
+                                                        };
+                                                    });
+                                                }}
                                             />
                                         </div>
                                         <div className="ml-3 text-sm">
