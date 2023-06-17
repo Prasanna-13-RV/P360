@@ -1,113 +1,181 @@
-import * as React from "react";
-import PropTypes from "prop-types";
-import SvgIcon from "@mui/material/SvgIcon";
-import { alpha, styled } from "@mui/material/styles";
-import TreeView from "@mui/lab/TreeView/TreeView";
-import TreeItem from "@mui/lab/TreeItem/TreeItem";
-import treeItemClasses from "@mui/lab/TreeItem/treeItemClasses";
-import Collapse from "@mui/material/Collapse";
-import { useSpring, animated } from "@react-spring/web";
-
-function MinusSquare(props) {
-  return (
-    <SvgIcon fontSize="inherit" style={{ width: 14, height: 14 }} {...props}>
-      {/* tslint:disable-next-line: max-line-length */}
-      <path d="M22.047 22.074v0 0-20.147 0h-20.12v0 20.147 0h20.12zM22.047 24h-20.12q-.803 0-1.365-.562t-.562-1.365v-20.147q0-.776.562-1.351t1.365-.575h20.147q.776 0 1.351.575t.575 1.351v20.147q0 .803-.575 1.365t-1.378.562v0zM17.873 11.023h-11.826q-.375 0-.669.281t-.294.682v0q0 .401.294 .682t.669.281h11.826q.375 0 .669-.281t.294-.682v0q0-.401-.294-.682t-.669-.281z" />
-    </SvgIcon>
-  );
-}
-
-function PlusSquare(props) {
-  return (
-    <SvgIcon fontSize="inherit" style={{ width: 14, height: 14 }} {...props}>
-      {/* tslint:disable-next-line: max-line-length */}
-      <path d="M22.047 22.074v0 0-20.147 0h-20.12v0 20.147 0h20.12zM22.047 24h-20.12q-.803 0-1.365-.562t-.562-1.365v-20.147q0-.776.562-1.351t1.365-.575h20.147q.776 0 1.351.575t.575 1.351v20.147q0 .803-.575 1.365t-1.378.562v0zM17.873 12.977h-4.923v4.896q0 .401-.281.682t-.682.281v0q-.375 0-.669-.281t-.294-.682v-4.896h-4.923q-.401 0-.682-.294t-.281-.669v0q0-.401.281-.682t.682-.281h4.923v-4.896q0-.401.294-.682t.669-.281v0q.401 0 .682.281t.281.682v4.896h4.923q.401 0 .682.281t.281.682v0q0 .375-.281.669t-.682.294z" />
-    </SvgIcon>
-  );
-}
-
-function CloseSquare(props) {
-  return (
-    <SvgIcon
-      className="close"
-      fontSize="inherit"
-      style={{ width: 14, height: 14 }}
-      {...props}>
-      {/* tslint:disable-next-line: max-line-length */}
-      <path d="M17.485 17.512q-.281.281-.682.281t-.696-.268l-4.12-4.147-4.12 4.147q-.294.268-.696.268t-.682-.281-.281-.682.294-.669l4.12-4.147-4.12-4.147q-.294-.268-.294-.669t.281-.682.682-.281.696 .268l4.12 4.147 4.12-4.147q.294-.268.696-.268t.682.281 .281.669-.294.682l-4.12 4.147 4.12 4.147q.294.268 .294.669t-.281.682zM22.047 22.074v0 0-20.147 0h-20.12v0 20.147 0h20.12zM22.047 24h-20.12q-.803 0-1.365-.562t-.562-1.365v-20.147q0-.776.562-1.351t1.365-.575h20.147q.776 0 1.351.575t.575 1.351v20.147q0 .803-.575 1.365t-1.378.562v0z" />
-    </SvgIcon>
-  );
-}
-
-function TransitionComponent(props) {
-  const style = useSpring({
-    from: {
-      opacity: 0,
-      transform: "translate3d(20px,0,0)",
+import React, { useState, useEffect } from "react";
+const Roadmap = () => {
+  const [topic1, settopic1] = useState("");
+  const [topic2, settopic2] = useState("");
+  const [color1, setColor1] = useState("");
+  const [color2, setColor2] = useState("");
+  const [color3, setColor3] = useState("");
+  useEffect(() => {
+    generateColor1();
+  }, []);
+  const generateColor1 = () => {
+    setColor1(Math.random().toString(16).substr(-6));
+  };
+  const generateColor2 = () => {
+    setColor2(Math.random().toString(16).substr(-6));
+  };
+  const generateColor3 = () => {
+    setColor3(Math.random().toString(16).substr(-6));
+  };
+  const [data, setData] = useState([
+    {
+      name: "Kotlin",
+      sub: [
+        {
+          name: "Binding",
+          sub2: [
+            { name: "Data Binding" },
+            { name: "Event Binding" },
+            { name: "FindVIewByID" },
+          ],
+        },
+        {
+          name: "Co-routines",
+          sub2: [
+            { name: "Coroutinescope" },
+            { name: "Global scope" },
+            { name: "IO Scope" },
+            { name: "Dispatcher" },
+          ],
+        },
+        {
+          name: "Layouts",
+          sub2: [
+            { name: "Linear Layout" },
+            { name: "Relative layout" },
+            { name: "Grid layout" },
+            { name: "Constrait Layout" },
+          ],
+        },
+      ],
     },
-    to: {
-      opacity: props.in ? 1 : 0,
-      transform: `translate3d(${props.in ? 0 : 20}px,0,0)`,
+    {
+      name: "JS",
+      sub: [
+        {
+          name: "Functions",
+          sub2: [{ name: "Normal functions" }, { name: "Arrow functions" }],
+        },
+        {
+          name: "Variables",
+          sub2: [{ name: "Let" }, { name: "Const" }, { name: "Var" }],
+        },
+      ],
     },
-  });
+    {
+      name: "Java",
+      sub: [
+        {
+          name: "Oops",
+          sub2: [
+            { name: "encapsulation" },
+            { name: "encapsulation" },
+            { name: "encapsulation" },
+          ],
+        },
+        {
+          name: "laava",
+          sub2: [
+            { name: "encapsulation" },
+            { name: "encapsulation" },
+            { name: "encapsulation" },
+          ],
+        },
+      ],
+    },
+
+    {
+      name: "Python",
+      sub: [
+        {
+          name: "Lib",
+          sub2: [
+            { name: "encapsulation" },
+            { name: "encapsulation" },
+            { name: "encapsulation" },
+          ],
+        },
+      ],
+    },
+
+    {
+      name: "HTML",
+      sub: [
+        {
+          name: "Headers",
+          sub2: [
+            { name: "h1" },
+            { name: "h2" },
+            { name: "h3" },
+            { name: "h4" },
+            { name: "h5" },
+            { name: "h6" },
+          ],
+        },
+      ],
+    },
+  ]);
 
   return (
-    <animated.div style={style}>
-      <Collapse {...props} />
-    </animated.div>
-  );
-}
+    <div className="w-full h-full">
+      <div className="mt-[4rem]">
+        {data.map((main, index) => {
+          return (
+            <div className="  flex  w-[70%] mt-[2rem]  items-center  mx-auto">
+              <div
+                style={{ border: `3px solid #${color1}` }}
+                onClick={() => {
+                  settopic1(main.name);
+                  generateColor2();
+                  settopic2("");
+                }}
+                className="  w-[30%] bg-slate-700    px-4 py-2 rounded-md shadow-sm flex justify-center items-center ">
+                <h1 className="text-white font-bold">{main.name}</h1>
+              </div>
 
-TransitionComponent.propTypes = {
-  /**
-   * Show the component; triggers the enter or exit states
-   */
-  in: PropTypes.bool,
+              {main.name == topic1 && (
+                <div className="  w-[30%]   ml-[5%]  flex flex-col justify-center items-center ">
+                  {main.sub.map((sub) => {
+                    return (
+                      <div
+                        onClick={() => {
+                          settopic2(sub.name);
+                          generateColor3();
+                        }}
+                        style={{ border: `3px solid #${color2}` }}
+                        className=" px-4  bg-slate-700  w-full py-2 rounded-md shadow-sm mt-2  text-center">
+                        <h1 className="text-white font-bold">{sub.name}</h1>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+
+              <div className=" w-[30%]    ml-[5%] flex flex-col  justify-center items-center ">
+                {main.sub.map((sub) => {
+                  return sub.sub2.map((name, index) => {
+                    return (
+                      <>
+                        {sub.name == topic2 ? (
+                          <div
+                            style={{ border: `3px solid #${color3}` }}
+                            className="mt-2 w-full  bg-slate-700  px-4 py-2 rounded-md shadow-sm text-center">
+                            <h1 className="text-white font-bold">
+                              {name.name}
+                            </h1>
+                          </div>
+                        ) : null}
+                      </>
+                    );
+                  });
+                })}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
 };
 
-const StyledTreeItem = styled((props) => (
-  <TreeItem {...props} TransitionComponent={TransitionComponent} />
-))(({ theme }) => ({
-  [`& .${treeItemClasses.iconContainer}`]: {
-    "& .close": {
-      opacity: 0.3,
-    },
-  },
-  [`& .${treeItemClasses.group}`]: {
-    marginLeft: 15,
-    paddingLeft: 18,
-    borderLeft: `1px dashed ${alpha(theme.palette.text.primary, 0.4)}`,
-  },
-}));
-
-export default function CustomizedTreeView() {
-  return (
-    <div className="w-5/6 mx-auto">
-      <TreeView
-        className="mx-auto  w-full "
-        aria-label="customized"
-
-        //   defaultExpanded={['1']}
-        defaultCollapseIcon={' '}
-        defaultExpandIcon={' '}
-        defaultEndIcon={' '}
-        sx={{ height: 300, marginTop:20, marginLeft:'30%',flexGrow: 1, maxWidth: 800 }}>
-        <StyledTreeItem nodeId="1" label="Main">
-          <StyledTreeItem nodeId="2" label="Hello" />
-          <StyledTreeItem nodeId="3" label="Subtree with children">
-            <div className="flex flex-col">
-            <button className="bg-[#FFF4F4] text-black px-[7rem] py-[.5rem] rounded-md">Java</button>
-            <button className="bg-[#FFF4F4] text-black px-[7rem] py-[.5rem] rounded-md">Java</button>
-
-            </div>
-           
-          
-          </StyledTreeItem>
-          <StyledTreeItem nodeId="4" label="World" />
-          <StyledTreeItem nodeId="5" label="Something something" />
-        </StyledTreeItem>
-      </TreeView>
-    </div>
-    
-  );
-}
+export default Roadmap;

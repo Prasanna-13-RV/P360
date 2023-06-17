@@ -7,9 +7,16 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import "@fullcalendar/core/main.css";
 import "@fullcalendar/daygrid/main.css";
 import "@fullcalendar/timegrid/main.css";
-
+import { getEvents, postEvent } from "../../axios/calender.axios";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 
 const Calender = () => {
+  useEffect(() => {
+    // getEvents().then((res) => {
+    //   setEvents(res.data);
+    // });
+  }, []);
   const [title, setTitle] = useState();
   const [popup, setPopup] = useState(false);
   const [date, setDate] = useState();
@@ -28,11 +35,14 @@ const Calender = () => {
     },
     {
       groupId: "999",
+
       title: "Repeating Event",
+
       start: getDate("YEAR-MONTH-16T16:00:00+00:00"),
     },
     {
       title: "Dontiste",
+
       start: "YEAR-MONTH-17",
       end: getDate("YEAR-MONTH-19"),
     },
@@ -48,16 +58,20 @@ const Calender = () => {
     { title: "finish", start: getDate("YEAR-MONTH-18T20:00:00+00:00") },
   ]);
   const handleEvent = () => {
-    setPopup(false)
-    
-    setEvents([...events,{title:title,start:date,end:date2}])
+    setPopup(false);
+    // postEvent({
+    //   title: title,
+    //   start: date,
+    //   end: date2,
+    // }).then((res) => {
+    //   console.log(res);
+    // });
+    setEvents([...events, { title: title, start: date, end: date2 }]);
     setTitle("");
     setDate(null);
     setDate2(null);
-  }
+  };
 
-
-  
   function getDate(dayString) {
     const today = new Date();
     const year = today.getFullYear().toString();
@@ -67,55 +81,49 @@ const Calender = () => {
       month = "0" + month;
     }
 
-
     console.log(dayString.replace("YEAR", year).replace("MONTH", month));
     return dayString.replace("YEAR", year).replace("MONTH", month);
   }
 
   return (
     <div className="">
+      <Navbar />
       {popup && (
         <div className="z-50 fixed w-full h-full  top-0 left-0 bg-[#00000093] flex justify-center items-center">
           <div className="w-[60%] p-5 rounded-md bg-[#f6f6f6] flex flex-col justify-center items-center">
             <div className=" w-[80%]">
               <div className="flex justify-between ">
                 <h2 className=" font-medium text-lg my-3">Title</h2>
-                <button onClick={() => setPopup(false)}>
-                  Close
-                </button>
+                <button onClick={() => setPopup(false)}>Close</button>
               </div>
               <input
                 type="text"
                 className="w-full bg-[#f6f6f6] border-2 border-[#a5a5a5] rounded-md p-2   mb-3"
                 name="Title"
-               onChange={(e)=>setTitle(e.target.value)}
+                onChange={(e) => setTitle(e.target.value)}
                 placeholder=""
               />
               <h2 className=" font-medium text-lg my-3">Start date</h2>
               <input
-                type="date"
+                type="datetime-local"
                 className="w-full bg-[#f6f6f6] border-2 border-[#a5a5a5] rounded-md p-2   mb-3"
                 name="Date"
-                onChange={(e)=>setDate(e.target.value)}
+                onChange={(e) => setDate(e.target.value)}
                 placeholder=""
               />
               <h2 className=" font-medium text-lg my-3">End date</h2>
               <input
-                type="date"
+                type="datetime-local"
                 className="w-full bg-[#f6f6f6] border-2 border-[#a5a5a5] rounded-md p-2   mb-3"
                 name="Date"
-                onChange={(e)=>setDate2(e.target.value)}
+                onChange={(e) => setDate2(e.target.value)}
                 placeholder=""
               />
-              
             </div>
-          
+
             <div className=" w-[80%] my-3 flex flex-col">
-              
-              
-             
               <button
-               onClick={handleEvent}
+                onClick={handleEvent}
                 className="py-2 px-4 mt-5 rounded-full bg-[#9255B8] text-white">
                 Add step
               </button>
@@ -138,7 +146,7 @@ const Calender = () => {
       <div className="w-5/6  mx-auto my-auto mt-[3rem]">
         <button
           onClick={() => setPopup(true)}
-          className="bg-[#DD58D6] px-[1rem] cursor-pointer text-white text-xl font-bold mb-[2rem] py-[.5rem] rounded-md">
+          className="bg-blue-500 px-[1rem] cursor-pointer text-white text-lg font-semibold mb-[2rem] py-[.5rem] rounded-xl">
           Add Event
         </button>
         <FullCalendar
@@ -155,6 +163,7 @@ const Calender = () => {
           eventColor={"#" + Math.floor(Math.random() * 16777215).toString(16)}
         />
       </div>
+      <Footer />
     </div>
   );
 };

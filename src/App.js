@@ -5,13 +5,16 @@ import Register from './pages/auth/Register';
 import ViewInternship from './pages/internship/ViewInternship';
 import AddInternship from './pages/internship/AddInternship';
 import Filter from './pages/filter/Filter';
-
+import Roadmap from './pages/home/Roadmap';
+import Calender from './pages/home/Calender'
 function App() {
   return (
     <>
       <Router>
         <Routes>
           <Route path="/" element={<Home />}></Route>
+          <Route path="/roadmap" element={<Roadmap />}></Route>
+          <Route path="/calender" element={<Calender />}></Route>
           {/* auth */}
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
