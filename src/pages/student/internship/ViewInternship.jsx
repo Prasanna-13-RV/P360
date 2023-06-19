@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import AddInternship from "../../components/internship/AddInternship";
 
 function ViewInternship() {
     const [addButton, setAddButton] = useState(false);
@@ -12,27 +11,7 @@ function ViewInternship() {
                         View Internship
                     </h1>
                 </div>
-                <button
-                    type="submit"
-                    onClick={() => {
-                        setAddButton(!addButton);
-                    }}
-                    className={`${
-                        addButton
-                            ? "text-black bg-white hover:bg-slate-200 "
-                            : "text-white bg-primary-600 hover:bg-primary-700"
-                    } focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center z-50`}
-                >
-                    {addButton ? "X" : "Add Internship"}
-                </button>
             </div>
-
-            {addButton ? (
-                <AddInternship
-                    setAddButton={setAddButton}
-                    addButton={addButton}
-                />
-            ) : null}
 
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <table class="w-full text-sm text-left text-gray-500">

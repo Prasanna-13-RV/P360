@@ -1,29 +1,29 @@
 import React from "react";
-import ProfileSemMarks from "../../components/profile/ProfileSemMarks";
+import ProfileSemMarks from "../../../components/profile/ProfileSemMarks";
 
 function Profile() {
     const data = {
         userId: "solo1",
-        fname: "solo",
-        lname: "castiest",
-        email: "solotilldeath@gmail.com",
-        gender: "trans",
+        fname: "Prasanna",
+        lname: "RV",
+        email: "prasanna@gmail.com",
+        gender: "male",
         address: "Beech Creek, PA",
         paddress: "Beech Creek, PA",
         contact: "99999",
         dob: "04/06/2003",
-        schoolName10: "School",
-        schoolName12: "School",
-        schoolName10Mark: 123,
-        schoolName12Mark: 456,
-        fatherName: "I",
+        schoolName10: "Velammal Matric Higher Secondary School",
+        schoolName12: "Velammal Matric Higher Secondary School",
+        schoolName10Mark: 478,
+        schoolName12Mark: 513,
+        fatherName: "Velmurugan S",
         fatherPhone: "123456789",
-        motherName: "G",
+        motherName: "Rajeswari V",
         motherPhone: "987654321",
         passingYear: 2024,
         joiningYear: 2020,
         dept: "IT",
-        skills: ["sighting", "frontend", "single", "fullstack"],
+        skills: ["frontend", "backend", "fullstack", "Java"],
         marksId: 1,
         compId: 1,
     };
