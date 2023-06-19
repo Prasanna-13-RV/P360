@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ProfileSemMarksEdit from "../../components/profile/ProfileSemMarksEdit";
+import ProfileSemMarksEdit from "../../../components/profile/ProfileSemMarksEdit";
 
 function ProfileEdit() {
     const [cgpa, setCgpa] = useState(9.1);

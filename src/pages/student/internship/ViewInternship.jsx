@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import AddInternship from "../../components/internship/AddInternship";
 
 function ViewInternship() {
     const [addButton, setAddButton] = useState(false);

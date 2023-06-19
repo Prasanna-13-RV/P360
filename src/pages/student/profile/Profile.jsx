@@ -1,5 +1,5 @@
 import React from "react";
-import ProfileSemMarks from "../../components/profile/ProfileSemMarks";
+import ProfileSemMarks from "../../../components/profile/ProfileSemMarks";
 
 function Profile() {
     const data = {
