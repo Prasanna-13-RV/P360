@@ -6,6 +6,9 @@ import ViewInternship from "./pages/internship/ViewInternship";
 import Filter from "./pages/filter/Filter";
 import Profile from "./pages/profile/Profile";
 import ProfileEdit from "./pages/profile/ProfileEdit";
+import FileUpload from "./pages/fileUpload/FileUpload";
+import LoginAdmin from "./pages/admin/adminAuth/LoginAdmin";
+import Internship from "./pages/admin/internship/Internship";
 
 function App() {
     return (
@@ -29,6 +32,13 @@ function App() {
                         path="/profile/update"
                         element={<ProfileEdit />}
                     ></Route>
+                    {/* file upload */}
+                    <Route path="/file" element={<FileUpload />}></Route>
+
+                    {/* admin */}
+                    <Route path="/admin/login" element={<LoginAdmin />}></Route>
+                    {/* internship */}
+                    <Route path="/admin/internship" element={<Internship />}></Route>
                 </Routes>
             </Router>
         </>

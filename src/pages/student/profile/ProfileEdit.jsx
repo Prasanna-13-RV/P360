@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import ProfileSemMarks from "../../components/profile/ProfileSemMarks";
 import ProfileSemMarksEdit from "../../components/profile/ProfileSemMarksEdit";
 
 function ProfileEdit() {
@@ -7,27 +6,27 @@ function ProfileEdit() {
     const [singleSkill, setSingleSkill] = useState("");
 
     const data = {
-        userId: "solo1",
-        fname: "solo",
-        lname: "castiest",
-        email: "solotilldeath@gmail.com",
+        userId: "prasanna",
+        fname: "Prasanna",
+        lname: "RV",
+        email: "prasanna@gmail.com",
         gender: "male",
         address: "Beech Creek, PA",
         paddress: "Beech Creek, PA",
         contact: "99999",
         dob: "04/06/2003",
-        schoolName10: "School",
-        schoolName12: "Schoolhsc",
-        schoolName10Mark: 123,
-        schoolName12Mark: 456,
-        fatherName: "I",
+        schoolName10: "Velammal Matric Higher Secondary School",
+        schoolName12: "Velammal Matric Higher Secondary School",
+        schoolName10Mark: 478,
+        schoolName12Mark: 513,
+        fatherName: "Velmurugan S",
         fatherPhone: "123456789",
-        motherName: "G",
+        motherName: "Rajeswari V",
         motherPhone: "987654321",
         passingYear: 2024,
         joiningYear: 2020,
         dept: "IT",
-        skills: ["sighting", "frontend", "single", "fullstack"],
+        skills: ["frontend", "backend", "fullstack", "Java"],
         marksId: 1,
         compId: 1,
     };
@@ -36,7 +35,7 @@ function ProfileEdit() {
 
     const marks = [
         {
-            userId: "solo1",
+            userId: "prasanna",
             marksId: 1,
             semester1: [
                 {
@@ -188,7 +187,7 @@ function ProfileEdit() {
     const compMarks = [
         {
             compId: 1,
-            userId: "solo1",
+            userId: "prasanna",
             p360Score: "100/10000",
             leetCode: "100/10000",
             codeChef: "100/10000",

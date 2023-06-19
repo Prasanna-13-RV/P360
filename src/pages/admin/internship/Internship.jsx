@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import AddInternship from "../../components/internship/AddInternship";
+import AddInternship from "../../../components/internship/AddInternship";
 
-function ViewInternship() {
+function Internship() {
     const [addButton, setAddButton] = useState(false);
 
     return (
@@ -9,7 +9,7 @@ function ViewInternship() {
             <div className="flex flex-row items-center justify-between w-full px-10 my-5">
                 <div>
                     <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
-                        View Internship
+                        All Internship
                     </h1>
                 </div>
                 <button
@@ -82,6 +82,4 @@ function ViewInternship() {
     );
 }
 
-// internship name, job, company, stipend, duration, link
-
-export default ViewInternship;
+export default Internship;
