@@ -17,6 +17,8 @@ const Roadmap = () => {
   const generateColor3 = () => {
     setColor3(Math.random().toString(16).substr(-6));
   };
+  const [selected, setSelected] = useState();
+  const [selected2, setSelected2] = useState();
   const [data, setData] = useState([
     {
       name: "Kotlin",
@@ -116,6 +118,7 @@ const Roadmap = () => {
     },
   ]);
 
+  const selectedBtn = (e) => {};
   return (
     <div className="w-full h-full">
       <div className="mt-[4rem]">
@@ -123,28 +126,47 @@ const Roadmap = () => {
           return (
             <div className="  flex  w-[70%] mt-[2rem]  items-center  mx-auto">
               <div
-                style={{ border: `3px solid #${color1}` }}
-                onClick={() => {
+                style={{
+                  border: `3px solid #${color1}`,
+                  backgroundColor: index == selected ? "#FFFFFF" : null,
+                }}
+                onClick={(e) => {
                   settopic1(main.name);
                   generateColor2();
                   settopic2("");
+                  setSelected2(null);
+                  setSelected(index);
                 }}
-                className="  w-[30%] bg-slate-700    px-4 py-2 rounded-md shadow-sm flex justify-center items-center ">
-                <h1 className="text-white font-bold">{main.name}</h1>
+                className="  w-[30%] bg-slate-700  cursor-pointer  px-4 py-2 rounded-md shadow-sm flex justify-center items-center ">
+                <h1
+                  style={{ color: index == selected ? "black" : null }}
+                  className="text-white font-bold">
+                  {main.name}
+                </h1>
               </div>
 
               {main.name == topic1 && (
                 <div className="  w-[30%]   ml-[5%]  flex flex-col justify-center items-center ">
-                  {main.sub.map((sub) => {
+                  {main.sub.map((sub, index) => {
                     return (
                       <div
                         onClick={() => {
                           settopic2(sub.name);
                           generateColor3();
+
+                          setSelected2(index);
                         }}
-                        style={{ border: `3px solid #${color2}` }}
+                        style={{
+                          border: `3px solid #${color2}`,
+                          backgroundColor:
+                            index == selected2 ? "#FFFFFF" : null,
+                        }}
                         className=" px-4  bg-slate-700  w-full py-2 rounded-md shadow-sm mt-2  text-center">
-                        <h1 className="text-white font-bold">{sub.name}</h1>
+                        <h1
+                          style={{ color: index == selected2 ? "black" : null }}
+                          className="text-white font-bold">
+                          {sub.name}
+                        </h1>
                       </div>
                     );
                   })}
