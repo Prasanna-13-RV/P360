@@ -6,9 +6,11 @@ import ViewInternship from "./pages/student/internship/ViewInternship";
 import Filter from "./pages/student/filter/Filter";
 import Profile from "./pages/student/profile/Profile";
 import ProfileEdit from "./pages/student/profile/ProfileEdit";
-import FileUpload from "./pages/student/fileUpload/FileUpload";
+import FileUpload from "./pages/admin/fileUpload/FileUpload";
 import LoginAdmin from "./pages/admin/adminAuth/LoginAdmin";
 import Internship from "./pages/admin/internship/Internship";
+import StudentFile from "./pages/admin/fileUpload/StudentFile";
+import MarksFile from "./pages/admin/fileUpload/MarksFile";
 
 function App() {
     return (
@@ -32,13 +34,25 @@ function App() {
                         path="/profile/update"
                         element={<ProfileEdit />}
                     ></Route>
-                    {/* file upload */}
-                    <Route path="/file" element={<FileUpload />}></Route>
+
 
                     {/* admin */}
                     <Route path="/admin/login" element={<LoginAdmin />}></Route>
                     {/* internship */}
-                    <Route path="/admin/internship" element={<Internship />}></Route>
+                    <Route
+                        path="/admin/internship"
+                        element={<Internship />}
+                    ></Route>
+                    {/* file upload */}
+                    <Route path="/file" element={<FileUpload />}></Route>
+                    <Route
+                        path="/admin/student/file"
+                        element={<StudentFile />}
+                    ></Route>
+                    <Route
+                        path="/admin/marks/file"
+                        element={<MarksFile />}
+                    ></Route>
                 </Routes>
             </Router>
         </>
