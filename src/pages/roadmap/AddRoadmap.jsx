@@ -20,6 +20,7 @@ const AddRoadmap = () => {
   return (
     <div className="w-full p-4">
       <div className="flex flex-col items-center">
+      <h1 className="font-semibold text-2xl my-[3rem]">Add Roadmap</h1>
         <TextField
           sx={{ margin: "1rem 0rem 1rem 0rem", width: 400 }}
           onChange={(e) => setTitle(e.target.value)}

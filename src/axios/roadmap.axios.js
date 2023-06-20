@@ -5,8 +5,16 @@ export const getRoadmaps = async () => {
 };
 
 export const postRoadmap = async (name, subject) => {
-  console.log(name, subject);
+  
   return await axios.post("http://localhost:8080/api/roadmap", {
+    name,
+    subject,
+  });
+};
+
+export const updateRoadmap = async (name, subject, id) => {
+  
+  return await axios.put(`http://localhost:8080/api/roadmap/${id}`, {
     name,
     subject,
   });
