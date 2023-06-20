@@ -11,6 +11,9 @@ import LoginAdmin from "./pages/admin/adminAuth/LoginAdmin";
 import Internship from "./pages/admin/internship/Internship";
 import StudentFile from "./pages/admin/fileUpload/StudentFile";
 import MarksFile from "./pages/admin/fileUpload/MarksFile";
+import AddRoadmap from "./pages/roadmap/AddRoadmap";
+import ShowRoadmaps from "./pages/roadmap/showRoadmaps";
+import UpdateRoadmap from "./pages/roadmap/UpdateRoadmaps";
 
 function App() {
     return (
@@ -35,7 +38,6 @@ function App() {
                         element={<ProfileEdit />}
                     ></Route>
 
-
                     {/* admin */}
                     <Route path="/admin/login" element={<LoginAdmin />}></Route>
                     {/* internship */}
@@ -53,10 +55,21 @@ function App() {
                         path="/admin/marks/file"
                         element={<MarksFile />}
                     ></Route>
+                    {/* Roadmap */}
+                    <Route
+                        path="/admin/addroadmap"
+                        element={<AddRoadmap />}
+                    ></Route>
+                    <Route
+                        path="/admin/updateroadmap"
+                        element={<UpdateRoadmap />}
+                    ></Route>
+                    <Route
+                        path="/admin/showroadmap"
+                        element={<ShowRoadmaps />}
+                    ></Route>
                 </Routes>
             </Router>
         </>
     );
 }
-
-export default App;
