@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
 function Register() {
@@ -31,7 +31,11 @@ function Register() {
                             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
                                 Create an account
                             </h1>
-                            <form className="space-y-4 md:space-y-6" action="#" onSubmit={handleSubmit}>
+                            <form
+                                className="space-y-4 md:space-y-6"
+                                action="#"
+                                onSubmit={handleSubmit}
+                            >
                                 <div>
                                     <label
                                         htmlFor="fname"
