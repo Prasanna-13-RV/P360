@@ -5,6 +5,7 @@ import Register from './pages/auth/Register';
 import ViewInternship from './pages/internship/ViewInternship';
 import AddInternship from './pages/internship/AddInternship';
 import Filter from './pages/filter/Filter';
+import StudentDashboard from './pages/dashboard/StudentDashboard';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/internship/create" element={<AddInternship />}></Route>
           {/* Filter */}
           <Route path="/filter" element={<Filter />}></Route>
+          <Route path="/student/dashboard" element={<StudentDashboard />}></Route>
         </Routes>
       </Router>
     </>
