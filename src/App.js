@@ -9,40 +9,44 @@ import ProfileEdit from "./pages/student/profile/ProfileEdit";
 import FileUpload from "./pages/student/fileUpload/FileUpload";
 import LoginAdmin from "./pages/admin/adminAuth/LoginAdmin";
 import Internship from "./pages/admin/internship/Internship";
-
+import AddRoadmap from "./pages/roadmap/AddRoadmap";
+import UpdateRoadmaps from "./pages/roadmap/UpdateRoadmaps";
+import ShowRoadmaps from "./pages/roadmap/showRoadmaps";
 function App() {
-    return (
-        <>
-            <Router>
-                <Routes>
-                    <Route path="/" element={<Home />}></Route>
-                    {/* auth */}
-                    <Route path="/login" element={<Login />}></Route>
-                    <Route path="/register" element={<Register />}></Route>
-                    {/* internship */}
-                    <Route
-                        path="/internship"
-                        element={<ViewInternship />}
-                    ></Route>
-                    {/* Filter */}
-                    <Route path="/filter" element={<Filter />}></Route>
-                    {/* Profile */}
-                    <Route path="/profile" element={<Profile />}></Route>
-                    <Route
-                        path="/profile/update"
-                        element={<ProfileEdit />}
-                    ></Route>
-                    {/* file upload */}
-                    <Route path="/file" element={<FileUpload />}></Route>
+  return (
+    <>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          {/* auth */}
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/register" element={<Register />}></Route>
+          {/* internship */}
+          <Route path="/internship" element={<ViewInternship />}></Route>
+          {/* Filter */}
+          <Route path="/filter" element={<Filter />}></Route>
+          {/* Profile */}
+          <Route path="/profile" element={<Profile />}></Route>
+          <Route path="/profile/update" element={<ProfileEdit />}></Route>
+          {/* file upload */}
+          <Route path="/file" element={<FileUpload />}></Route>
 
-                    {/* admin */}
-                    <Route path="/admin/login" element={<LoginAdmin />}></Route>
-                    {/* internship */}
-                    <Route path="/admin/internship" element={<Internship />}></Route>
-                </Routes>
-            </Router>
-        </>
-    );
+          {/* admin */}
+          <Route path="/admin/login" element={<LoginAdmin />}></Route>
+          {/* internship */}
+          <Route path="/admin/internship" element={<Internship />}></Route>
+
+          <Route path="/admin/addroadmap" element={<AddRoadmap />}></Route>
+          <Route
+            path="/admin/updateroadmap"
+            element={<UpdateRoadmaps />}></Route>
+            <Route
+            path="/admin/showroadmap"
+            element={<ShowRoadmaps />}></Route>
+        </Routes>
+      </Router>
+    </>
+  );
 }
 
 export default App;
