@@ -7,12 +7,14 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
 }
 
-export default function Navbar({ current }) {
+export default function NavbarAdmin({ current }) {
 
     const navigation = [
         { name: "Home", href: "/", current: current },
-        { name: "Internship", href: "/internship", current: current },
-        { name: "Student", href: "/student", current: current },
+        { name: "Internship", href: "/admin/internship", current: current },
+        { name: "Student File Upload", href: "/admin/student/file", current: current },
+        { name: "Marks File Upload", href: "/admin/marks/file", current: current },
+        { name: "Roadmap", href: "/admin/showroadmap", current: current },
     ];
 
 	const user = {

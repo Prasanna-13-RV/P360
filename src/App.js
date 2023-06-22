@@ -30,7 +30,7 @@ function App() {
                         element={<ViewInternship />}
                     ></Route>
                     {/* Filter */}
-                    <Route path="/filter" element={<Filter />}></Route>
+                    <Route path="/student" element={<Filter />}></Route>
                     {/* Profile */}
                     <Route path="/profile" element={<Profile />}></Route>
                     <Route
@@ -73,3 +73,5 @@ function App() {
         </>
     );
 }
+
+export default App;

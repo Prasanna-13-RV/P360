@@ -1,8 +1,11 @@
 import React from "react";
+import NavbarAdmin from "../../../components/admin/NavbarAdmin";
+import FooterAdmin from "../../../components/admin/FooterAdmin";
 
 function StudentFile() {
     return (
         <>
+        <NavbarAdmin />
             <section className="w-full h-screen flex flex-col justify-center items-center p-10">
                 <div>
                     <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-3xl pb-10">
@@ -46,6 +49,7 @@ function StudentFile() {
                     </label>
                 </div>
             </section>
+            <FooterAdmin />
         </>
     );
 }
