@@ -1,469 +1,165 @@
-import React from 'react';
-import ReactEcharts from 'echarts-for-react';
+import React from "react";
+import { TextField, Button } from "@mui/material";
 
-const data = {
-	userId: 'solo1',
-	fname: 'solo',
-	lname: 'castiest',
-	email: 'solotilldeath@gmail.com',
-	gender: 'trans',
-	address: 'Beech Creek, PA',
-	paddress: 'Beech Creek, PA',
-	contact: '99999',
-	dob: '04/06/2003',
-	schoolName10: 'School',
-	schoolName12: 'School',
-	schoolName10Mark: 123,
-	schoolName12Mark: 456,
-	fatherName: 'I',
-	fatherPhone: '123456789',
-	motherName: 'G',
-	motherPhone: '987654321',
-	passingYear: 2024,
-	joiningYear: 2020,
-	dept: 'IT',
-	skills: ['sighting', 'frontend', 'single', 'fullstack'],
-	marksId: 1,
-	compId: 1
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { Bar } from "react-chartjs-2";
+
+export const options = {
+  responsive: true,
+  plugins: {
+    title: {
+      display: true,
+      text: "",
+    },
+  },
 };
 
-const marks = [
-	{
-		userId: 'solo1',
-		marksId: 1,
-		semester1: {
-			maths: {
-				subjectCode: 'asdfg',
-				marks: 100
-			},
-			phy: {
-				subjectCode: 'asdfg',
-				marks: 100
-			},
-			che: {
-				subjectCode: 'asdfg',
-				marks: 100
-			},
-			eng: {
-				subjectCode: 'asdfg',
-				marks: 100
-			},
-			p360Score: 100,
-			eg: {
-				subjectCode: 'asdfg',
-				marks: 100
-			}
-		},
-		semester2: {
-			maths: {
-				subjectCode: 'asdfg',
-				marks: 100
-			},
-			phy: {
-				subjectCode: 'asdfg',
-				marks: 100
-			},
-			che: {
-				subjectCode: 'asdfg',
-				marks: 100
-			},
-			eng: {
-				subjectCode: 'asdfg',
-				marks: 100
-			},
-			p360Score: 100,
-			eg: {
-				subjectCode: 'asdfg',
-				marks: 100
-			}
-		},
-		semester3: {
-			maths: {
-				subjectCode: 'asdfg',
-				marks: 100
-			},
-			phy: {
-				subjectCode: 'asdfg',
-				marks: 100
-			},
-			che: {
-				subjectCode: 'asdfg',
-				marks: 100
-			},
-			eng: {
-				subjectCode: 'asdfg',
-				marks: 100
-			},
-			p360Score: 100,
-			eg: {
-				subjectCode: 'asdfg',
-				marks: 100
-			}
-		},
-		semester4: {
-			maths: {
-				subjectCode: 'asdfg',
-				marks: 100
-			},
-			phy: {
-				subjectCode: 'asdfg',
-				marks: 100
-			},
-			che: {
-				subjectCode: 'asdfg',
-				marks: 100
-			},
-			eng: {
-				subjectCode: 'asdfg',
-				marks: 100
-			},
-			p360Score: 100,
-			eg: {
-				subjectCode: 'asdfg',
-				marks: 100
-			}
-		},
-		semester5: {
-			maths: {
-				subjectCode: 'asdfg',
-				marks: 100
-			},
-			phy: {
-				subjectCode: 'asdfg',
-				marks: 100
-			},
-			che: {
-				subjectCode: 'asdfg',
-				marks: 100
-			},
-			eng: {
-				subjectCode: 'asdfg',
-				marks: 100
-			},
-			p360Score: 100,
-			eg: {
-				subjectCode: 'asdfg',
-				marks: 100
-			}
-		},
-		semester6: {
-			maths: {
-				subjectCode: 'asdfg',
-				marks: 100
-			},
-			phy: {
-				subjectCode: 'asdfg',
-				marks: 100
-			},
-			che: {
-				subjectCode: 'asdfg',
-				marks: 100
-			},
-			eng: {
-				subjectCode: 'asdfg',
-				marks: 100
-			},
-			p360Score: 100,
-			eg: {
-				subjectCode: 'asdfg',
-				marks: 100
-			}
-		},
-		semester7: {
-			maths: {
-				subjectCode: 'asdfg',
-				marks: 100
-			},
-			phy: {
-				subjectCode: 'asdfg',
-				marks: 100
-			},
-			che: {
-				subjectCode: 'asdfg',
-				marks: 100
-			},
-			eng: {
-				subjectCode: 'asdfg',
-				marks: 100
-			},
-			p360Score: 100,
-			eg: {
-				subjectCode: 'asdfg',
-				marks: 100
-			}
-		},
-		semester8: {
-			maths: {
-				subjectCode: 'asdfg',
-				marks: 100
-			},
-			phy: {
-				subjectCode: 'asdfg',
-				marks: 100
-			},
-			che: {
-				subjectCode: 'asdfg',
-				marks: 100
-			},
-			eng: {
-				subjectCode: 'asdfg',
-				marks: 100
-			},
-			p360Score: 100,
-			eg: {
-				subjectCode: 'asdfg',
-				marks: 100
-			}
-		}
-	}
-];
+const labels = ["100-80", "80-60", "60-40", "40-20", "20-0"];
 
-const compMarks = [
-	{
-		compId: 1,
-		userId: 'solo1',
-		p360Score: 100,
-		leetCode: 100,
-		codeChef: 100,
-		codeForces: 100,
-		hackerRank: 100,
-		codeDivision: 100,
-		hackerEarth: 100,
-		interviewBit: 100,
-		gfg: 100
-	},
-	{
-		compId: 1,
-		userId: 'solo1',
-		p360Score: 100,
-		leetCode: 100,
-		codeChef: 100,
-		codeForces: 100,
-		hackerRank: 100,
-		codeDivision: 100,
-		hackerEarth: 100,
-		interviewBit: 100,
-		gfg: 100
-	},
-	{
-		compId: 1,
-		userId: 'solo1',
-		p360Score: 100,
-		leetCode: 100,
-		codeChef: 100,
-		codeForces: 100,
-		hackerRank: 100,
-		codeDivision: 100,
-		hackerEarth: 100,
-		interviewBit: 100,
-		gfg: 100
-	},
-	{
-		compId: 1,
-		userId: 'solo1',
-		p360Score: 100,
-		leetCode: 100,
-		codeChef: 100,
-		codeForces: 100,
-		hackerRank: 100,
-		codeDivision: 100,
-		hackerEarth: 100,
-		interviewBit: 100,
-		gfg: 100
-	},
-	{
-		compId: 1,
-		userId: 'solo1',
-		p360Score: 100,
-		leetCode: 100,
-		codeChef: 100,
-		codeForces: 100,
-		hackerRank: 100,
-		codeDivision: 100,
-		hackerEarth: 100,
-		interviewBit: 100,
-		gfg: 100
-	},
-	{
-		compId: 1,
-		userId: 'solo1',
-		p360Score: 100,
-		leetCode: 100,
-		codeChef: 100,
-		codeForces: 100,
-		hackerRank: 100,
-		codeDivision: 100,
-		hackerEarth: 100,
-		interviewBit: 100,
-		gfg: 100
-	},
-	{
-		compId: 1,
-		userId: 'solo1',
-		p360Score: 100,
-		leetCode: 100,
-		codeChef: 100,
-		codeForces: 100,
-		hackerRank: 100,
-		codeDivision: 100,
-		hackerEarth: 100,
-		interviewBit: 100,
-		gfg: 100
-	},
-	{
-		compId: 1,
-		userId: 'solo1',
-		p360Score: 100,
-		leetCode: 100,
-		codeChef: 100,
-		codeForces: 100,
-		hackerRank: 100,
-		codeDivision: 100,
-		hackerEarth: 100,
-		interviewBit: 100,
-		gfg: 100
-	},
-	{
-		compId: 1,
-		userId: 'solo1',
-		p360Score: 100,
-		leetCode: 100,
-		codeChef: 100,
-		codeForces: 100,
-		hackerRank: 100,
-		codeDivision: 100,
-		hackerEarth: 100,
-		interviewBit: 100,
-		gfg: 100
-	},
-	{
-		compId: 1,
-		userId: 'solo1',
-		p360Score: 100,
-		leetCode: 100,
-		codeChef: 100,
-		codeForces: 100,
-		hackerRank: 100,
-		codeDivision: 100,
-		hackerEarth: 100,
-		interviewBit: 100,
-		gfg: 100
-	},
-	{
-		compId: 1,
-		userId: 'solo1',
-		p360Score: 100,
-		leetCode: 100,
-		codeChef: 100,
-		codeForces: 100,
-		hackerRank: 100,
-		codeDivision: 100,
-		hackerEarth: 100,
-		interviewBit: 100,
-		gfg: 100
-	},
-	{
-		compId: 1,
-		userId: 'solo1',
-		p360Score: 100,
-		leetCode: 100,
-		codeChef: 100,
-		codeForces: 100,
-		hackerRank: 100,
-		codeDivision: 100,
-		hackerEarth: 100,
-		interviewBit: 100,
-		gfg: 100
-	}
-];
+export const data1 = {
+  labels,
+  datasets: [
+    {
+      label: "LeetCode",
+      data: [100, 50, 20, 30, 10],
+      backgroundColor: "#525FE1",
+    },
+  ],
+};
+export const data2 = {
+  labels,
+  datasets: [
+    {
+      label: "LeetCode",
+      data: [100, 50, 20, 30, 10],
+      backgroundColor: "#525FE1",
+    },
+  ],
+};
+export const data3 = {
+  labels,
+  datasets: [
+    {
+      label: "LeetCode",
+      data: [100, 50, 20, 30, 10],
+      backgroundColor: "#525FE1",
+    },
+  ],
+};
+export const data4 = {
+  labels,
+  datasets: [
+    {
+      label: "LeetCode",
+      data: [100, 50, 20, 30, 10],
+      backgroundColor: "#525FE1",
+    },
+  ],
+};
+export const data5 = {
+  labels,
+  datasets: [
+    {
+      label: "LeetCode",
+      data: [100, 50, 20, 30, 10],
+      backgroundColor: "#525FE1",
+    },
+  ],
+};
+export const data6 = {
+  labels,
+  datasets: [
+    {
+      label: "LeetCode",
+      data: [100, 50, 20, 30, 10],
+      backgroundColor: "#525FE1",
+    },
+  ],
+};
+export const data7 = {
+  labels,
+  datasets: [
+    {
+      label: "LeetCode",
+      data: [100, 50, 20, 30, 10],
+      backgroundColor: "#525FE1",
+    },
+  ],
+};
+export const data8 = {
+  labels,
+  datasets: [
+    {
+      label: "LeetCode",
+      data: [100, 50, 20, 30, 10],
+      backgroundColor: "#525FE1",
+    },
+  ],
+};
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
+
 const StudentDashboard = () => {
-	return (
-		<div className='grid grid-cols-3 grid-rows-3 '>
-			{/* <div className='flex items-center justify-center flex-col'>
-				<h1>P360 Rank</h1>
-				<ReactEcharts
-					className='w-full'
-					option={{
-						xAxis: {
-							type: 'category',
-							data: ['61-70', '71-80', '81-90', '91-100']
-						},
-						yAxis: {
-							type: 'value'
-						},
-						series: [
-							{
-								data: [
-                                    marks.filter((m)=>m.semester1.p360Score>60&&m.semester1.p360Score===70).length
-								,
-                                marks.filter((m)=>m.semester1.p360Score>70&&m.semester1.p360Score===80).length,
-                                marks.filter((m)=>m.semester1.p360Score>80&&m.semester1.p360Score===90).length,
-                                marks.filter((m)=>m.semester1.p360Score>90&&m.semester1.p360Score===100).length,
-								],
-								type: 'bar'
-							}
-						]
-					}}
-				/>
-			</div> */}
-			<div className='flex items-center justify-center flex-col'>
-				<h1>Trend chart</h1>
-				<ReactEcharts
-					className='w-full'
-					option={{
-						xAxis: {
-							type: 'category',
-							data: [
-								'1',
-								'2',
-								'3',
-								'4',
-								'5',
-								'6',
-								'7',
-								'8'
-							],
-                            
-						},
-						yAxis: {
-							type: 'value'
-						},
-						series: [
-							{
-								data: [
-									marks
-										.map((m) => m.semester1.p360Score)
-										.reduce((m, t) => m + t),
-									marks
-										.map((m) => m.semester2.p360Score)
-										.reduce((m, t) => m + t),
-									marks
-										.map((m) => m.semester3.p360Score)
-										.reduce((m, t) => m + t),
-									marks
-										.map((m) => m.semester4.p360Score)
-										.reduce((m, t) => m + t),
-									marks
-										.map((m) => m.semester5.p360Score)
-										.reduce((m, t) => m + t),
-									marks
-										.map((m) => m.semester6.p360Score)
-										.reduce((m, t) => m + t),
-									marks
-										.map((m) => m.semester7.p360Score)
-										.reduce((m, t) => m + t),
-									marks
-										.map((m) => m.semester8.p360Score)
-										.reduce((m, t) => m + t)
-								],
-								type: 'bar'
-							}
-						]
-					}}
-				/>
-			</div>
-		</div>
-	);
+  return (
+    <div className="w-full m-h-screen">
+      <div className="mt-[5rem] mx-auto w-[70%] flex justify-evenly items-center">
+        <Button variant="contained">Competitive Score</Button>
+        <Button variant="contained">Academics</Button>
+      </div>
+      <div className="mt-[5rem] mx-auto w-[70%] flex justify-evenly items-center">
+        <select className="w-[20%]" style={{ border: "solid #454545 1px" }}>
+          <option>2023</option>
+          <option>2022</option>
+          <option>2021</option>
+        </select>
+        <select className="w-[20%]" style={{ border: "solid #454545 1px" }}>
+          <option>IT</option>
+          <option>CSE</option>
+          <option>EEE</option>
+        </select>
+      </div>
+      <div className=" flex flex-wrap justify-evenly items-center">
+        <div className="w-[400px] h-fit mt-5">
+          <Bar options={options} data={data1} />
+        </div>
+        <div className="w-[400px] h-fit mt-8">
+          <Bar options={options} data={data2} />
+        </div>
+        <div className="w-[400px] h-fit  mt-8">
+          <Bar options={options} data={data3} />
+        </div>
+        <div className="w-[400px] h-fit mt-8">
+          <Bar options={options} data={data4} />
+        </div>
+        <div className="w-[400px] h-fit mt-8">
+          <Bar options={options} data={data8} />
+        </div>
+        <div className="w-[400px] h-fit mt-8">
+          <Bar options={options} data={data6} />
+        </div>
+        <div className="w-[400px] h-fit mt-8">
+          <Bar options={options} data={data7} />
+        </div>
+        <div className="w-[400px] h-fit mt-8">
+          <Bar options={options} data={data8} />
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default StudentDashboard;
