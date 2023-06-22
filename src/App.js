@@ -33,6 +33,10 @@ function App() {
           <Route path="/profile" element={<Profile />}></Route>
           <Route path="/profile/update" element={<ProfileEdit />}></Route>
 
+          {/* Filter */}
+          <Route path="/student" element={<Filter />}></Route>
+          {/* Profile */}
+
           {/* admin */}
           <Route path="/admin/login" element={<LoginAdmin />}></Route>
           {/* internship */}

@@ -1,20 +1,9 @@
-import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
 
-function AddInternship({ setAddButton, addButton }) {
+function EditInternship({ setEditButton, editButton }) {
     const [internDetailes, setInternDetailes] = useState({});
 
-    const handleSubmit = () => {
-        axios
-            .post("http://localhost:8080/addinternship", internDetailes)
-            .then((res) => {
-                console.log(res);
-                setAddButton(false);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-};
+    const handleSubmit = () => {};
 
     const KEY_NAME_ESC = "Escape";
     const KEY_EVENT_TYPE = "keyup";
@@ -22,7 +11,7 @@ function AddInternship({ setAddButton, addButton }) {
     function useEscapeKey() {
         const handleEscKey = useCallback((event) => {
             if (event.key === KEY_NAME_ESC) {
-                setAddButton(false);
+                setEditButton(false);
             }
         }, []);
 
@@ -46,9 +35,25 @@ function AddInternship({ setAddButton, addButton }) {
             <section className="bg-[rgba(0,0,0,0.5)] fixed top-0 left-0 w-full z-40">
                 <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto">
                     <div className="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 h-[90vh] overflow-scroll">
-                        <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+                        <div className="relative p-6 space-y-4 md:space-y-6 sm:p-8">
+                            <div
+                                className="absolute top-0 right-0 w-[50px] h-[50px] flex justify-center items-center z-50"
+                                onClick={() => {
+                                    setEditButton(false);
+
+                                    setInternDetailes({});
+                                }}
+                            >
+                                <img
+                                    width="30"
+                                    height="30"
+                                    className="cursor-pointer"
+                                    src="https://img.icons8.com/ios-glyphs/30/cancel.png"
+                                    alt="cancel"
+                                />
+                            </div>
                             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
-                                Add Internship
+                                Edit Internship
                             </h1>
                             <form
                                 class="space-y-4 md:space-y-6"
@@ -189,7 +194,7 @@ function AddInternship({ setAddButton, addButton }) {
                                     type="submit"
                                     className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                                 >
-                                    Add Internship
+                                    Edit Internship
                                 </button>
                             </form>
                         </div>
@@ -200,4 +205,4 @@ function AddInternship({ setAddButton, addButton }) {
     );
 }
 
-export default AddInternship;
+export default EditInternship;

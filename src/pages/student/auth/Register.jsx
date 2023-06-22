@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Navbar from "../../../components/Navbar";
+import Footer from "../../../components/Footer";
 
 function Register() {
     const [formElements, setFormElements] = useState({});
@@ -18,6 +20,7 @@ function Register() {
 
     return (
         <>
+            <Navbar />
             <section className="bg-gray-50">
                 <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-5">
                     <a
@@ -192,6 +195,7 @@ function Register() {
                     </div>
                 </div>
             </section>
+            <Footer />
         </>
     );
 }

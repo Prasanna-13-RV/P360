@@ -1,10 +1,10 @@
 import axios from "axios";
 import React, { useState } from "react";
-
+import Navbar from "../../../components/Navbar";
+import Footer from "../../../components/Footer";
 
 function Login() {
     const [formElements, setFormElements] = useState({});
-
 
     const handleSubmit = () => {
         // try {
@@ -20,6 +20,7 @@ function Login() {
 
     return (
         <>
+            <Navbar />
             <section className="bg-gray-50">
                 <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
                     <a
@@ -143,6 +144,7 @@ function Login() {
                     </div>
                 </div>
             </section>
+            <Footer />
         </>
     );
 }

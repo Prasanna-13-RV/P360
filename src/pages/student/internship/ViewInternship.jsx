@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import Navbar from "../../../components/Navbar";
+import Footer from "../../../components/Footer";
 
 function ViewInternship() {
     const [addButton, setAddButton] = useState(false);
 
     return (
         <>
+            <Navbar />
             <div className="flex flex-row items-center justify-between w-full px-10 my-5">
                 <div>
                     <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
@@ -57,6 +60,7 @@ function ViewInternship() {
                     </tbody>
                 </table>
             </div>
+            <Footer />
         </>
     );
 }

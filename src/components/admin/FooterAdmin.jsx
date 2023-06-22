@@ -1,6 +1,6 @@
 import React from "react";
 
-const Footer = () => {
+const FooterAdmin = () => {
     return (
         <footer className="bg-white ">
             <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
@@ -10,8 +10,13 @@ const Footer = () => {
                             href="https://flowbite.com/"
                             className="flex items-center"
                         >
+                            <img
+                                src="https://flowbite.com/docs/images/logo.svg"
+                                className="h-8 mr-3"
+                                alt="FlowBite Logo"
+                            />
                             <span className="self-center text-2xl font-semibold whitespace-nowrap ">
-                                P360
+                                Flowbite
                             </span>
                         </a>
                     </div>
@@ -187,4 +192,4 @@ const Footer = () => {
     );
 };
 
-export default Footer;
+export default FooterAdmin;
