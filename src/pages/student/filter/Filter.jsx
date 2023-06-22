@@ -2,6 +2,7 @@ import { MaterialReactTable } from "material-react-table";
 import React, { useMemo } from "react";
 import Navbar from "../../../components/Navbar";
 import Footer from "../../../components/Footer";
+import NavbarAdmin from "../../../components/admin/NavbarAdmin";
 
 function Filter() {
     const columns = useMemo(
@@ -145,8 +146,8 @@ function Filter() {
     );
     return (
         <>
-            <Navbar />
-            <div className="w-screen h-screen flex items-end justify-center">
+            <NavbarAdmin />
+            <div className="w-screen h-screen flex items-start mt-10 justify-center">
                 <div className="w-full">
                     <MaterialReactTable
                         columns={columns}

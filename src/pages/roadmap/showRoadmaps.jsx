@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { getRoadmaps } from "../../axios/roadmap.axios";
 import { useNavigate } from "react-router-dom";
-import NavbarAdmin from "../../components/admin/NavbarAdmin";
-import FooterAdmin from "../../components/admin/FooterAdmin";
+
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 
 const ShowRoadmaps = () => {
   const [colors, setColors] = useState([]);
