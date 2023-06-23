@@ -24,7 +24,7 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<Home />}></Route>
+          <Route path="/" element={<StudentDashboard />}></Route>
           {/* auth */}
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
@@ -36,31 +36,31 @@ function App() {
           <Route path="/profile" element={<Profile />}></Route>
           <Route path="/profile/update" element={<ProfileEdit />}></Route>
 
-          {/* Filter */}
-          {/* <Route path="/student" element={<Filter />}></Route> */}
-          {/* Profile */}
+                    {/* Filter */}
+                    {/* <Route path="/student" element={<Filter />}></Route> */}
+                    {/* Profile */}
 
-          {/* admin */}
-          <Route path="/admin/login" element={<LoginAdmin />}></Route>
-          {/* internship */}
-          <Route path="/admin/internship" element={<Internship />}></Route>
-          {/* file upload */}
-          <Route path="/file" element={<FileUpload />}></Route>
-          <Route path="/admin/student/file" element={<StudentFile />}></Route>
-          <Route path="/admin/marks/file" element={<MarksFile />}></Route>
-          {/* Roadmap */}
-          <Route path="/admin/addroadmap" element={<AddRoadmap />}></Route>
-          <Route
-            path="/admin/updateroadmap"
-            element={<UpdateRoadmap />}></Route>
-          <Route path="/admin/showroadmap" element={<ShowRoadmaps />}></Route>
-          <Route path="/admin/roadmap" element={<Roadmap />}></Route>
+                    {/* admin */}
+                    <Route path="/admin/login" element={<LoginAdmin />}></Route>
+                    {/* internship */}
+                    <Route path="/admin/internship" element={<Internship />}></Route>
+                    {/* file upload */}
+                    <Route path="/file" element={<FileUpload />}></Route>
+                    <Route path="/admin/student/file" element={<StudentFile />}></Route>
+                    <Route path="/admin/marks/file" element={<MarksFile />}></Route>
+                    {/* Roadmap */}
+                    <Route path="/admin/addroadmap" element={<AddRoadmap />}></Route>
+                    <Route
+                        path="/admin/updateroadmap"
+                        element={<UpdateRoadmap />}></Route>
+                    <Route path="/admin/showroadmap" element={<ShowRoadmaps />}></Route>
+                    <Route path="/admin/roadmap" element={<Roadmap />}></Route>
 
-          <Route path="/admin/dashboard" element={<StudentDashboard />}></Route>
-          <Route path="/admin/calender" element={<Calender />}></Route>
-        </Routes>
-      </Router>
-    </>
-  );
+                    <Route path="/admin/dashboard" element={<StudentDashboard />}></Route>
+                    <Route path="/admin/calender" element={<Calender />}></Route>
+                </Routes>
+            </Router>
+        </>
+    );
 }
 export default App;
