@@ -9,10 +9,10 @@ function Filter() {
     const [studentData, setStudentData] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:8080/students").then((res) => {
-            setStudentData(res.data);
-            console.log(studentData);
-        });
+        // axios.get("http://localhost:8080/api/students").then((res) => {
+        //     // setStudentData(res.data);
+        //     console.log(studentData);
+        // });
     });
 
     // {
