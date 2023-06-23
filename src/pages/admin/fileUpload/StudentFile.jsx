@@ -17,15 +17,16 @@ function StudentFile() {
         formData.append("file", fileStudent);
         console.log(formData, fileStudent);
 
-        axios.post('/api/upload', formData)
-          .then(response => {
-            // Handle the response from the backend
-            console.log(response.data);
-          })
-          .catch(error => {
-            // Handle errors
-            console.error(error);
-          });
+        axios
+            .post("http://localhost:8080/student/create", formData)
+            .then((response) => {
+                // Handle the response from the backend
+                console.log(response.data);
+            })
+            .catch((error) => {
+                // Handle errors
+                console.error(error);
+            });
     };
 
     return (
