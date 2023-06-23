@@ -20,21 +20,21 @@ import Calender from "./pages/admin/Calender/Calender";
 import Roadmap from "./pages/roadmap/Roadmap";
 
 function App() {
-    return (
-        <>
-            <Router>
-                <Routes>
-                    <Route path="/" element={<Home />}></Route>
-                    {/* auth */}
-                    <Route path="/login" element={<Login />}></Route>
-                    <Route path="/register" element={<Register />}></Route>
-                    {/* internship */}
-                    <Route path="/internship" element={<ViewInternship />}></Route>
-                    {/* Filter */}
-                    {/* <Route path="/filter" element={<Filter />}></Route> */}
-                    {/* Profile */}
-                    <Route path="/profile" element={<Profile />}></Route>
-                    <Route path="/profile/update" element={<ProfileEdit />}></Route>
+  return (
+    <>
+      <Router>
+        <Routes>
+          <Route path="/" element={<StudentDashboard />}></Route>
+          {/* auth */}
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/register" element={<Register />}></Route>
+          {/* internship */}
+          <Route path="/internship" element={<ViewInternship />}></Route>
+          {/* Filter */}
+          {/* <Route path="/filter" element={<Filter />}></Route> */}
+          {/* Profile */}
+          <Route path="/profile" element={<Profile />}></Route>
+          <Route path="/profile/update" element={<ProfileEdit />}></Route>
 
                     {/* Filter */}
                     {/* <Route path="/student" element={<Filter />}></Route> */}

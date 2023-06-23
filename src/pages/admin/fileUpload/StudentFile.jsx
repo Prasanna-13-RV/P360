@@ -18,9 +18,8 @@ function StudentFile() {
 		console.log(formData, fileStudent);
 
 		axios
-			.post('/api/upload', formData)
+			.post('http://localhost:8080/student/create', formData)
 			.then((response) => {
-				// Handle the response from the backend
 				console.log(response.data);
 			})
 			.catch((error) => {

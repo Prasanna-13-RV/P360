@@ -113,7 +113,7 @@ export default function NavbarAdmin({ current }) {
                               <Menu.Item>
                                 {({ active }) => (
                                   <a
-                                    href="$"
+                                    href="/admin/marks/file"
                                     className={classNames(
                                       active ? "bg-gray-100" : "",
                                       "block px-4 py-2 text-sm text-gray-700"
