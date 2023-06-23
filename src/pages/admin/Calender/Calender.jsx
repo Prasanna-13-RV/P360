@@ -12,12 +12,26 @@ import NavbarAdmin from "../../../components/admin/NavbarAdmin";
 import FooterAdmin from "../../../components/admin/FooterAdmin";
 
 const Calender = () => {
+  const [currentEvent, setCurrentEvent] = useState();
   useEffect(() => {
-    getEvents().then((res) => {
-      console.log(res);
-      setEvents(res.data);
-    });
+    get();
   }, []);
+
+  const get = () => {
+    getEvents().then((res) => {
+      console.log(res, "nnrr");
+      res.data.forEach((data) => {
+        setEvents((old) => [
+          ...old,
+          {
+            title: data.title,
+            start: data.start_time,
+            end: data.end_time,
+          },
+        ]);
+      });
+    });
+  };
   const [title, setTitle] = useState();
   const [popup, setPopup] = useState(false);
   const [date, setDate] = useState();
@@ -28,7 +42,7 @@ const Calender = () => {
     postEvent(title, date, date2).then((res) => {
       console.log(res);
     });
-    console.log(title, date, date2,"SS");
+    console.log(title, date, date2, "SS");
     setEvents([...events, { title: title, start: date, end: date2 }]);
     setTitle("");
     setDate(null);
@@ -123,8 +137,39 @@ const Calender = () => {
           plugins={[dayGridPlugin]}
           events={events}
           displayEventEnd="true"
+          eventClick={(e) => {
+            setCurrentEvent(
+              events.filter((data) => data.title == e.event._def.title)
+            );
+            console.log(
+              events.filter((data) => data.title == e.event._def.title)
+            );
+          }}
           eventColor={"#" + Math.floor(Math.random() * 16777215).toString(16)}
         />
+        {currentEvent && (
+          <div className="my-10">
+            <p className="mt-2 text-xl">
+              <span className="font-bold">Title:</span> {currentEvent[0].title}
+            </p>
+            <p className="mt-2 text-xl ">
+              <span className="font-bold">Start:</span>{" "}
+              {currentEvent[0].start.toString()}
+            </p>
+            <p className="mt-2 text-xl">
+              <span className="font-bold">End:</span>{" "}
+              {currentEvent[0].end?.toString()}
+            </p>
+            <p className="mt-2  text-xl">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit
+              pariatur accusamus hic veniam iusto voluptates cum nam libero,
+              fuga cumque deleniti vel quo tempora eaque numquam maiores
+              recusandae dolores obcaecati sapiente natus? Est, mollitia. Id a
+              illum quisquam esse enim, voluptas fugiat repellat hic vitae
+              beatae delectus earum saepe reiciendis.
+            </p>
+          </div>
+        )}
       </div>
       <FooterAdmin />
     </div>
