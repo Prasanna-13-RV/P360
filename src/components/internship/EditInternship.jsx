@@ -1,9 +1,22 @@
+import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
 
-function EditInternship({ setEditButton, editButton }) {
-    const [internDetailes, setInternDetailes] = useState({});
+function EditInternship({ setEditButton, editButton, editData }) {
+    const [internDetailes, setInternDetailes] = useState(editData);
 
-    const handleSubmit = () => {};
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        axios
+            .put(
+                `http://localhost:8080/internship/${editData.id}`,
+                internDetailes
+            )
+            .then((res) => {
+                console.log(res);
+                setEditButton(false);
+                window.location.reload();
+            });
+    };
 
     const KEY_NAME_ESC = "Escape";
     const KEY_EVENT_TYPE = "keyup";
@@ -40,7 +53,6 @@ function EditInternship({ setEditButton, editButton }) {
                                 className="absolute top-0 right-0 w-[50px] h-[50px] flex justify-center items-center z-50"
                                 onClick={() => {
                                     setEditButton(false);
-
                                     setInternDetailes({});
                                 }}
                             >
@@ -57,7 +69,9 @@ function EditInternship({ setEditButton, editButton }) {
                             </h1>
                             <form
                                 class="space-y-4 md:space-y-6"
-                                onSubmit={handleSubmit}
+                                onSubmit={(e) => {
+                                    handleSubmit(e);
+                                }}
                             >
                                 {/* Role */}
                                 <div>
@@ -74,6 +88,7 @@ function EditInternship({ setEditButton, editButton }) {
                                         class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                         placeholder="Role"
                                         required=""
+                                        defaultValue={editData.roleInternship}
                                         onChange={(e) => {
                                             setInternDetailes((res) => {
                                                 return {
@@ -100,6 +115,9 @@ function EditInternship({ setEditButton, editButton }) {
                                         placeholder="ABC Company"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                         required=""
+                                        defaultValue={
+                                            editData.companyInternship
+                                        }
                                         onChange={(e) => {
                                             setInternDetailes((res) => {
                                                 return {
@@ -122,6 +140,9 @@ function EditInternship({ setEditButton, editButton }) {
                                     <input
                                         type="text"
                                         name="stipendInternship"
+                                        defaultValue={
+                                            editData.stipendInternship
+                                        }
                                         id="stipendInternship"
                                         placeholder="10000"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
@@ -150,6 +171,9 @@ function EditInternship({ setEditButton, editButton }) {
                                         name="durationInternship"
                                         id="durationInternship"
                                         placeholder="1 year"
+                                        defaultValue={
+                                            editData.durationInternship
+                                        }
                                         class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                         required=""
                                         onChange={(e) => {
@@ -174,6 +198,7 @@ function EditInternship({ setEditButton, editButton }) {
                                     <input
                                         type="text"
                                         name="linkInternship"
+                                        defaultValue={editData.linkInternship}
                                         id="linkInternship"
                                         placeholder="https://abc.com/internship"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
