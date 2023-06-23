@@ -7,65 +7,28 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import "@fullcalendar/core/main.css";
 import "@fullcalendar/daygrid/main.css";
 import "@fullcalendar/timegrid/main.css";
-import { getEvents, postEvent } from "../../axios/calender.axios";
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
+import { getEvents, postEvent } from "../../../axios/calender.axios";
+import NavbarAdmin from "../../../components/admin/NavbarAdmin";
+import FooterAdmin from "../../../components/admin/FooterAdmin";
 
 const Calender = () => {
   useEffect(() => {
-    // getEvents().then((res) => {
-    //   setEvents(res.data);
-    // });
+    getEvents().then((res) => {
+      console.log(res);
+      setEvents(res.data);
+    });
   }, []);
   const [title, setTitle] = useState();
   const [popup, setPopup] = useState(false);
   const [date, setDate] = useState();
   const [date2, setDate2] = useState(null);
-  const [events, setEvents] = useState([
-    { title: "All Day Event", start: getDate("YEAR-MONTH-01") },
-    {
-      title: "Rendezvous",
-      start: getDate("YEAR-MONTH-07"),
-      end: getDate("YEAR-MONTH-10"),
-    },
-    {
-      groupId: "999",
-      title: "Repeating Event",
-      start: getDate("YEAR-MONTH-09T16:00:00+00:00"),
-    },
-    {
-      groupId: "999",
-
-      title: "Repeating Event",
-
-      start: getDate("YEAR-MONTH-16T16:00:00+00:00"),
-    },
-    {
-      title: "Dontiste",
-
-      start: "YEAR-MONTH-17",
-      end: getDate("YEAR-MONTH-19"),
-    },
-    {
-      title: "Consultation",
-      start: getDate("YEAR-MONTH-18T10:30:00+00:00"),
-      end: getDate("YEAR-MONTH-18T12:30:00+00:00"),
-    },
-    { title: "Visit", start: getDate("YEAR-MONTH-18T12:00:00+00:00") },
-    { title: "maladie", start: getDate("YEAR-MONTH-19T07:00:00+00:00") },
-    { title: "Meeting", start: getDate("YEAR-MONTH-18T14:30:00+00:00") },
-    { title: "controlle", start: getDate("YEAR-MONTH-18T17:30:00+00:00") },
-    { title: "finish", start: getDate("YEAR-MONTH-18T20:00:00+00:00") },
-  ]);
+  const [events, setEvents] = useState([]);
   const handleEvent = () => {
     setPopup(false);
-    // postEvent({
-    //   title: title,
-    //   start: date,
-    //   end: date2,
-    // }).then((res) => {
-    //   console.log(res);
-    // });
+    postEvent(title, date, date2).then((res) => {
+      console.log(res);
+    });
+    console.log(title, date, date2,"SS");
     setEvents([...events, { title: title, start: date, end: date2 }]);
     setTitle("");
     setDate(null);
@@ -87,7 +50,7 @@ const Calender = () => {
 
   return (
     <div className="">
-      <Navbar />
+      <NavbarAdmin />
       {popup && (
         <div className="z-50 fixed w-full h-full  top-0 left-0 bg-[#00000093] flex justify-center items-center">
           <div className="w-[60%] p-5 rounded-md bg-[#f6f6f6] flex flex-col justify-center items-center">
@@ -124,8 +87,8 @@ const Calender = () => {
             <div className=" w-[80%] my-3 flex flex-col">
               <button
                 onClick={handleEvent}
-                className="py-2 px-4 mt-5 rounded-full bg-[#9255B8] text-white">
-                Add step
+                className="py-2 px-4 mt-5 rounded-full bg-[#393AA1] text-white">
+                Add Event
               </button>
             </div>
           </div>
@@ -146,7 +109,7 @@ const Calender = () => {
       <div className="w-5/6  mx-auto my-auto mt-[3rem]">
         <button
           onClick={() => setPopup(true)}
-          className="bg-blue-500 px-[1rem] cursor-pointer text-white text-lg font-semibold mb-[2rem] py-[.5rem] rounded-xl">
+          className="bg-[#393AA1] px-[1rem] cursor-pointer text-white text-lg font-semibold mb-[2rem] py-[.5rem] rounded-xl">
           Add Event
         </button>
         <FullCalendar
@@ -163,7 +126,7 @@ const Calender = () => {
           eventColor={"#" + Math.floor(Math.random() * 16777215).toString(16)}
         />
       </div>
-      <Footer />
+      <FooterAdmin />
     </div>
   );
 };

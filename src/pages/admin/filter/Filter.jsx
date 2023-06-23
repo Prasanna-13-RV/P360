@@ -146,9 +146,9 @@ function Filter() {
     );
     return (
         <>
-            <NavbarAdmin />
-            <div className="w-screen h-screen flex items-start mt-10 justify-center">
-                <div className="w-full">
+           
+           
+                <div className="w-[80%]">
                     <MaterialReactTable
                         columns={columns}
                         data={data}
@@ -159,8 +159,8 @@ function Filter() {
                         }}
                     />
                 </div>
-            </div>
-            <Footer />
+           
+          
         </>
     );
 }

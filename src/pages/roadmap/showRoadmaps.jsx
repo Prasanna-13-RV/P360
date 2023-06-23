@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { getRoadmaps } from "../../axios/roadmap.axios";
 import { useNavigate } from "react-router-dom";
 
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
+import NavbarAdmin from "../../components/admin/NavbarAdmin";
+import FooterAdmin from "../../components/admin/FooterAdmin";
 
 const ShowRoadmaps = () => {
   const [colors, setColors] = useState([]);
@@ -11,21 +11,22 @@ const ShowRoadmaps = () => {
   const [roadmap, setRoadmap] = useState();
   useEffect(() => {
     getRoadmaps().then((res) => {
-      setRoadmap(res.data);
-
-      res.data.map((data) => {
-        setColors((oldArray) => [
-          ...oldArray,
-          "hsl(" + Math.floor(Math.random() * 361) + ",50%,80%)",
-        ]);
-      });
+      if (res.status == 200) {
+        res.data.map((data) => {
+          setRoadmap(res.data);
+          setColors((oldArray) => [
+            ...oldArray,
+            "hsl(" + Math.floor(Math.random() * 361) + ",50%,80%)",
+          ]);
+        });
+      }
     });
   }, []);
   return (
     <>
-      <Navbar />
+      <NavbarAdmin />
       <div className="min-h-[60vh]  w-full flex items-start justify-start pt-[5rem] px-[5rem]">
-        {roadmap &&
+        {roadmap?.length > 0 ? (
           roadmap.map((res, index) => {
             console.log(colors);
             return (
@@ -35,7 +36,7 @@ const ShowRoadmaps = () => {
                     navigate("/admin/updateroadmap", { state: res })
                   }
                   style={{ backgroundColor: colors[index] }}
-                  className="relative  mr-6 shadow-lg rounded-md flex justify-center items-center h-[150px] w-[300px]">
+                  className="cursor-pointer relative  mr-6 shadow-lg rounded-md flex justify-center items-center h-[150px] w-[300px]">
                   <img
                     className="opacity-70  bottom-[-10%] absolute w-full h-full z-0"
                     src={require("../../images/cloud.png")}
@@ -45,9 +46,14 @@ const ShowRoadmaps = () => {
                 </div>
               </>
             );
-          })}
+          })
+        ) : (
+          <>
+            <h1>No Data Found</h1>
+          </>
+        )}
       </div>
-      <Footer />
+      <FooterAdmin />
     </>
   );
 };

@@ -17,7 +17,8 @@ export default function NavbarAdmin({ current }) {
     //   current: current,
     // },
     // { name: "Marks File Upload", href: "/admin/marks/file", current: current },
-    { name: "Roadmap", href: "/admin/showroadmap", current: current },
+    // { name: "Roadmap", href: "/admin/showroadmap", current: current },
+    { name: "Calender", href: "/admin/calender", current: current },
   ];
 
   const user = {
@@ -103,7 +104,9 @@ export default function NavbarAdmin({ current }) {
                                       active ? "bg-gray-100" : "",
                                       "block px-4 py-2 text-sm text-gray-700"
                                     )}>
-                                    <Link to={`/admin/student/file`}>Student File Upload</Link>
+                                    <Link to={`/admin/student/file`}>
+                                      Student File Upload
+                                    </Link>
                                   </a>
                                 )}
                               </Menu.Item>
@@ -148,6 +151,62 @@ export default function NavbarAdmin({ current }) {
                               </Menu.Item>
                             </>
                           )}
+                        </Menu.Items>
+                      </Transition>
+                    </Menu>
+                    <Menu as="div" className="relative ml-3">
+                      <div>
+                        <Menu.Button className="px-3 py-2 rounded-md text-sm font-medium text-black hover:bg-gray-700 hover:text-white">
+                          <h1>Roadmap</h1>
+                        </Menu.Button>
+                      </div>
+                      <Transition
+                        as={Fragment}
+                        enter="transition ease-out duration-100"
+                        enterFrom="transform opacity-0 scale-95"
+                        enterTo="transform opacity-100 scale-100"
+                        leave="transition ease-in duration-75"
+                        leaveFrom="transform opacity-100 scale-100"
+                        leaveTo="transform opacity-0 scale-95">
+                        <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                          <Menu.Item>
+                            {({ active }) => (
+                              <a
+                                href
+                                className={classNames(
+                                  active ? "bg-gray-100" : "",
+                                  "block px-4 py-2 text-sm text-gray-700"
+                                )}>
+                                <Link to={`/admin/roadmap`}>
+                                  Show Roadmap
+                                </Link>
+                              </a>
+                            )}
+                          </Menu.Item>
+                          <Menu.Item>
+                            {({ active }) => (
+                              <a
+                                href="/admin/addroadmap"
+                                className={classNames(
+                                  active ? "bg-gray-100" : "",
+                                  "block px-4 py-2 text-sm text-gray-700"
+                                )}>
+                                Add Roadmap
+                              </a>
+                            )}
+                          </Menu.Item>
+                          <Menu.Item>
+                            {({ active }) => (
+                              <a
+                                href="/admin/showroadmap"
+                                className={classNames(
+                                  active ? "bg-gray-100" : "",
+                                  "block px-4 py-2 text-sm text-gray-700"
+                                )}>
+                                Update Roadmap
+                              </a>
+                            )}
+                          </Menu.Item>
                         </Menu.Items>
                       </Transition>
                     </Menu>

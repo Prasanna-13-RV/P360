@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
-import { getRoadmaps, updateRoadmap } from "../../axios/roadmap.axios";
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
-import { TextField, Button } from "@mui/material";
+import { updateRoadmap } from "../../axios/roadmap.axios";
 
-import { postRoadmap } from "../../axios/roadmap.axios";
+import { TextField, Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import NavbarAdmin from "../../components/admin/NavbarAdmin";
+import FooterAdmin from "../../components/admin/FooterAdmin";
 const UpdateRoadmap = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const state = location.state;
   const [topic, setTopic] = useState([]);
@@ -28,13 +29,17 @@ const UpdateRoadmap = () => {
         subject_sub: subtopic[index],
       });
     });
-    updateRoadmap(title, subject, state.id);
+    updateRoadmap(title, subject, state.id).then((res) => {
+      if (res.status == 200) {
+        navigate("/admin/roadmap");
+      }
+    });
   };
 
   return (
     <>
       <div className="relative w-full">
-        <Navbar />
+        <NavbarAdmin />
 
         <div className="flex flex-col items-center ">
           <h1 className="font-semibold text-2xl my-[3rem]">Update Roadmap</h1>
@@ -82,7 +87,7 @@ const UpdateRoadmap = () => {
                             let main = [...subtopic]; // Create a copy of the subtopic array
                             let data = [...subtopic[index]]; // Create a copy of the subtopic array for the current topic
 
-                            data = [...data, "init"];
+                            data = [...data, ""];
                             main[index] = data;
                             setSubtopic(main);
                           }}
@@ -127,10 +132,10 @@ const UpdateRoadmap = () => {
             onClick={handleSubmit}
             variant="contained"
             sx={{ margin: "10px 20px 20px 0px" }}>
-            {title ? `Add Roadmap for ${title}` : "Add Roadmap"}
+            {title ? `Update Roadmap for ${title}` : "Add Roadmap"}
           </Button>
         </div>
-        <Footer />
+        <FooterAdmin />
       </div>
     </>
   );

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { TextField, Button } from "@mui/material";
-
+import Filter from "../admin/filter/Filter";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -274,27 +274,32 @@ const StudentDashboard = () => {
         <Button onClick={() => setMode("academic")} variant="contained">
           Academics
         </Button>
+        <Button onClick={() => setMode("students")} variant="contained">
+          Students
+        </Button>
       </div>
-      <div className="mt-[5rem] mx-auto w-[70%] flex justify-evenly items-center">
-        <div className="w-[20%]">
-          <h1 className="mb-4 text-sm font-semibold" >Filter by year</h1>
-          <select className="w-full" style={{ border: "solid #454545 1px" }}>
-            <option>2023</option>
-            <option>2022</option>
-            <option>2021</option>
-          </select>
+      {mode != "students" && (
+        <div className="mt-[5rem] mx-auto w-[70%] flex justify-evenly items-center">
+          <div className="w-[20%]">
+            <h1 className="mb-4 text-sm font-semibold">Filter by year</h1>
+            <select className="w-full" style={{ border: "solid #454545 1px" }}>
+              <option>2023</option>
+              <option>2022</option>
+              <option>2021</option>
+            </select>
+          </div>
+          <div className="w-[20%]">
+            <h1 className="mb-4 text-sm font-semibold">Filter by Department</h1>
+            <select className="w-full" style={{ border: "solid #454545 1px" }}>
+              <option>IT</option>
+              <option>CSE</option>
+              <option>EEE</option>
+            </select>
+          </div>
         </div>
-        <div className="w-[20%]">
-          <h1 className="mb-4 text-sm font-semibold">Filter by Department</h1>
-          <select className="w-full" style={{ border: "solid #454545 1px" }}>
-            <option>IT</option>
-            <option>CSE</option>
-            <option>EEE</option>
-          </select>
-        </div>
-      </div>
+      )}
       <div className=" flex flex-wrap justify-evenly items-center">
-        {mode == "competitive" ? (
+        {mode == "competitive" && (
           <>
             <div className="w-[400px] h-fit mt-10">
               <Bar options={options1} data={data1} />
@@ -324,7 +329,8 @@ const StudentDashboard = () => {
               <Bar options={options9} data={data9} />
             </div>
           </>
-        ) : (
+        )}
+        {mode == "academic" && (
           <>
             <div className="w-[400px] h-fit mt-10">
               <Bar options={options10} data={data1} />
@@ -337,6 +343,7 @@ const StudentDashboard = () => {
             </div>
           </>
         )}
+        {mode == "students" && <Filter />}
       </div>
       <FooterAdmin />
     </div>

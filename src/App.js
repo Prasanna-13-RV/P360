@@ -3,7 +3,7 @@ import Home from "./pages/student/home/Home";
 import Login from "./pages/student/auth/Login";
 import Register from "./pages/student/auth/Register";
 import ViewInternship from "./pages/student/internship/ViewInternship";
-import Filter from "./pages/student/filter/Filter";
+import Filter from "./pages/admin/filter/Filter";
 import Profile from "./pages/student/profile/Profile";
 import ProfileEdit from "./pages/student/profile/ProfileEdit";
 import FileUpload from "./pages/admin/fileUpload/FileUpload";
@@ -15,6 +15,9 @@ import AddRoadmap from "./pages/roadmap/AddRoadmap";
 import ShowRoadmaps from "./pages/roadmap/showRoadmaps";
 import UpdateRoadmap from "./pages/roadmap/UpdateRoadmaps";
 import StudentDashboard from "./pages/dashboard/StudentDashboard";
+import Roadmap3 from "./pages/student/home/Roadmap3";
+import Calender from "./pages/admin/Calender/Calender";
+import Roadmap from "./pages/roadmap/Roadmap";
 
 function App() {
   return (
@@ -28,13 +31,13 @@ function App() {
           {/* internship */}
           <Route path="/internship" element={<ViewInternship />}></Route>
           {/* Filter */}
-          <Route path="/filter" element={<Filter />}></Route>
+          {/* <Route path="/filter" element={<Filter />}></Route> */}
           {/* Profile */}
           <Route path="/profile" element={<Profile />}></Route>
           <Route path="/profile/update" element={<ProfileEdit />}></Route>
 
           {/* Filter */}
-          <Route path="/student" element={<Filter />}></Route>
+          {/* <Route path="/student" element={<Filter />}></Route> */}
           {/* Profile */}
 
           {/* admin */}
@@ -51,8 +54,10 @@ function App() {
             path="/admin/updateroadmap"
             element={<UpdateRoadmap />}></Route>
           <Route path="/admin/showroadmap" element={<ShowRoadmaps />}></Route>
+          <Route path="/admin/roadmap" element={<Roadmap />}></Route>
 
           <Route path="/admin/dashboard" element={<StudentDashboard />}></Route>
+          <Route path="/admin/calender" element={<Calender />}></Route>
         </Routes>
       </Router>
     </>
