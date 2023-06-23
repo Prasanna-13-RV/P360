@@ -24,7 +24,7 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<Home />}></Route>
+          <Route path="/" element={<StudentDashboard />}></Route>
           {/* auth */}
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
