@@ -4,17 +4,19 @@ import React, { useCallback, useEffect, useState } from "react";
 function AddInternship({ setAddButton, addButton }) {
     const [internDetailes, setInternDetailes] = useState({});
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
         axios
             .post("http://localhost:8080/addinternship", internDetailes)
             .then((res) => {
                 console.log(res);
                 setAddButton(false);
+                window.location.reload();
             })
             .catch((err) => {
                 console.log(err);
             });
-};
+    };
 
     const KEY_NAME_ESC = "Escape";
     const KEY_EVENT_TYPE = "keyup";
@@ -51,13 +53,15 @@ function AddInternship({ setAddButton, addButton }) {
                                 Add Internship
                             </h1>
                             <form
-                                class="space-y-4 md:space-y-6"
-                                onSubmit={handleSubmit}
+                                className="space-y-4 md:space-y-6"
+                                onSubmit={(e) => {
+                                    handleSubmit(e);
+                                }}
                             >
                                 {/* Role */}
                                 <div>
                                     <label
-                                        for="roleInternship"
+                                        htmlFor="roleInternship"
                                         className="block mb-2 text-sm font-medium text-gray-900 "
                                     >
                                         Role
@@ -66,8 +70,8 @@ function AddInternship({ setAddButton, addButton }) {
                                         type="text"
                                         name="roleInternship"
                                         id="roleInternship"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                                        placeholder="Role"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        placeHolder="Role"
                                         required=""
                                         onChange={(e) => {
                                             setInternDetailes((res) => {
@@ -83,7 +87,7 @@ function AddInternship({ setAddButton, addButton }) {
                                 {/* Company Internship */}
                                 <div>
                                     <label
-                                        for="companyInternship"
+                                        htmlFor="companyInternship"
                                         className="block mb-2 text-sm font-medium text-gray-900 "
                                     >
                                         Company Internship
@@ -92,8 +96,8 @@ function AddInternship({ setAddButton, addButton }) {
                                         type="text"
                                         name="companyInternship"
                                         id="companyInternship"
-                                        placeholder="ABC Company"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        placeHolder="ABC Company"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                         required=""
                                         onChange={(e) => {
                                             setInternDetailes((res) => {
@@ -109,7 +113,7 @@ function AddInternship({ setAddButton, addButton }) {
                                 {/* Stipend */}
                                 <div>
                                     <label
-                                        for="stipendInternship"
+                                        htmlFor="stipendInternship"
                                         className="block mb-2 text-sm font-medium text-gray-900 "
                                     >
                                         Stipend
@@ -118,8 +122,8 @@ function AddInternship({ setAddButton, addButton }) {
                                         type="text"
                                         name="stipendInternship"
                                         id="stipendInternship"
-                                        placeholder="10000"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        placeHolder="10000"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                         required=""
                                         onChange={(e) => {
                                             setInternDetailes((res) => {
@@ -135,7 +139,7 @@ function AddInternship({ setAddButton, addButton }) {
                                 {/* Duration */}
                                 <div>
                                     <label
-                                        for="durationInternship"
+                                        htmlFor="durationInternship"
                                         className="block mb-2 text-sm font-medium text-gray-900 "
                                     >
                                         Duration
@@ -144,8 +148,8 @@ function AddInternship({ setAddButton, addButton }) {
                                         type="text"
                                         name="durationInternship"
                                         id="durationInternship"
-                                        placeholder="1 year"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        placeHolder="1 year"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                         required=""
                                         onChange={(e) => {
                                             setInternDetailes((res) => {
@@ -161,7 +165,7 @@ function AddInternship({ setAddButton, addButton }) {
                                 {/* Link */}
                                 <div>
                                     <label
-                                        for="linkInternship"
+                                        htmlFor="linkInternship"
                                         className="block mb-2 text-sm font-medium text-gray-900 "
                                     >
                                         Link
@@ -170,8 +174,8 @@ function AddInternship({ setAddButton, addButton }) {
                                         type="text"
                                         name="linkInternship"
                                         id="linkInternship"
-                                        placeholder="https://abc.com/internship"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        placeHolder="https://abc.com/internship"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                         required=""
                                         onChange={(e) => {
                                             setInternDetailes((res) => {
