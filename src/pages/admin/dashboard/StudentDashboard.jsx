@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { TextField, Button } from "@mui/material";
-import Filter from "../admin/filter/Filter";
+import Filter from "../filter/Filter";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -11,8 +11,8 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import NavbarAdmin from "../../components/admin/NavbarAdmin";
-import FooterAdmin from "../../components/admin/FooterAdmin";
+import NavbarAdmin from "../../../components/admin/NavbarAdmin";
+import FooterAdmin from "../../../components/admin/FooterAdmin";
 
 export const options1 = {
   responsive: true,
