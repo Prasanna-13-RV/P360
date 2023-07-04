@@ -19,6 +19,7 @@ export default function NavbarAdmin({ current }) {
     // { name: "Marks File Upload", href: "/admin/marks/file", current: current },
     // { name: "Roadmap", href: "/admin/showroadmap", current: current },
     { name: "Calender", href: "/admin/calender", current: current },
+    { name: "Academics", href: "/admin/academics", current: current },
   ];
 
   const user = {
@@ -210,6 +211,7 @@ export default function NavbarAdmin({ current }) {
                         </Menu.Items>
                       </Transition>
                     </Menu>
+                    
                   </div>
                 </div>
               </div>

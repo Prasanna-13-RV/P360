@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { getRoadmaps } from "../../axios/roadmap.axios";
+import { getRoadmaps } from "../../../axios/roadmap.axios";
 import { useNavigate } from "react-router-dom";
 
-import NavbarAdmin from "../../components/admin/NavbarAdmin";
-import FooterAdmin from "../../components/admin/FooterAdmin";
+import NavbarAdmin from "../../../components/admin/NavbarAdmin";
+import FooterAdmin from "../../../components/admin/FooterAdmin";
 
 const ShowRoadmaps = () => {
   const [colors, setColors] = useState([]);
@@ -39,12 +39,13 @@ const ShowRoadmaps = () => {
                   className="cursor-pointer relative  mr-6 shadow-lg rounded-md flex justify-center items-center h-[150px] w-[300px]">
                   <img
                     className="opacity-70  bottom-[-10%] absolute w-full h-full z-0"
-                    src={require("../../images/cloud.png")}
+                    src={require("../../../images/cloud.png")}
                     alt=""
                   />
                   <h1 className="font-bold text-xl z-10">{res.name}</h1>
                 </div>
               </>
+
             );
           })
         ) : (

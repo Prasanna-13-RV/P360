@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import { updateRoadmap } from "../../axios/roadmap.axios";
+import { updateRoadmap } from "../../../axios/roadmap.axios";
 
 import { TextField, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import NavbarAdmin from "../../components/admin/NavbarAdmin";
-import FooterAdmin from "../../components/admin/FooterAdmin";
+import NavbarAdmin from "../../../components/admin/NavbarAdmin";
+import FooterAdmin from "../../../components/admin/FooterAdmin";
 const UpdateRoadmap = () => {
   const navigate = useNavigate();
   const location = useLocation();

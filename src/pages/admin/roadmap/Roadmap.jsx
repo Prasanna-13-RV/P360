@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { getRoadmaps } from "../../axios/roadmap.axios";
-import FooterAdmin from "../../components/admin/FooterAdmin";
-import NavbarAdmin from "../../components/admin/NavbarAdmin";
+import { getRoadmaps } from "../../../axios/roadmap.axios";
+import FooterAdmin from "../../../components/admin/FooterAdmin";
+import NavbarAdmin from "../../../components/admin/NavbarAdmin";
 const Roadmap = () => {
   const [roadmap, setRoadmap] = useState([]);
   const [topic1, settopic1] = useState("");

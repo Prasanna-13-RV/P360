@@ -11,14 +11,19 @@ import LoginAdmin from "./pages/admin/adminAuth/LoginAdmin";
 import Internship from "./pages/admin/internship/Internship";
 import StudentFile from "./pages/admin/fileUpload/StudentFile";
 import MarksFile from "./pages/admin/fileUpload/MarksFile";
-import AddRoadmap from "./pages/roadmap/AddRoadmap";
-import ShowRoadmaps from "./pages/roadmap/showRoadmaps";
-import UpdateRoadmap from "./pages/roadmap/UpdateRoadmaps";
-import StudentDashboard from "./pages/dashboard/StudentDashboard";
-import Roadmap3 from "./pages/student/home/Roadmap3";
-import Calender from "./pages/admin/Calender/Calender";
+import AddRoadmap from "./pages/admin/roadmap/AddRoadmap";
+import ShowRoadmaps from "./pages/admin/roadmap/showRoadmaps";
+import UpdateRoadmap from "./pages/admin/roadmap/UpdateRoadmaps";
+import StudentDashboard from "./pages/admin/dashboard/StudentDashboard";
 import Roadmap from "./pages/roadmap/Roadmap";
 import RegisterAdmin from "./pages/admin/adminAuth/RegisterAdmin";
+
+import Calender from "./pages/admin/Calender/Calender";
+import Roadmap from "./pages/admin/roadmap/Roadmap";
+import AddAcademics from "./pages/admin/academics/AddAcademics";
+import Academics from "./pages/admin/academics/Academics";
+import ViewAcademics from "./pages/admin/academics/ViewAcademics";
+import UpdateAcademics from "./pages/admin/academics/UpdateAcademics";
 
 function App() {
     return (
@@ -89,6 +94,23 @@ function App() {
                     <Route
                         path="/admin/calender"
                         element={<Calender />}
+                    ></Route>
+                    <Route
+                        path="/admin/addacademics"
+                        element={<AddAcademics />}
+                    ></Route>
+                    <Route
+                        path="/admin/updateacademics"
+                        element={<UpdateAcademics />}
+                    ></Route>
+
+                    <Route
+                        path="/admin/academics"
+                        element={<Academics />}
+                    ></Route>
+                    <Route
+                        path="/admin/viewacademics"
+                        element={<ViewAcademics />}
                     ></Route>
                 </Routes>
             </Router>
