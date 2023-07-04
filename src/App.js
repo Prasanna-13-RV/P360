@@ -19,7 +19,8 @@ import Roadmap from "./pages/roadmap/Roadmap";
 import RegisterAdmin from "./pages/admin/adminAuth/RegisterAdmin";
 
 import Calender from "./pages/admin/Calender/Calender";
-import Roadmap from "./pages/admin/roadmap/Roadmap";
+// import Roadmap from "./pages/admin/roadmap/Roadmap";
+
 import AddAcademics from "./pages/admin/academics/AddAcademics";
 import Academics from "./pages/admin/academics/Academics";
 import ViewAcademics from "./pages/admin/academics/ViewAcademics";
