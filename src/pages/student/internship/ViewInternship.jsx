@@ -25,7 +25,7 @@ function ViewInternship() {
                     </div>
                 </div>
 
-                <div className="relative overflow-x-auto shadow-md sm:rounded-lg px-5">
+                <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
                     <table className="w-full text-sm text-left text-gray-500">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                             <tr>
@@ -39,7 +39,22 @@ function ViewInternship() {
                                     Stipend
                                 </th>
                                 <th scope="col" className="px-6 py-3">
+                                    Location
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Eligibility
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Department
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Domain
+                                </th>
+                                <th scope="col" className="px-6 py-3">
                                     Duration
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Last date
                                 </th>
                                 <th scope="col" className="px-6 py-3">
                                     Apply Link
@@ -64,10 +79,25 @@ function ViewInternship() {
                                                 {e.stipendInternship}
                                             </td>
                                             <td className="px-6 py-4">
+                                                {e.locationInternship}
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                {e.eligibilityInternship}
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                {e.departmentInternship}
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                {e.domainInternship}
+                                            </td>
+                                            <td className="px-6 py-4">
                                                 {e.durationInternship}
                                             </td>
                                             <td className="px-6 py-4">
-                                                <a href={e.durationInternship}>
+                                                {e.lastDateInternship}
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                <a href={e.linkInternship}>
                                                     Link
                                                 </a>
                                             </td>

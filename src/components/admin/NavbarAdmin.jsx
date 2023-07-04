@@ -53,7 +53,7 @@ export default function NavbarAdmin({ current }) {
                                             // src={logo}
                                             alt="Your Company"
                                         /> */}
-                    <h1>P360</h1>
+                    <h1>CIT360</h1>
                   </Link>
                   {/* <img
                                         className="hidden h-8 lg:block rounded"

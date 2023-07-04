@@ -68,7 +68,7 @@ function EditInternship({ setEditButton, editButton, editData }) {
                                 Edit Internship
                             </h1>
                             <form
-                                class="space-y-4 md:space-y-6"
+                                className="space-y-4 md:space-y-6"
                                 onSubmit={(e) => {
                                     handleSubmit(e);
                                 }}
@@ -76,7 +76,7 @@ function EditInternship({ setEditButton, editButton, editData }) {
                                 {/* Role */}
                                 <div>
                                     <label
-                                        for="roleInternship"
+                                        htmlFor="roleInternship"
                                         className="block mb-2 text-sm font-medium text-gray-900 "
                                     >
                                         Role
@@ -85,8 +85,8 @@ function EditInternship({ setEditButton, editButton, editData }) {
                                         type="text"
                                         name="roleInternship"
                                         id="roleInternship"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                                        placeholder="Role"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        placeHolder="Role"
                                         required=""
                                         defaultValue={editData.roleInternship}
                                         onChange={(e) => {
@@ -103,7 +103,7 @@ function EditInternship({ setEditButton, editButton, editData }) {
                                 {/* Company Internship */}
                                 <div>
                                     <label
-                                        for="companyInternship"
+                                        htmlFor="companyInternship"
                                         className="block mb-2 text-sm font-medium text-gray-900 "
                                     >
                                         Company Internship
@@ -112,12 +112,12 @@ function EditInternship({ setEditButton, editButton, editData }) {
                                         type="text"
                                         name="companyInternship"
                                         id="companyInternship"
-                                        placeholder="ABC Company"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                                        required=""
+                                        placeHolder="ABC Company"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                         defaultValue={
                                             editData.companyInternship
                                         }
+                                        required=""
                                         onChange={(e) => {
                                             setInternDetailes((res) => {
                                                 return {
@@ -132,7 +132,7 @@ function EditInternship({ setEditButton, editButton, editData }) {
                                 {/* Stipend */}
                                 <div>
                                     <label
-                                        for="stipendInternship"
+                                        htmlFor="stipendInternship"
                                         className="block mb-2 text-sm font-medium text-gray-900 "
                                     >
                                         Stipend
@@ -140,12 +140,12 @@ function EditInternship({ setEditButton, editButton, editData }) {
                                     <input
                                         type="text"
                                         name="stipendInternship"
+                                        id="stipendInternship"
                                         defaultValue={
                                             editData.stipendInternship
                                         }
-                                        id="stipendInternship"
-                                        placeholder="10000"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        placeHolder="10000"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                         required=""
                                         onChange={(e) => {
                                             setInternDetailes((res) => {
@@ -158,10 +158,125 @@ function EditInternship({ setEditButton, editButton, editData }) {
                                         }}
                                     />
                                 </div>
+                                {/* Location */}
+                                <div>
+                                    <label
+                                        htmlFor="locationInternship"
+                                        className="block mb-2 text-sm font-medium text-gray-900 "
+                                    >
+                                        Location
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="locationInternship"
+                                        id="locationInternship"
+                                        defaultValue={
+                                            editData.locationInternship
+                                        }
+                                        placeHolder="Location"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        required=""
+                                        onChange={(e) => {
+                                            setInternDetailes((res) => {
+                                                return {
+                                                    ...res,
+                                                    [e.target.name]:
+                                                        e.target.value,
+                                                };
+                                            });
+                                        }}
+                                    />
+                                </div>
+                                {/* Eligibility */}
+                                <div>
+                                    <label
+                                        htmlFor="eligibilityInternship"
+                                        className="block mb-2 text-sm font-medium text-gray-900 "
+                                    >
+                                        Eligibility
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="eligibilityInternship"
+                                        id="eligibilityInternship"
+                                        defaultValue={
+                                            editData.eligibilityInternship
+                                        }
+                                        placeHolder="Eligibility"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        required=""
+                                        onChange={(e) => {
+                                            setInternDetailes((res) => {
+                                                return {
+                                                    ...res,
+                                                    [e.target.name]:
+                                                        e.target.value,
+                                                };
+                                            });
+                                        }}
+                                    />
+                                </div>
+                                {/* Department */}
+                                <div>
+                                    <label
+                                        htmlFor="departmentInternship"
+                                        className="block mb-2 text-sm font-medium text-gray-900 "
+                                    >
+                                        Department
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="departmentInternship"
+                                        id="departmentInternship"
+                                        defaultValue={
+                                            editData.departmentInternship
+                                        }
+                                        placeHolder="Department"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        required=""
+                                        onChange={(e) => {
+                                            setInternDetailes((res) => {
+                                                return {
+                                                    ...res,
+                                                    [e.target.name]:
+                                                        e.target.value,
+                                                };
+                                            });
+                                        }}
+                                    />
+                                </div>
+                                {/* Domain */}
+                                <div>
+                                    <label
+                                        htmlFor="domainInternship"
+                                        className="block mb-2 text-sm font-medium text-gray-900 "
+                                    >
+                                        Domain
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="domainInternship"
+                                        id="domainInternship"
+                                        defaultValue={editData.domainInternship}
+                                        placeHolder="Domain"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        required=""
+                                        onChange={(e) => {
+                                            setInternDetailes((res) => {
+                                                return {
+                                                    ...res,
+                                                    [e.target.name]:
+                                                        e.target.value,
+                                                };
+                                            });
+                                        }}
+                                    />
+                                </div>
+
                                 {/* Duration */}
                                 <div>
                                     <label
-                                        for="durationInternship"
+                                        htmlFor="durationInternship"
                                         className="block mb-2 text-sm font-medium text-gray-900 "
                                     >
                                         Duration
@@ -170,11 +285,40 @@ function EditInternship({ setEditButton, editButton, editData }) {
                                         type="text"
                                         name="durationInternship"
                                         id="durationInternship"
-                                        placeholder="1 year"
+                                        placeHolder="1 year"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                         defaultValue={
                                             editData.durationInternship
                                         }
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        required=""
+                                        onChange={(e) => {
+                                            setInternDetailes((res) => {
+                                                return {
+                                                    ...res,
+                                                    [e.target.name]:
+                                                        e.target.value,
+                                                };
+                                            });
+                                        }}
+                                    />
+                                </div>
+                                {/* Last Date */}
+                                <div>
+                                    <label
+                                        htmlFor="lastDateInternship"
+                                        className="block mb-2 text-sm font-medium text-gray-900 "
+                                    >
+                                        Stipend
+                                    </label>
+                                    <input
+                                        type="date"
+                                        name="lastDateInternship"
+                                        id="lastDateInternship"
+                                        defaultValue={
+                                            editData.lastDateInternship
+                                        }
+                                        placeHolder="10000"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                         required=""
                                         onChange={(e) => {
                                             setInternDetailes((res) => {
@@ -190,7 +334,7 @@ function EditInternship({ setEditButton, editButton, editData }) {
                                 {/* Link */}
                                 <div>
                                     <label
-                                        for="linkInternship"
+                                        htmlFor="linkInternship"
                                         className="block mb-2 text-sm font-medium text-gray-900 "
                                     >
                                         Link
@@ -198,10 +342,10 @@ function EditInternship({ setEditButton, editButton, editData }) {
                                     <input
                                         type="text"
                                         name="linkInternship"
-                                        defaultValue={editData.linkInternship}
                                         id="linkInternship"
-                                        placeholder="https://abc.com/internship"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        placeHolder="https://abc.com/internship"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        defaultValue={editData.linkInternship}
                                         required=""
                                         onChange={(e) => {
                                             setInternDetailes((res) => {
@@ -219,7 +363,7 @@ function EditInternship({ setEditButton, editButton, editData }) {
                                     type="submit"
                                     className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                                 >
-                                    Edit Internship
+                                    Add Internship
                                 </button>
                             </form>
                         </div>

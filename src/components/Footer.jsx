@@ -11,7 +11,7 @@ const Footer = () => {
                             className="flex items-center"
                         >
                             <span className="self-center text-2xl font-semibold whitespace-nowrap ">
-                                P360
+                                CIT360
                             </span>
                         </a>
                     </div>

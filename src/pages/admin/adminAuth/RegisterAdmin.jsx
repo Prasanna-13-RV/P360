@@ -1,61 +1,66 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import FooterAdmin from "../../../components/admin/FooterAdmin";
 import NavbarAdmin from "../../../components/admin/NavbarAdmin";
 import {
-    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
     GoogleAuthProvider,
     signInWithPopup,
 } from "firebase/auth";
 import { auth } from "../../../firebase/firebase";
 
-function LoginAdmin() {
+function RegisterAdmin() {
     const [formElements, setFormElements] = useState({});
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        signInWithEmailAndPassword(
-            auth,
-            formElements.email,
-            formElements.password
-        )
+        const { email, password, conpassword } = formElements;
+
+        if (password !== conpassword) {
+            alert("Password not match");
+            return;
+        }
+        createUser(email, password).then((res) => {
+            localStorage.setItem("token", true);
+            localStorage.setItem("admin", true);
+        });
+    };
+
+    function createUser(email, password) {
+        createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 // Signed in
                 const user = userCredential.user;
-                localStorage.removeItem("token");
-                localStorage.removeItem("admin");
-                localStorage.setItem("token", true);
-                localStorage.setItem("admin", true);
-
-                console.log(user);
+                console.log(userCredential, "userCredential");
+                console.log(user, "user");
                 // ...
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
+                console.log(errorCode, errorMessage);
+                // ..
             });
-    };
+    }
 
     return (
         <>
             <NavbarAdmin />
-            <section className="bg-gray-50">
-                <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-                    <a
+            <section className="bg-gray-50 py-5">
+                <div className="min-h-screen flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+                    {/* <a
                         href="$"
                         className="flex items-center mb-6 text-2xl font-semibold text-gray-900"
                     >
                         CIT360
-                    </a>
-                    <div className="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
+                    </a> */}
+                    <div className="w-full my-5 bg-white rounded-lg shadow sm:max-w-md xl:p-0">
                         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
                                 Sign in to your account
                             </h1>
                             <form
                                 class="space-y-4 md:space-y-6"
-                                onSubmit={(e) => {
-                                    handleSubmit(e);
-                                }}
+                                onSubmit={handleSubmit}
                             >
                                 <div>
                                     <label
@@ -84,6 +89,31 @@ function LoginAdmin() {
                                 </div>
                                 <div>
                                     <label
+                                        for="userName"
+                                        className="block mb-2 text-sm font-medium text-gray-900 "
+                                    >
+                                        Your Name
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="userName"
+                                        id="userName"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        placeholder="Name"
+                                        required=""
+                                        onChange={(e) => {
+                                            setFormElements((prev) => {
+                                                return {
+                                                    ...prev,
+                                                    [e.target.name]:
+                                                        e.target.value,
+                                                };
+                                            });
+                                        }}
+                                    />
+                                </div>
+                                <div>
+                                    <label
                                         for="password"
                                         className="block mb-2 text-sm font-medium text-gray-900 "
                                     >
@@ -93,6 +123,31 @@ function LoginAdmin() {
                                         type="password"
                                         name="password"
                                         id="password"
+                                        placeholder="••••••••"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        required=""
+                                        onChange={(e) => {
+                                            setFormElements((prev) => {
+                                                return {
+                                                    ...prev,
+                                                    [e.target.name]:
+                                                        e.target.value,
+                                                };
+                                            });
+                                        }}
+                                    />
+                                </div>
+                                <div>
+                                    <label
+                                        for="conpassword"
+                                        className="block mb-2 text-sm font-medium text-gray-900 "
+                                    >
+                                        Confirm Password
+                                    </label>
+                                    <input
+                                        type="password"
+                                        name="conpassword"
+                                        id="conpassword"
                                         placeholder="••••••••"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                         required=""
@@ -168,4 +223,4 @@ function LoginAdmin() {
     );
 }
 
-export default LoginAdmin;
+export default RegisterAdmin;

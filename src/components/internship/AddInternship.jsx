@@ -136,6 +136,123 @@ function AddInternship({ setAddButton, addButton }) {
                                         }}
                                     />
                                 </div>
+                                {/* Location */}
+                                <div>
+                                    <label
+                                        htmlFor="locationInternship"
+                                        className="block mb-2 text-sm font-medium text-gray-900 "
+                                    >
+                                        Location
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="locationInternship"
+                                        id="locationInternship"
+                                        placeHolder="Location"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        required=""
+                                        onChange={(e) => {
+                                            setInternDetailes((res) => {
+                                                return {
+                                                    ...res,
+                                                    [e.target.name]:
+                                                        e.target.value,
+                                                };
+                                            });
+                                        }}
+                                    />
+                                </div>
+                                {/* Eligibility */}
+                                <div>
+                                    <label
+                                        htmlFor="eligibilityInternship"
+                                        className="block mb-2 text-sm font-medium text-gray-900 "
+                                    >
+                                        Eligibility
+                                    </label>
+                                    {/* <input
+                                        type="year"
+                                        name="eligibilityInternship"
+                                        id="eligibilityInternship"
+                                        placeHolder="Eligibility"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        required=""
+                                        onChange={(e) => {
+                                            setInternDetailes((res) => {
+                                                return {
+                                                    ...res,
+                                                    [e.target.name]:
+                                                        e.target.value,
+                                                };
+                                            });
+                                        }}
+                                    /> */}
+                                    <select
+                                        id="eligibilityInternship"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                    >
+                                        <option selected disabled>
+                                            Choose year
+                                        </option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                    </select>
+                                </div>
+                                {/* Department */}
+                                <div>
+                                    <label
+                                        htmlFor="departmentInternship"
+                                        className="block mb-2 text-sm font-medium text-gray-900 "
+                                    >
+                                        Department
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="departmentInternship"
+                                        id="departmentInternship"
+                                        placeHolder="Department"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        required=""
+                                        onChange={(e) => {
+                                            setInternDetailes((res) => {
+                                                return {
+                                                    ...res,
+                                                    [e.target.name]:
+                                                        e.target.value,
+                                                };
+                                            });
+                                        }}
+                                    />
+                                </div>
+                                {/* Domain */}
+                                <div>
+                                    <label
+                                        htmlFor="domainInternship"
+                                        className="block mb-2 text-sm font-medium text-gray-900 "
+                                    >
+                                        Domain
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="domainInternship"
+                                        id="domainInternship"
+                                        placeHolder="Domain"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        required=""
+                                        onChange={(e) => {
+                                            setInternDetailes((res) => {
+                                                return {
+                                                    ...res,
+                                                    [e.target.name]:
+                                                        e.target.value,
+                                                };
+                                            });
+                                        }}
+                                    />
+                                </div>
+
                                 {/* Duration */}
                                 <div>
                                     <label
@@ -149,6 +266,32 @@ function AddInternship({ setAddButton, addButton }) {
                                         name="durationInternship"
                                         id="durationInternship"
                                         placeHolder="1 year"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        required=""
+                                        onChange={(e) => {
+                                            setInternDetailes((res) => {
+                                                return {
+                                                    ...res,
+                                                    [e.target.name]:
+                                                        e.target.value,
+                                                };
+                                            });
+                                        }}
+                                    />
+                                </div>
+                                {/* Last Date */}
+                                <div>
+                                    <label
+                                        htmlFor="lastDateInternship"
+                                        className="block mb-2 text-sm font-medium text-gray-900 "
+                                    >
+                                        Stipend
+                                    </label>
+                                    <input
+                                        type="date"
+                                        name="lastDateInternship"
+                                        id="lastDateInternship"
+                                        placeHolder="10000"
                                         className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                         required=""
                                         onChange={(e) => {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import ProfileSemMarksEdit from "../../../components/profile/ProfileSemMarksEdit";
 import Footer from "../../../components/Footer";
 import Navbar from "../../../components/Navbar";
@@ -6,6 +6,8 @@ import Navbar from "../../../components/Navbar";
 function ProfileEdit() {
     const [cgpa, setCgpa] = useState(9.1);
     const [singleSkill, setSingleSkill] = useState("");
+    const [singleInternship, setSingleInternship] = useState("");
+    const [singleCertificate, setSingleCertificate] = useState("");
 
     const data = {
         userId: "prasanna",
@@ -34,6 +36,8 @@ function ProfileEdit() {
     };
 
     const [skills, setSkills] = useState(data.skills);
+    const [internshipArray, setInternshipArray] = useState([]);
+    const [certificateArray, setCertificateArray] = useState([]);
 
     const marks = [
         {
@@ -210,6 +214,24 @@ function ProfileEdit() {
         }
     };
 
+    const handleInternship = () => {
+        if (singleInternship) {
+            setInternshipArray((prev) => {
+                return [...prev, singleInternship];
+            });
+        }
+        console.log(internshipArray);
+    };
+
+    const handleCertificate = () => {
+        if (singleCertificate) {
+            setCertificateArray((prev) => {
+                return [...prev, singleCertificate];
+            });
+        }
+        console.log(internshipArray);
+    };
+
     return (
         <>
             <Navbar />
@@ -245,49 +267,7 @@ function ProfileEdit() {
                                         />
                                     </div>
                                 </h1>
-                                <div>
-                                    <div className="flex gap-2 py-4">
-                                        <input
-                                            type="text"
-                                            id="passingYear"
-                                            class="w-[75%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 py-1.5"
-                                            placeholder="Add Skills"
-                                            onChange={(e) => {
-                                                setSingleSkill(e.target.value);
-                                            }}
-                                            required
-                                        />
-                                        <button
-                                            type="submit"
-                                            className="w-[25%] text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center"
-                                            onClick={handleSkill}
-                                        >
-                                            Add
-                                        </button>
-                                    </div>
-                                    {skills.map((res) => {
-                                        return (
-                                            <>
-                                                <div
-                                                    class="ml-2 text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-green-200 text-green-700 rounded-full"
-                                                    // delete current item
-                                                    onClick={(e) => {
-                                                        console.log(e.target);
-                                                        setSkills((prev) => {
-                                                            return prev.filter(
-                                                                (skill) =>
-                                                                    skill !==
-                                                                    res
-                                                            );
-                                                        });
-                                                    }}
-                                                >
-                                                    {res}
-                                                </div>
-                                            </>
-                                        );
-                                    })}
-                                </div>
+
                                 <ul class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
                                     <li class="flex items-center py-3">
                                         <span>Year of Passing</span>
@@ -322,6 +302,72 @@ function ProfileEdit() {
                                 </ul>
                             </div>
 
+                            <div class="my-4"></div>
+
+                            <div class="bg-white p-3 hover:shadow">
+                                <div class="flex items-center space-x-3 font-semibold text-gray-900 text-xl leading-8">
+                                    <span class="text-green-500">
+                                        <svg
+                                            class="h-5 fill-current"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                                            />
+                                        </svg>
+                                    </span>
+                                    <span>Skills</span>
+                                </div>
+                                <div>
+                                    <div className="flex gap-2 py-4">
+                                        <input
+                                            type="text"
+                                            id="passingYear"
+                                            class="w-[75%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 py-1.5"
+                                            placeholder="Add Skills"
+                                            onChange={(e) => {
+                                                setSingleSkill(e.target.value);
+                                            }}
+                                            required
+                                        />
+                                        <button
+                                            type="submit"
+                                            className="w-[25%] text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center"
+                                            onClick={handleSkill}
+                                        >
+                                            Add
+                                        </button>
+                                    </div>
+                                    {skills.map((res, index) => {
+                                        return (
+                                            <Fragment key={index}>
+                                                <div
+                                                    class="ml-2 text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-green-200 text-green-700 rounded-full"
+                                                    // delete current item
+                                                    onClick={(e) => {
+                                                        console.log(e.target);
+                                                        setSkills((prev) => {
+                                                            return prev.filter(
+                                                                (skill) =>
+                                                                    skill !==
+                                                                    res
+                                                            );
+                                                        });
+                                                    }}
+                                                >
+                                                    {res}
+                                                </div>
+                                            </Fragment>
+                                        );
+                                    })}
+                                </div>
+                            </div>
                             <div class="my-4"></div>
 
                             <div class="bg-white p-3 hover:shadow">
@@ -854,9 +900,9 @@ function ProfileEdit() {
                                             </span>
                                         </div>
                                         <ul class="list-inside space-y-2">
-                                            {marks.map((mark) => {
+                                            {marks.map((mark, index) => {
                                                 return (
-                                                    <>
+                                                    <Fragment key={index}>
                                                         <ProfileSemMarksEdit
                                                             mark={
                                                                 mark.semester1
@@ -921,7 +967,7 @@ function ProfileEdit() {
                                                                 "Semester 8"
                                                             }
                                                         />
-                                                    </>
+                                                    </Fragment>
                                                 );
                                             })}
                                         </ul>
@@ -1055,11 +1101,272 @@ function ProfileEdit() {
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="my-4"></div>
+
+                            <div class="bg-white p-3 shadow-sm rounded-sm">
+                                <div class="grid grid-cols-2">
+                                    <div>
+                                        <div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">
+                                            <span clas="text-green-500">
+                                                <svg
+                                                    class="h-5"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    fill="none"
+                                                    viewBox="0 0 24 24"
+                                                    stroke="currentColor"
+                                                >
+                                                    <path
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                                                    />
+                                                </svg>
+                                            </span>
+                                            <span class="tracking-wide">
+                                                Certificate
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <div className="grid grid-cols-2 gap-2 py-4">
+                                                <input
+                                                    type="text"
+                                                    id="certificateName"
+                                                    class="w-[90%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 py-1.5"
+                                                    placeholder="Add Certificate Name"
+                                                    name="certificateName"
+                                                    onChange={(e) => {
+                                                        setSingleCertificate(
+                                                            (res) => {
+                                                                return {
+                                                                    ...res,
+                                                                    [e.target
+                                                                        .name]:
+                                                                        e.target
+                                                                            .value,
+                                                                };
+                                                            }
+                                                        );
+                                                    }}
+                                                    required
+                                                />
+                                                <input
+                                                    type="text"
+                                                    id="certificateLink"
+                                                    class="w-[90%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 py-1.5"
+                                                    placeholder="Add Certificate Link"
+                                                    name="certificateLink"
+                                                    onChange={(e) => {
+                                                        setSingleCertificate(
+                                                            (res) => {
+                                                                return {
+                                                                    ...res,
+                                                                    [e.target
+                                                                        .name]:
+                                                                        e.target
+                                                                            .value,
+                                                                };
+                                                            }
+                                                        );
+                                                    }}
+                                                    required
+                                                />
+                                                <button
+                                                    type="submit"
+                                                    className="w-[90%] text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center"
+                                                    onClick={handleCertificate}
+                                                >
+                                                    Add
+                                                </button>
+                                            </div>
+                                            <div>
+                                                {certificateArray.map(
+                                                    (intern, index) => {
+                                                        return (
+                                                            <div
+                                                                key={index}
+                                                                onClick={(
+                                                                    e
+                                                                ) => {
+                                                                    e.preventDefault();
+                                                                    console.log(
+                                                                        intern
+                                                                    );
+                                                                    setCertificateArray(
+                                                                        certificateArray.filter(
+                                                                            (
+                                                                                certificate
+                                                                            ) => {
+                                                                                return (
+                                                                                    certificate.certificateName !==
+                                                                                    intern.certificateName
+                                                                                );
+                                                                            }
+                                                                        )
+                                                                    );
+                                                                }}
+                                                                className="bg-[#efefef] p-3 rounded-lg my-1"
+                                                            >
+                                                                <h1>
+                                                                    Certificate
+                                                                    Name :{" "}
+                                                                    {
+                                                                        intern.certificateName
+                                                                    }
+                                                                </h1>
+                                                                <p className="">
+                                                                    <a
+                                                                        target="_blank"
+                                                                        rel="noreferrer"
+                                                                        href={
+                                                                            intern.certificateLink
+                                                                        }
+                                                                    >
+                                                                        Link
+                                                                    </a>
+                                                                </p>
+                                                            </div>
+                                                        );
+                                                    }
+                                                )}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">
+                                            <span clas="text-green-500">
+                                                <svg
+                                                    class="h-5"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    fill="none"
+                                                    viewBox="0 0 24 24"
+                                                    stroke="currentColor"
+                                                >
+                                                    <path
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                                                    />
+                                                </svg>
+                                            </span>
+                                            <span class="tracking-wide">
+                                                Internship
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <div className="grid grid-cols-2 gap-2 py-4">
+                                                <input
+                                                    type="text"
+                                                    id="internshipName"
+                                                    class="w-[90%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 py-1.5"
+                                                    placeholder="Add Internship Name"
+                                                    name="internshipName"
+                                                    onChange={(e) => {
+                                                        setSingleInternship(
+                                                            (res) => {
+                                                                return {
+                                                                    ...res,
+                                                                    [e.target
+                                                                        .name]:
+                                                                        e.target
+                                                                            .value,
+                                                                };
+                                                            }
+                                                        );
+                                                    }}
+                                                    required
+                                                />
+                                                <input
+                                                    type="text"
+                                                    id="internshipLink"
+                                                    class="w-[90%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 py-1.5"
+                                                    placeholder="Add internship Link"
+                                                    name="internshipLink"
+                                                    onChange={(e) => {
+                                                        setSingleInternship(
+                                                            (res) => {
+                                                                return {
+                                                                    ...res,
+                                                                    [e.target
+                                                                        .name]:
+                                                                        e.target
+                                                                            .value,
+                                                                };
+                                                            }
+                                                        );
+                                                    }}
+                                                    required
+                                                />
+                                                <button
+                                                    type="submit"
+                                                    className="w-[90%] text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center"
+                                                    onClick={handleInternship}
+                                                >
+                                                    Add
+                                                </button>
+                                            </div>
+                                            <div>
+                                                {internshipArray.map(
+                                                    (intern, index) => {
+                                                        return (
+                                                            <div
+                                                                key={index}
+                                                                onClick={(
+                                                                    e
+                                                                ) => {
+                                                                    e.preventDefault();
+                                                                    console.log(
+                                                                        intern
+                                                                    );
+                                                                    setInternshipArray(
+                                                                        internshipArray.filter(
+                                                                            (
+                                                                                internship
+                                                                            ) => {
+                                                                                return (
+                                                                                    internship.internshipName !==
+                                                                                    intern.internshipName
+                                                                                );
+                                                                            }
+                                                                        )
+                                                                    );
+                                                                }}
+                                                                className="bg-[#efefef] p-3 rounded-lg my-1"
+                                                            >
+                                                                <h1>
+                                                                    internship
+                                                                    Name :{" "}
+                                                                    {
+                                                                        intern.internshipName
+                                                                    }
+                                                                </h1>
+                                                                <p className="">
+                                                                    <a
+                                                                        target="_blank"
+                                                                        href={
+                                                                            intern.internshipLink
+                                                                        }
+                                                                    >
+                                                                        Link
+                                                                    </a>
+                                                                </p>
+                                                            </div>
+                                                        );
+                                                    }
+                                                )}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <Footer />
+            {/* <Footer /> */}
         </>
     );
 }
