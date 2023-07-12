@@ -15,11 +15,10 @@ import AddRoadmap from "./pages/admin/roadmap/AddRoadmap";
 import ShowRoadmaps from "./pages/admin/roadmap/showRoadmaps";
 import UpdateRoadmap from "./pages/admin/roadmap/UpdateRoadmaps";
 import StudentDashboard from "./pages/admin/dashboard/StudentDashboard";
-import Roadmap from "./pages/roadmap/Roadmap";
 import RegisterAdmin from "./pages/admin/adminAuth/RegisterAdmin";
 
 import Calender from "./pages/admin/Calender/Calender";
-// import Roadmap from "./pages/admin/roadmap/Roadmap";
+import Roadmap from "./pages/admin/roadmap/Roadmap";
 
 import AddAcademics from "./pages/admin/academics/AddAcademics";
 import Academics from "./pages/admin/academics/Academics";
@@ -43,9 +42,9 @@ function App() {
                     {/* Filter */}
                     {/* <Route path="/filter" element={<Filter />}></Route> */}
                     {/* Profile */}
-                    <Route path="/profile" element={<Profile />}></Route>
+                    <Route path="/profile/:id" element={<Profile />}></Route>
                     <Route
-                        path="/profile/update"
+                        path="/profile/update/:id"
                         element={<ProfileEdit />}
                     ></Route>
 

@@ -6,16 +6,22 @@ import Footer from "../../../components/Footer";
 function Login() {
     const [formElements, setFormElements] = useState({});
 
-    const handleSubmit = () => {
-        // try {
-        //     axios
-        //         .post(`http://localhost:8080/admin/login`, formElements)
-        //         .then((res) => {
-        //             console.log("Login Success");
-        //         });
-        // } catch (error) {
-        //     console.log(error);
-        // }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        try {
+            axios
+                .post(
+                    `http://localhost:8080/student/login`,
+                    formElements
+                )
+                .then((res) => {
+                    console.log("Login Success");
+                    console.log(res);
+                    localStorage.setItem("rollno", formElements.regNo)
+                });
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (
@@ -35,21 +41,23 @@ function Login() {
                                 Sign in to your account
                             </h1>
                             <form
-                                class="space-y-4 md:space-y-6"
-                                onSubmit={handleSubmit}
+                                className="space-y-4 md:space-y-6"
+                                onSubmit={(e) => {
+                                    handleSubmit(e);
+                                }}
                             >
                                 <div>
                                     <label
-                                        for="email"
+                                        htmlFor="regNo"
                                         className="block mb-2 text-sm font-medium text-gray-900 "
                                     >
-                                        Your email
+                                        Your Register Number
                                     </label>
                                     <input
-                                        type="email"
-                                        name="email"
-                                        id="email"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        type="text"
+                                        name="regNo"
+                                        id="regNo"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                         placeholder="name@company.com"
                                         required=""
                                         onChange={(e) => {
@@ -65,7 +73,7 @@ function Login() {
                                 </div>
                                 <div>
                                     <label
-                                        for="password"
+                                        htmlFor="password"
                                         className="block mb-2 text-sm font-medium text-gray-900 "
                                     >
                                         Password
@@ -75,7 +83,7 @@ function Login() {
                                         name="password"
                                         id="password"
                                         placeholder="••••••••"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                         required=""
                                         onChange={(e) => {
                                             setFormElements((prev) => {
@@ -95,7 +103,7 @@ function Login() {
                                                 id="remember"
                                                 aria-describedby="remember"
                                                 type="checkbox"
-                                                class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300"
+                                                className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300"
                                                 required=""
                                                 onChange={(e) => {
                                                     setFormElements((prev) => {
@@ -110,7 +118,7 @@ function Login() {
                                         </div>
                                         <div className="ml-3 text-sm">
                                             <label
-                                                for="remember"
+                                                htmlFor="remember"
                                                 className="text-gray-500 "
                                             >
                                                 Remember me

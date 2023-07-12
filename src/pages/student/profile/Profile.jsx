@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ProfileSemMarks from "../../../components/profile/ProfileSemMarks";
 import Navbar from "../../../components/Navbar";
 import Footer from "../../../components/Footer";
+import axios from "axios";
 
 function Profile() {
-    const data = {
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        // const number = localStorage.getItem("rollno");
+        const number = 1234;
+
+        axios.get(`http://localhost:8080/student/${number}`).then((res) => {
+            setData(res.data);
+        });
+    });
+
+    const data1 = {
         userId: "solo1",
         fname: "Prasanna",
         lname: "RV",
@@ -30,7 +42,9 @@ function Profile() {
         compId: 1,
     };
 
-    const marks = [
+    const marks = data.marks;
+
+    const marks1 = [
         {
             userId: "solo1",
             marksId: 1,
@@ -213,14 +227,14 @@ function Profile() {
                                     />
                                 </div>
                                 <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">
-                                    {data.fname + " " + data.lname}
+                                    {data?.fname + " " + data?.lname}
                                 </h1>
                                 <ul class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
                                     <li class="flex items-center py-3">
                                         <span>Year of Passing</span>
                                         <span class="ml-auto">
                                             <span class="ml-auto">
-                                                {data.passingYear}
+                                                {data?.passing_year}
                                             </span>
                                         </span>
                                     </li>
@@ -254,7 +268,7 @@ function Profile() {
                                     <span>Skills</span>
                                 </div>
                                 <div className="flex flex-wrap justify-center items-center">
-                                    {data.skills.map((res) => {
+                                    {data?.skills?.map((res) => {
                                         return (
                                             <>
                                                 <div class="ml-2 my-1 text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-green-200 text-green-700 rounded-full">
@@ -350,7 +364,7 @@ function Profile() {
                                             P360 Score
                                         </div>
                                         <div class="px-4 py-1 text-right">
-                                            {compMarks[0].p360Score}
+                                            {data?.p360_score}
                                         </div>
                                     </div>
                                     <div class="grid grid-cols-2">
@@ -358,7 +372,7 @@ function Profile() {
                                             LeetCode
                                         </div>
                                         <div class="px-4 py-1 text-right">
-                                            {compMarks[0].leetCode}
+                                            {data?.leetcode_score}
                                         </div>
                                     </div>
                                     <div class="grid grid-cols-2">
@@ -366,7 +380,7 @@ function Profile() {
                                             CodeChef
                                         </div>
                                         <div class="px-4 py-1 text-right">
-                                            {compMarks[0].codeChef}
+                                            {data?.codechef_score}
                                         </div>
                                     </div>
                                     <div class="grid grid-cols-2">
@@ -374,7 +388,7 @@ function Profile() {
                                             CodeForces
                                         </div>
                                         <div class="px-4 py-1 text-right">
-                                            {compMarks[0].codeForces}
+                                            {data?.code_forces_score}
                                         </div>
                                     </div>
                                     <div class="grid grid-cols-2">
@@ -382,7 +396,7 @@ function Profile() {
                                             HackerRank
                                         </div>
                                         <div class="px-4 py-1 text-right">
-                                            {compMarks[0].hackerRank}
+                                            {data?.hackerrank_score}
                                         </div>
                                     </div>
                                     <div class="grid grid-cols-2">
@@ -390,7 +404,7 @@ function Profile() {
                                             CodeDivision
                                         </div>
                                         <div class="px-4 py-1 text-right">
-                                            {compMarks[0].codeDivision}
+                                            {data?.code_division_score}
                                         </div>
                                     </div>
                                     <div class="grid grid-cols-2">
@@ -398,7 +412,7 @@ function Profile() {
                                             HackerEarth
                                         </div>
                                         <div class="px-4 py-1 text-right">
-                                            {compMarks[0].hackerEarth}
+                                            {data?.hacker_earth_score}
                                         </div>
                                     </div>
                                     <div class="grid grid-cols-2">
@@ -406,7 +420,7 @@ function Profile() {
                                             InterviewBit
                                         </div>
                                         <div class="px-4 py-1 text-right">
-                                            {compMarks[0].interviewBit}
+                                            {data?.interview_bit_score}
                                         </div>
                                     </div>
                                     <div class="grid grid-cols-2">
@@ -414,7 +428,7 @@ function Profile() {
                                             GeeksForGeeks
                                         </div>
                                         <div class="px-4 py-1 text-right">
-                                            {compMarks[0].gfg}
+                                            {data?.geeks_for_geeks_score}
                                         </div>
                                     </div>
                                 </div>
@@ -449,7 +463,7 @@ function Profile() {
                                                 First Name
                                             </div>
                                             <div class="px-4 py-2">
-                                                {data.fname}
+                                                {data?.fname}
                                             </div>
                                         </div>
                                         <div class="grid grid-cols-2">
@@ -457,7 +471,7 @@ function Profile() {
                                                 Last Name
                                             </div>
                                             <div class="px-4 py-2">
-                                                {data.lname}
+                                                {data?.lname}
                                             </div>
                                         </div>
                                         <div class="grid grid-cols-2">
@@ -465,7 +479,7 @@ function Profile() {
                                                 Gender
                                             </div>
                                             <div class="px-4 py-2">
-                                                {data.gender}
+                                                {data?.gender}
                                             </div>
                                         </div>
                                         <div class="grid grid-cols-2">
@@ -473,7 +487,7 @@ function Profile() {
                                                 Contact No.
                                             </div>
                                             <div class="px-4 py-2">
-                                                {data.contact}
+                                                {data?.contact}
                                             </div>
                                         </div>
                                         <div class="grid grid-cols-2">
@@ -481,7 +495,7 @@ function Profile() {
                                                 Current Address
                                             </div>
                                             <div class="px-4 py-2">
-                                                {data.address}
+                                                {data?.address}
                                             </div>
                                         </div>
                                         <div class="grid grid-cols-2">
@@ -489,7 +503,7 @@ function Profile() {
                                                 Permanant Address
                                             </div>
                                             <div class="px-4 py-2">
-                                                {data.paddress}
+                                                {data?.paddress}
                                             </div>
                                         </div>
                                         <div class="grid grid-cols-2">
@@ -497,7 +511,7 @@ function Profile() {
                                                 Department
                                             </div>
                                             <div class="px-4 py-2">
-                                                {data.dept}
+                                                {data?.dept}
                                             </div>
                                         </div>
                                         <div class="grid grid-cols-2">
@@ -509,7 +523,7 @@ function Profile() {
                                                     class="text-blue-800"
                                                     href="mailto:jane@example.com"
                                                 >
-                                                    {data.email}
+                                                    {data?.email}
                                                 </a>
                                             </div>
                                         </div>
@@ -519,7 +533,7 @@ function Profile() {
                                                 Birthday
                                             </div>
                                             <div class="px-4 py-2">
-                                                {data.dob}
+                                                {data?.dob}
                                             </div>
                                         </div>
                                         <div class="grid grid-cols-2">
@@ -527,7 +541,7 @@ function Profile() {
                                                 Year of Joining
                                             </div>
                                             <div class="px-4 py-2">
-                                                {data.joiningYear}
+                                                {data?.joining_year}
                                             </div>
                                         </div>
                                         <div class="grid grid-cols-2">
@@ -535,7 +549,7 @@ function Profile() {
                                                 Father Name
                                             </div>
                                             <div class="px-4 py-2">
-                                                {data.fatherName}
+                                                {data?.father_name}
                                             </div>
                                         </div>
                                         <div class="grid grid-cols-2">
@@ -543,7 +557,7 @@ function Profile() {
                                                 Father Number
                                             </div>
                                             <div class="px-4 py-2">
-                                                {data.fatherPhone}
+                                                {data?.father_phone}
                                             </div>
                                         </div>
                                         <div class="grid grid-cols-2">
@@ -551,7 +565,7 @@ function Profile() {
                                                 Mother Name
                                             </div>
                                             <div class="px-4 py-2">
-                                                {data.motherName}
+                                                {data?.mother_name}
                                             </div>
                                         </div>
                                         <div class="grid grid-cols-2">
@@ -559,7 +573,7 @@ function Profile() {
                                                 Mother Number
                                             </div>
                                             <div class="px-4 py-2">
-                                                {data.motherPhone}
+                                                {data?.mother_phone}
                                             </div>
                                         </div>
                                     </div>
@@ -596,76 +610,7 @@ function Profile() {
                                             </span>
                                         </div>
                                         <ul class="list-inside space-y-2">
-                                            {marks.map((mark) => {
-                                                return (
-                                                    <>
-                                                        <ProfileSemMarks
-                                                            mark={
-                                                                mark.semester1
-                                                            }
-                                                            semesterNo={
-                                                                "Semester 1"
-                                                            }
-                                                        />
-                                                        <ProfileSemMarks
-                                                            mark={
-                                                                mark.semester2
-                                                            }
-                                                            semesterNo={
-                                                                "Semester 2"
-                                                            }
-                                                        />
-                                                        <ProfileSemMarks
-                                                            mark={
-                                                                mark.semester3
-                                                            }
-                                                            semesterNo={
-                                                                "Semester 3"
-                                                            }
-                                                        />
-                                                        <ProfileSemMarks
-                                                            mark={
-                                                                mark.semester4
-                                                            }
-                                                            semesterNo={
-                                                                "Semester 4"
-                                                            }
-                                                        />
-                                                        <ProfileSemMarks
-                                                            mark={
-                                                                mark.semester5
-                                                            }
-                                                            semesterNo={
-                                                                "Semester 5"
-                                                            }
-                                                        />
-                                                        <ProfileSemMarks
-                                                            mark={
-                                                                mark.semester6
-                                                            }
-                                                            semesterNo={
-                                                                "Semester 6"
-                                                            }
-                                                        />
-                                                        <ProfileSemMarks
-                                                            mark={
-                                                                mark.semester7
-                                                            }
-                                                            semesterNo={
-                                                                "Semester 7"
-                                                            }
-                                                        />
-                                                        <ProfileSemMarks
-                                                            mark={
-                                                                mark.semester8
-                                                            }
-                                                            semesterNo={
-                                                                "Semester 8"
-                                                            }
-                                                        />
-                                                    </>
-                                                );
-                                            })}
+                                            <ProfileSemMarks marks={marks} />
                                         </ul>
                                     </div>
                                     <div>
@@ -704,9 +649,9 @@ function Profile() {
                                                     SSLC
                                                 </div>
                                                 <div class="text-gray-500 text-xs">
-                                                    {data.schoolName10 +
+                                                    {data?._10th_school_name +
                                                         " - " +
-                                                        data.schoolName10Mark}
+                                                        data?._10th_mark}
                                                 </div>
                                             </li>
                                             <li>
@@ -714,9 +659,9 @@ function Profile() {
                                                     HSC
                                                 </div>
                                                 <div class="text-gray-500 text-xs">
-                                                    {data.schoolName12 +
+                                                    {data?._12th_school_name +
                                                         " - " +
-                                                        data.schoolName12Mark}
+                                                        data?._12th_mark}
                                                 </div>
                                             </li>
                                         </ul>
