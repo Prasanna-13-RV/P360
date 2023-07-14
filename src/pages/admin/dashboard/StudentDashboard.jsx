@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { TextField, Button } from "@mui/material";
 import Filter from "../filter/Filter";
 import {
@@ -13,16 +13,11 @@ import {
 import { Bar } from "react-chartjs-2";
 import NavbarAdmin from "../../../components/admin/NavbarAdmin";
 import FooterAdmin from "../../../components/admin/FooterAdmin";
+import {
+  getStudents,
+  getStudentsCompetitive,
+} from "../../../axios/student.axios";
 
-export const options1 = {
-  responsive: true,
-  plugins: {
-    title: {
-      display: true,
-      text: "LeetCode",
-    },
-  },
-};
 export const options2 = {
   responsive: true,
   plugins: {
@@ -103,7 +98,7 @@ export const options9 = {
   },
 };
 
-export const options10 = {
+export const optionsDept = {
   responsive: true,
   plugins: {
     title: {
@@ -141,117 +136,6 @@ export const options12 = {
 //             gfg: "100/10000",
 const labels = ["100-80", "80-60", "60-40", "40-20", "20-0"];
 
-export const data1 = {
-  labels,
-  datasets: [
-    {
-      label: "LeetCode",
-      data: [100, 50, 20, 30, 10],
-      backgroundColor: "#393AA1",
-    },
-  ],
-};
-export const data2 = {
-  labels,
-  datasets: [
-    {
-      label: "p360Score",
-      data: [10, 70, 20, 66, 11],
-      backgroundColor: "#393AA1",
-    },
-  ],
-};
-export const data3 = {
-  labels,
-  datasets: [
-    {
-      label: "CodeChef",
-      data: [84, 77, 22, 39, 15],
-      backgroundColor: "#393AA1",
-    },
-  ],
-};
-export const data4 = {
-  labels,
-  datasets: [
-    {
-      label: "CodeForces",
-      data: [10, 27, 61, 38, 80],
-      backgroundColor: "#393AA1",
-    },
-  ],
-};
-export const data5 = {
-  labels,
-  datasets: [
-    {
-      label: "HackerRank",
-      data: [76, 51, 28, 30, 30],
-      backgroundColor: "#393AA1",
-    },
-  ],
-};
-export const data6 = {
-  labels,
-  datasets: [
-    {
-      label: "CodeDivision",
-      data: [10, 55, 30, 20, 17],
-      backgroundColor: "#393AA1",
-    },
-  ],
-};
-export const data7 = {
-  labels,
-  datasets: [
-    {
-      label: "HackerEarth",
-      data: [44, 26, 28, 77, 80],
-      backgroundColor: "#393AA1",
-    },
-  ],
-};
-export const data8 = {
-  labels,
-  datasets: [
-    {
-      label: "InterviewBit",
-      data: [60, 50, 88, 35, 71],
-      backgroundColor: "#393AA1",
-    },
-  ],
-};
-
-export const data9 = {
-  labels,
-  datasets: [
-    {
-      label: "GFG",
-      data: [61, 30, 88, 28, 51],
-      backgroundColor: "#393AA1",
-    },
-  ],
-};
-
-export const data11 = {
-  labels: [
-    "Semester 1",
-    "Semester 2",
-    "Semester 3",
-    "Semester 4",
-    "Semester 5",
-    "Semester 6",
-    "Semester 7",
-    "Semester 8",
-  ],
-  datasets: [
-    {
-      label: "Semester",
-      data: [61, 85, 48, 68, 71, 18, 51, 100],
-      backgroundColor: "#393AA1",
-    },
-  ],
-};
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -263,6 +147,126 @@ ChartJS.register(
 
 const StudentDashboard = () => {
   const [mode, setMode] = useState("competitive");
+
+  const [students, setStudents] = useState([]);
+
+  // const [values, setValues] = useState({
+  //   leetcode_score: [],
+  // });
+  const [deptData, setDeptData] = useState();
+  const [departmentCount, setDepartmentCount] = useState({});
+  const [segregation, setSegregation] = useState();
+
+  const segregateScores = (studentsData) => {
+    const newSegregation = {};
+    const deptObj = {};
+    studentsData.forEach((student) => {
+      //dept
+
+      const department = student.dept;
+
+      // Check if the department already exists as a key in the object
+      if (department in deptObj) {
+        // Increment the count by 1
+        deptObj[department]++;
+      } else {
+        // Initialize the count to 1
+        deptObj[department] = 1;
+      }
+
+      const {
+        p360_score,
+        interview_bit_score,
+        hackerrank_score,
+        leetcode_score,
+        hacker_earth_score,
+        geeks_for_geeks_score,
+        code_division_score,
+        code_forces_score,
+        codechef_score,
+      } = student;
+
+      console.log(leetcode_score);
+      updateScoreRange(newSegregation, "leetcode_score", leetcode_score);
+      updateScoreRange(
+        newSegregation,
+        "interview_bit_score",
+        interview_bit_score
+      );
+      updateScoreRange(newSegregation, "p360_score", p360_score);
+      updateScoreRange(newSegregation, "hackerrank_score", hackerrank_score);
+      updateScoreRange(
+        newSegregation,
+        "hacker_earth_score",
+        hacker_earth_score
+      );
+      updateScoreRange(
+        newSegregation,
+        "geeks_for_geeks_score",
+        geeks_for_geeks_score
+      );
+      updateScoreRange(
+        newSegregation,
+        "code_division_score",
+        code_division_score
+      );
+      updateScoreRange(newSegregation, "codechef_score", codechef_score);
+      updateScoreRange(newSegregation, "code_forces_score", code_forces_score);
+    });
+
+    setDepartmentCount(deptObj);
+    setSegregation(newSegregation);
+  };
+
+  const updateScoreRange = (segregationObj, field, score) => {
+    const scoreValue = parseFloat(score);
+
+    if (!segregationObj[field]) {
+      segregationObj[field] = {
+        range_0_20: 0,
+        range_20_40: 0,
+        range_40_60: 0,
+        range_60_80: 0,
+        range_80_100: 0,
+      };
+    }
+
+    if (scoreValue >= 0 && scoreValue <= 20) {
+      segregationObj[field].range_0_20++;
+    } else if (scoreValue > 20 && scoreValue <= 40) {
+      segregationObj[field].range_20_40++;
+    } else if (scoreValue > 40 && scoreValue <= 60) {
+      segregationObj[field].range_40_60++;
+    } else if (scoreValue > 60 && scoreValue <= 80) {
+      segregationObj[field].range_60_80++;
+    } else if (scoreValue > 80 && scoreValue <= 100) {
+      segregationObj[field].range_80_100++;
+    }
+  };
+
+  useEffect(() => {
+    getStudents().then((res) => {
+      console.log(res.data);
+      setStudents(res.data);
+      segregateScores(res.data);
+    });
+  }, []);
+  
+
+
+  useEffect(() => {
+    setDeptData({
+      labels: Object.keys(departmentCount),
+      datasets: [
+        {
+          label: "No of Students in each Department",
+          data: Object.values(departmentCount),
+          backgroundColor: "#393AA1",
+        },
+      ],
+    });
+   
+  }, [departmentCount]);
 
   return (
     <div className="w-full m-h-screen">
@@ -281,7 +285,7 @@ const StudentDashboard = () => {
       {mode != "students" && (
         <div className="mt-[5rem] mx-auto w-[70%] flex justify-evenly items-center">
           <div className="w-[20%]">
-            <h1 className="mb-4 text-sm font-semibold">Filter by year</h1>
+            <h1 className="mb-4 text-md font-semibold">Filter by year</h1>
             <select className="w-full" style={{ border: "solid #454545 1px" }}>
               <option>2023</option>
               <option>2022</option>
@@ -301,49 +305,158 @@ const StudentDashboard = () => {
       <div className=" flex flex-wrap justify-evenly items-center">
         {mode == "competitive" && (
           <>
-            <div className="w-[400px] h-fit mt-10">
-              <Bar options={options1} data={data1} />
-            </div>
-            <div className="w-[400px] h-fit mt-10">
-              <Bar options={options2} data={data2} />
-            </div>
-            <div className="w-[400px] h-fit  mt-10">
-              <Bar options={options3} data={data3} />
-            </div>
-            <div className="w-[400px] h-fit mt-10">
-              <Bar options={options4} data={data4} />
-            </div>
-            <div className="w-[400px] h-fit mt-10">
-              <Bar options={options5} data={data5} />
-            </div>
-            <div className="w-[400px] h-fit mt-10">
-              <Bar options={options6} data={data6} />
-            </div>
-            <div className="w-[400px] h-fit mt-10">
-              <Bar options={options7} data={data7} />
-            </div>
-            <div className="w-[400px] h-fit mt-10">
-              <Bar options={options8} data={data8} />
-            </div>
-            <div className="w-[400px] h-fit mt-10">
-              <Bar options={options9} data={data9} />
-            </div>
+            {segregation &&
+              Object.keys(segregation).map((score) => {
+                const data = {
+                  labels,
+                  datasets: [
+                    {
+                      label: score,
+                      data:
+                        segregation &&
+                        segregation[score] &&
+                        Object.values(segregation[score]),
+                      backgroundColor: "#393AA1",
+                    },
+                  ],
+                };
+                const options = {
+                  responsive: true,
+
+                  plugins: {
+                    title: {
+                      display: true,
+                      text: score,
+                    },
+                  },
+                };
+                return (
+                  <div className="w-[400px] h-fit mt-10">
+                    <Bar options={options} data={data} />
+                  </div>
+                );
+              })}
           </>
         )}
         {mode == "academic" && (
           <>
             <div className="w-[400px] h-fit mt-10">
-              <Bar options={options10} data={data1} />
+              <Bar options={optionsDept} data={deptData} />
             </div>
+            {/* <div className="w-[400px] h-fit mt-10">
+              <Bar options={options11} data={deptData} />
+            </div> */}
             <div className="w-[400px] h-fit mt-10">
-              <Bar options={options11} data={data11} />
+              <Bar options={options12} data={deptData} />
             </div>
-            <div className="w-[400px] h-fit mt-10">
-              <Bar options={options12} data={data1} />
+            <div className="w-[320px] h-fit mt-10 text-[#454545]">
+              <h1 className="text-[1rem] font-bold mb-4">
+                Competitive top 10 students
+              </h1>
+              <div className="w-full p-[.5rem] bg-[#393AA1]  rounded-md">
+                <h1 className="text-white font-semibold">Solomon</h1>
+              </div>
+              <div className="w-full p-[.5rem] bg-[#393AA1]   mt-1 rounded-md">
+                <h1 className="text-white font-semibold">Prasanna</h1>
+              </div>
+              <div className="w-full p-[.5rem] bg-[#393AA1]  mt-1 rounded-md">
+                <h1 className="text-white font-semibold">Lohith</h1>
+              </div>
+              <div className="w-full p-[.5rem] bg-[#393AA1]  mt-1 rounded-md">
+                <h1 className="text-white font-semibold">Akash</h1>
+              </div>
+              <div className="w-full p-[.5rem] bg-[#393AA1]  mt-1 rounded-md">
+                <h1 className="text-white font-semibold">Pavankrishan</h1>
+              </div>
+              <div className="w-full p-[.5rem] bg-[#393AA1]  mt-1 rounded-md">
+                <h1 className="text-white font-semibold">Srilatha</h1>
+              </div>
+              <div className="w-full p-[.5rem] bg-[#393AA1]  mt-1 rounded-md">
+                <h1 className="text-white font-semibold">Bhuvana</h1>
+              </div>
+              <div className="w-full p-[.5rem] bg-[#393AA1]  mt-1 rounded-md">
+                <h1 className="text-white font-semibold">Santhosh</h1>
+              </div>
+              <div className="w-full p-[.5rem] bg-[#393AA1]  mt-1 rounded-md">
+                <h1 className="text-white font-semibold">Shyam</h1>
+              </div>
+              <div className="w-full p-[.5rem] bg-[#393AA1]  mt-1 rounded-md">
+                <h1 className="text-white font-semibold">Gopal</h1>
+              </div>
+            </div>
+            <div className="w-[320px] h-fit mt-10">
+              <h1 className="text-[1rem] font-bold mb-4 text-[#454545]">
+                Competitive top 10 students
+              </h1>
+              <div className="w-full p-[.5rem] bg-[#393AA1]  rounded-md">
+                <h1 className="text-white font-semibold">Solomon</h1>
+              </div>
+              <div className="w-full p-[.5rem] bg-[#393AA1]   mt-1 rounded-md">
+                <h1 className="text-white font-semibold">Prasanna</h1>
+              </div>
+              <div className="w-full p-[.5rem] bg-[#393AA1]  mt-1 rounded-md">
+                <h1 className="text-white font-semibold">Lohith</h1>
+              </div>
+              <div className="w-full p-[.5rem] bg-[#393AA1]  mt-1 rounded-md">
+                <h1 className="text-white font-semibold">Akash</h1>
+              </div>
+              <div className="w-full p-[.5rem] bg-[#393AA1]  mt-1 rounded-md">
+                <h1 className="text-white font-semibold">Pavankrishan</h1>
+              </div>
+              <div className="w-full p-[.5rem] bg-[#393AA1]  mt-1 rounded-md">
+                <h1 className="text-white font-semibold">Srilatha</h1>
+              </div>
+              <div className="w-full p-[.5rem] bg-[#393AA1]  mt-1 rounded-md">
+                <h1 className="text-white font-semibold">Bhuvana</h1>
+              </div>
+              <div className="w-full p-[.5rem] bg-[#393AA1]  mt-1 rounded-md">
+                <h1 className="text-white font-semibold">Santhosh</h1>
+              </div>
+              <div className="w-full p-[.5rem] bg-[#393AA1]  mt-1 rounded-md">
+                <h1 className="text-white font-semibold">Shyam</h1>
+              </div>
+              <div className="w-full p-[.5rem] bg-[#393AA1]  mt-1 rounded-md">
+                <h1 className="text-white font-semibold">Gopal</h1>
+              </div>
+            </div>
+            <div className="w-[320px] h-fit mt-10">
+              <h1 className="text-[1rem] font-bold mb-4 text-[#454545]">
+                Competitive top 10 students
+              </h1>
+              <div className="w-full p-[.5rem] bg-[#393AA1]  rounded-md">
+                <h1 className="text-white font-semibold">Solomon</h1>
+              </div>
+              <div className="w-full p-[.5rem] bg-[#393AA1]   mt-1 rounded-md">
+                <h1 className="text-white font-semibold">Prasanna</h1>
+              </div>
+              <div className="w-full p-[.5rem] bg-[#393AA1]  mt-1 rounded-md">
+                <h1 className="text-white font-semibold">Lohith</h1>
+              </div>
+              <div className="w-full p-[.5rem] bg-[#393AA1]  mt-1 rounded-md">
+                <h1 className="text-white font-semibold">Akash</h1>
+              </div>
+              <div className="w-full p-[.5rem] bg-[#393AA1]  mt-1 rounded-md">
+                <h1 className="text-white font-semibold">Pavankrishan</h1>
+              </div>
+              <div className="w-full p-[.5rem] bg-[#393AA1]  mt-1 rounded-md">
+                <h1 className="text-white font-semibold">Srilatha</h1>
+              </div>
+              <div className="w-full p-[.5rem] bg-[#393AA1]  mt-1 rounded-md">
+                <h1 className="text-white font-semibold">Bhuvana</h1>
+              </div>
+              <div className="w-full p-[.5rem] bg-[#393AA1]  mt-1 rounded-md">
+                <h1 className="text-white font-semibold">Santhosh</h1>
+              </div>
+              <div className="w-full p-[.5rem] bg-[#393AA1]  mt-1 rounded-md">
+                <h1 className="text-white font-semibold">Shyam</h1>
+              </div>
+              <div className="w-full p-[.5rem] bg-[#393AA1]  mt-1 rounded-md">
+                <h1 className="text-white font-semibold">Gopal</h1>
+              </div>
             </div>
           </>
         )}
-        {mode == "students" && <Filter />}
+        {/*{mode == "students" && <Filter />} */}
       </div>
       <FooterAdmin />
     </div>
