@@ -13,9 +13,13 @@ function Internship() {
     const [dataInternship, setDataInternship] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:8080/internship").then((res) => {
-            setDataInternship(res.data);
-        });
+        try {
+            axios.get("http://localhost:8080/internship").then((res) => {
+                setDataInternship(res.data);
+            });
+        } catch (error) {
+            console.log(error);
+        }
     }, []);
 
     const handleDelete = (e) => {
@@ -85,13 +89,28 @@ function Internship() {
                                     Stipend
                                 </th>
                                 <th scope="col" className="px-6 py-3">
+                                    Location
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Eligibility
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Department
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Domain
+                                </th>
+                                <th scope="col" className="px-6 py-3">
                                     Duration
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Last date
                                 </th>
                                 <th scope="col" className="px-6 py-3">
                                     Apply Link
                                 </th>
                                 <th scope="col" className="px-6 py-3">
-                                    Link
+                                    Operations
                                 </th>
                             </tr>
                         </thead>
@@ -113,10 +132,25 @@ function Internship() {
                                                 {e.stipendInternship}
                                             </td>
                                             <td className="px-6 py-4">
+                                                {e.locationInternship}
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                {e.eligibilityInternship}
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                {e.departmentInternship}
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                {e.domainInternship}
+                                            </td>
+                                            <td className="px-6 py-4">
                                                 {e.durationInternship}
                                             </td>
                                             <td className="px-6 py-4">
-                                                <a href={e.durationInternship}>
+                                                {e.lastDateInternship}
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                <a href={e.linkInternship}>
                                                     Link
                                                 </a>
                                             </td>
