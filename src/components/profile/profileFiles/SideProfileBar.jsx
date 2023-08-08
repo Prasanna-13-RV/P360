@@ -20,16 +20,20 @@ export const SideProfileBar = ({
 
     const handelSubmit = (e) => {
         e.preventDefault();
-        console.log(skills, "l");
-        setSendingData((res) => {
-            return {
-                ...res,
-                skillset: [...skills],
-            };
-        });
+        console.log(sendingData, "l");
 
-       
-        // handleProfileSubmit(e);
+        var data = sendingData;
+        data.skillset = [...skills];
+        setSendingData(data);
+        // setSendingData((res) => {
+        //     return {
+        //         ...res,
+        //         skillset: [...skills],
+        //     };
+        // });
+
+    //    console.log(data,"DAT");
+        handleProfileSubmit(e);
     };
 
  
