@@ -9,7 +9,6 @@ function Internship() {
     const [addButton, setAddButton] = useState(false);
     const [editButton, setEditButton] = useState(false);
     const [editData, setEditData] = useState({});
-
     const [dataInternship, setDataInternship] = useState([]);
 
     useEffect(() => {
@@ -33,6 +32,8 @@ function Internship() {
         setEditData(e);
         setEditButton(!editButton);
     };
+
+    console.log(dataInternship);
 
     return (
         <>
@@ -91,9 +92,9 @@ function Internship() {
                                 <th scope="col" className="px-6 py-3">
                                     Location
                                 </th>
-                                <th scope="col" className="px-6 py-3">
+                                {/* <th scope="col" className="px-6 py-3">
                                     Eligibility
-                                </th>
+                                </th> */}
                                 <th scope="col" className="px-6 py-3">
                                     Department
                                 </th>
@@ -103,9 +104,9 @@ function Internship() {
                                 <th scope="col" className="px-6 py-3">
                                     Duration
                                 </th>
-                                <th scope="col" className="px-6 py-3">
+                                {/* <th scope="col" className="px-6 py-3">
                                     Last date
-                                </th>
+                                </th> */}
                                 <th scope="col" className="px-6 py-3">
                                     Apply Link
                                 </th>
@@ -134,9 +135,9 @@ function Internship() {
                                             <td className="px-6 py-4">
                                                 {e.locationInternship}
                                             </td>
-                                            <td className="px-6 py-4">
+                                            {/* <td className="px-6 py-4">
                                                 {e.eligibilityInternship}
-                                            </td>
+                                            </td> */}
                                             <td className="px-6 py-4">
                                                 {e.departmentInternship}
                                             </td>
@@ -146,9 +147,9 @@ function Internship() {
                                             <td className="px-6 py-4">
                                                 {e.durationInternship}
                                             </td>
-                                            <td className="px-6 py-4">
+                                            {/* <td className="px-6 py-4">
                                                 {e.lastDateInternship}
-                                            </td>
+                                            </td> */}
                                             <td className="px-6 py-4">
                                                 <a href={e.linkInternship}>
                                                     Link

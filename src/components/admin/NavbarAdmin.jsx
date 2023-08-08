@@ -19,7 +19,8 @@ export default function NavbarAdmin({ current }) {
     // { name: "Marks File Upload", href: "/admin/marks/file", current: current },
     // { name: "Roadmap", href: "/admin/showroadmap", current: current },x
     { name: "Calender", href: "/admin/calender", current: current },
-    { name: "Academics", href: "/admin/academics", current: current },
+    
+    
   ];
 
   const user = {
@@ -120,6 +121,81 @@ export default function NavbarAdmin({ current }) {
                                       "block px-4 py-2 text-sm text-gray-700"
                                     )}>
                                     Marks File Upload
+                                  </a>
+                                )}
+                              </Menu.Item>
+                            </>
+                          ) : (
+                            <>
+                              <Menu.Item>
+                                {({ active }) => (
+                                  <a
+                                    href="/login"
+                                    className={classNames(
+                                      active ? "bg-gray-100" : "",
+                                      "block px-4 py-2 text-sm text-gray-700"
+                                    )}>
+                                    Login
+                                  </a>
+                                )}
+                              </Menu.Item>
+                              <Menu.Item>
+                                {({ active }) => (
+                                  <a
+                                    href="/admin/marks/file"
+                                    className={classNames(
+                                      active ? "bg-gray-100" : "",
+                                      "block px-4 py-2 text-sm text-gray-700"
+                                    )}>
+                                    Register
+                                  </a>
+                                )}
+                              </Menu.Item>
+                            </>
+                          )}
+                        </Menu.Items>
+                      </Transition>
+                    </Menu>
+                    <Menu as="div" className="relative ml-3">
+                      <div>
+                        <Menu.Button className="px-3 py-2 rounded-md text-sm font-medium text-black hover:bg-gray-700 hover:text-white">
+                          <h1>Academics</h1>
+                        </Menu.Button>
+                      </div>
+                      <Transition
+                        as={Fragment}
+                        enter="transition ease-out duration-100"
+                        enterFrom="transform opacity-0 scale-95"
+                        enterTo="transform opacity-100 scale-100"
+                        leave="transition ease-in duration-75"
+                        leaveFrom="transform opacity-100 scale-100"
+                        leaveTo="transform opacity-0 scale-95">
+                        <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                          {user ? (
+                            <>
+                              <Menu.Item>
+                                {({ active }) => (
+                                  <a
+                                    href
+                                    className={classNames(
+                                      active ? "bg-gray-100" : "",
+                                      "block px-4 py-2 text-sm text-gray-700"
+                                    )}>
+                                    <Link to={`/admin/addacademics`}>
+                                      Add Academics
+                                    </Link>
+                                  </a>
+                                )}
+                              </Menu.Item>
+                              <Menu.Item>
+                                {({ active }) => (
+                                  <a
+                                    href="/admin/academics"
+                                    className={classNames(
+                                      active ? "bg-gray-100" : "",
+                                      "block px-4 py-2 text-sm text-gray-700"
+                                    )}>
+                                    View Academics
                                   </a>
                                 )}
                               </Menu.Item>

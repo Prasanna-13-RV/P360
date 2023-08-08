@@ -16,6 +16,7 @@ function AddInternship({ setAddButton, addButton }) {
             .catch((err) => {
                 console.log(err);
             });
+        console.log(internDetailes);
     };
 
     const KEY_NAME_ESC = "Escape";

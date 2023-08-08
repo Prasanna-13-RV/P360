@@ -107,7 +107,7 @@ export const optionsDept = {
     },
   },
 };
-export const options11 = {
+export const optionsSemester = {
   responsive: true,
   plugins: {
     title: {
@@ -116,7 +116,7 @@ export const options11 = {
     },
   },
 };
-export const options12 = {
+export const optionsCGPA = {
   responsive: true,
   plugins: {
     title: {
@@ -135,7 +135,16 @@ export const options12 = {
 //             interviewBit: "100/10000",
 //             gfg: "100/10000",
 const labels = ["100-80", "80-60", "60-40", "40-20", "20-0"];
-
+const markLabel = [
+  "semester1",
+  "semester2",
+  "semester3",
+  "semester4",
+  "semester5",
+  "semester6",
+  "semester7",
+  "semester8",
+];
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -148,31 +157,29 @@ ChartJS.register(
 const StudentDashboard = () => {
   const [mode, setMode] = useState("competitive");
 
+  const [cgpaAllDept, setCgpaAllDept] = useState();
+  const [cgpaData, setCgpaData] = useState();
+  const [currentYear, setCurrentYear] = useState(2024);
+  const [currentDept, setCurrentDept] = useState("IT");
   const [students, setStudents] = useState([]);
 
   // const [values, setValues] = useState({
   //   leetcode_score: [],
   // });
   const [deptData, setDeptData] = useState();
+  const [deptMarks, setDeptMarks] = useState();
   const [departmentCount, setDepartmentCount] = useState({});
+  const [departmentCgpa, setDepartmentCgpa] = useState({});
   const [segregation, setSegregation] = useState();
 
   const segregateScores = (studentsData) => {
+    console.log(studentsData,"Mode");
     const newSegregation = {};
-    const deptObj = {};
+
+    const cgpaOfDepts = {};
+
     studentsData.forEach((student) => {
       //dept
-
-      const department = student.dept;
-
-      // Check if the department already exists as a key in the object
-      if (department in deptObj) {
-        // Increment the count by 1
-        deptObj[department]++;
-      } else {
-        // Initialize the count to 1
-        deptObj[department] = 1;
-      }
 
       const {
         p360_score,
@@ -184,9 +191,9 @@ const StudentDashboard = () => {
         code_division_score,
         code_forces_score,
         codechef_score,
+        cgpa
       } = student;
 
-      console.log(leetcode_score);
       updateScoreRange(newSegregation, "leetcode_score", leetcode_score);
       updateScoreRange(
         newSegregation,
@@ -200,6 +207,7 @@ const StudentDashboard = () => {
         "hacker_earth_score",
         hacker_earth_score
       );
+
       updateScoreRange(
         newSegregation,
         "geeks_for_geeks_score",
@@ -212,11 +220,49 @@ const StudentDashboard = () => {
       );
       updateScoreRange(newSegregation, "codechef_score", codechef_score);
       updateScoreRange(newSegregation, "code_forces_score", code_forces_score);
+
+      updateCgpaRange(cgpaOfDepts,parseFloat(cgpa));
     });
 
-    setDepartmentCount(deptObj);
+    
     setSegregation(newSegregation);
+    
+    setCgpaAllDept({
+      labels: Object.keys(cgpaOfDepts["CGPA"]),
+      datasets: [
+        {
+          label: "CGPA",
+          data: Object.values(cgpaOfDepts["CGPA"]),
+          backgroundColor: "#393AA1",
+        },
+      ],
+    });
   };
+
+  
+  const updateCgpaRange = (segregationObj,cgpa) => {
+
+    console.log(cgpa,segregationObj,"hi");
+    if (!segregationObj["CGPA"]) {
+      segregationObj["CGPA"] = {
+        range_6_7: 0,
+        range_7_8: 0,
+        range_8_9: 0,
+        range_9_10: 0,
+      };
+    }
+
+    if (cgpa >= 6 && cgpa <7) {
+      segregationObj["CGPA"].range_6_7++;
+    } else if (cgpa >= 7 && cgpa < 8) {
+      segregationObj["CGPA"].range_7_8++;
+    } else if (cgpa >=8  && cgpa < 9) {
+      segregationObj["CGPA"].range_8_9++;
+    } else if (cgpa >=9 && cgpa <= 10) {
+      segregationObj["CGPA"].range_9_10++;
+    } 
+
+  }
 
   const updateScoreRange = (segregationObj, field, score) => {
     const scoreValue = parseFloat(score);
@@ -246,14 +292,65 @@ const StudentDashboard = () => {
 
   useEffect(() => {
     getStudents().then((res) => {
-      console.log(res.data);
       setStudents(res.data);
-      segregateScores(res.data);
+      
+
+      
+
+
+      segregateScores(
+        res.data.filter((student) => parseInt(student.passing_year) == 2024)
+      );
+      
+
+
+      const deptObj = {};
+      const cgpaObj = {};
+    
+      res.data.forEach((student) => {
+        //dept
+
+       
+
+
+        
+
+        
+        
+        const department = student.dept;
+
+        // Check if the department already exists as a key in the object
+        if (department in deptObj) {
+
+          // Increment the count by 1
+          deptObj[department]++;
+          cgpaObj[department] += parseFloat(student.cgpa);
+        } else {
+          // Initialize the count to 1
+          deptObj[department] = 1;
+          cgpaObj[department] =   parseFloat(student.cgpa);
+          
+        }
+      });
+
+      
+
+
+      console.log(cgpaObj);
+
+      
+      Object.keys(cgpaObj).forEach((dept)=>{
+        cgpaObj[dept] = cgpaObj[dept]/deptObj[dept]
+
+
+      })
+
+      setDepartmentCgpa(cgpaObj)
+      setDepartmentCount(deptObj);
     });
   }, []);
-  
 
-
+ 
   useEffect(() => {
     setDeptData({
       labels: Object.keys(departmentCount),
@@ -265,7 +362,20 @@ const StudentDashboard = () => {
         },
       ],
     });
-   
+    
+    
+    
+    setCgpaData({
+      labels: Object.keys(departmentCgpa),
+      datasets: [
+        {
+          label: "CGPA in each Department",
+          data: Object.values(departmentCgpa),
+          backgroundColor: "#393AA1",
+        },
+      ],
+    });
+
   }, [departmentCount]);
 
   return (
@@ -286,7 +396,20 @@ const StudentDashboard = () => {
         <div className="mt-[5rem] mx-auto w-[70%] flex justify-evenly items-center">
           <div className="w-[20%]">
             <h1 className="mb-4 text-md font-semibold">Filter by year</h1>
-            <select className="w-full" style={{ border: "solid #454545 1px" }}>
+            <select
+              onChange={(e) => {
+                setCurrentYear(e.target.value);
+                let studentsByDept = students
+                  .filter((student) => student.dept == currentDept)
+                  .filter(
+                    (student) =>
+                      parseInt(student.passing_year) == parseInt(e.target.value)
+                  );
+                segregateScores(studentsByDept);
+              }}
+              className="w-full"
+              style={{ border: "solid #454545 1px" }}>
+              <option>2024</option>
               <option>2023</option>
               <option>2022</option>
               <option>2021</option>
@@ -294,7 +417,16 @@ const StudentDashboard = () => {
           </div>
           <div className="w-[20%]">
             <h1 className="mb-4 text-sm font-semibold">Filter by Department</h1>
-            <select className="w-full" style={{ border: "solid #454545 1px" }}>
+            <select
+              onChange={(e) => {
+                setCurrentDept(e.target.value);
+                let studentsByDept = students
+                  .filter((student) => student.passing_year == currentYear)
+                  .filter((student) => student.dept == e.target.value);
+                segregateScores(studentsByDept);
+              }}
+              className="w-full"
+              style={{ border: "solid #454545 1px" }}>
               <option>IT</option>
               <option>CSE</option>
               <option>EEE</option>
@@ -343,12 +475,15 @@ const StudentDashboard = () => {
             <div className="w-[400px] h-fit mt-10">
               <Bar options={optionsDept} data={deptData} />
             </div>
-            {/* <div className="w-[400px] h-fit mt-10">
-              <Bar options={options11} data={deptData} />
-            </div> */}
+            
             <div className="w-[400px] h-fit mt-10">
-              <Bar options={options12} data={deptData} />
+              <Bar options={optionsCGPA} data={cgpaData} />
             </div>
+            {cgpaAllDept && cgpaAllDept.labels.length > 0 && (
+            <div className="w-[400px] h-fit mt-10">
+              <Bar options={optionsCGPA} data={cgpaAllDept} />
+            </div>)}
+            
             <div className="w-[320px] h-fit mt-10 text-[#454545]">
               <h1 className="text-[1rem] font-bold mb-4">
                 Competitive top 10 students
@@ -456,7 +591,7 @@ const StudentDashboard = () => {
             </div>
           </>
         )}
-        {/*{mode == "students" && <Filter />} */}
+        {mode == "students" && <Filter />}
       </div>
       <FooterAdmin />
     </div>
