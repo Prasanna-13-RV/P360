@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 
 export const SideProfileBar = ({
     data,
@@ -11,27 +11,35 @@ export const SideProfileBar = ({
     sendingData,
     setSendingData,
 }) => {
-    const handleSkills = (e) => {
+    const handleSkills = async (e) => {
         e.preventDefault();
-        setSkills((prev) => {
-            if (prev != null) {
-                return [...prev, singleSkill];
-            }
+        await setSkills((prev) => {
+            return [...prev, singleSkill];
         });
+    };
+
+    const handelSubmit = (e) => {
+        e.preventDefault();
+        console.log(skills, "l");
         setSendingData((res) => {
             return {
                 ...res,
-                skillset: skills,
+                skillset: [...skills],
             };
         });
-        console.log(skills);
+
+       
+        // handleProfileSubmit(e);
     };
+
+ 
 
     return (
         <>
             <div class="w-full md:w-3/12 md:mx-2">
                 <div class="bg-white p-3 border-t-4 border-green-400">
                     <div class="image overflow-hidden">
+                        {/* {JSON.stringify(sendingData)} */}
                         <img
                             class="h-auto w-full mx-auto"
                             src="https://lavinephotography.com.au/wp-content/uploads/2017/01/PROFILE-Photography-112.jpg"
@@ -60,7 +68,8 @@ export const SideProfileBar = ({
                                             setSendingData((res) => {
                                                 return {
                                                     ...res,
-                                                    passingYear: r.target.value,
+                                                    passing_year:
+                                                        r.target.value,
                                                 };
                                             });
                                         }}
@@ -129,11 +138,14 @@ export const SideProfileBar = ({
                             <button
                                 type="submit"
                                 className="w-[25%] text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center"
-                                onClick={handleSkills}
+                                onClick={(e) => {
+                                    handleSkills(e);
+                                }}
                             >
                                 Add
                             </button>
                         </div>
+                        {/* {JSON.stringify(skills && skills)} */}
                         {skills?.map((res, index) => {
                             if (res != null) {
                                 return (
@@ -160,11 +172,20 @@ export const SideProfileBar = ({
 
                     <button
                         onClick={(e) => {
-                            handleProfileSubmit(e);
+                            handelSubmit(e);
                         }}
                         class="block bg-blue-500 text-sm font-semibold rounded-lg text-white hover:text-gray-100 focus:outline-none focus:shadow-outline hover:bg-blue-700 hover:shadow-xs p-3 my-4 mx-auto"
                     >
                         Submit
+                    </button>
+                    <button
+                        type="submit"
+                        className="w-[25%] text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center"
+                        onClick={(e) => {
+                            handleProfileSubmit(e);
+                        }}
+                    >
+                        Save
                     </button>
                 </div>
                 <div class="my-4"></div>
