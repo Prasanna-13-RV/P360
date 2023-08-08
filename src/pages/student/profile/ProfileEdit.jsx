@@ -9,7 +9,7 @@ import { SemesterBasic } from "../../../components/profile/profileFiles/Semester
 
 function ProfileEdit() {
     const [cgpa, setCgpa] = useState(9.1);
-    const [singleSkill, setSingleSkill] = useState();
+    const [singleSkill, setSingleSkill] = useState("");
     const [singleInternship, setSingleInternship] = useState("");
     const [singleCertificate, setSingleCertificate] = useState("");
 
@@ -20,8 +20,11 @@ function ProfileEdit() {
         axios.get(`http://localhost:8080/student/1234`).then((res) => {
             setData(res.data);
             setSendingData(res.data);
+            setSkills(res.data.skillset);
         });
     }, []);
+
+    console.log(sendingData);
 
     const [marks, setMarks] = useState([
         {
@@ -64,17 +67,16 @@ function ProfileEdit() {
         { semester8: [] },
     ]);
 
-    console.log(sendingData);
+    // console.log(sendingData);
     const handleProfileSubmit = (e) => {
         e.preventDefault();
+        console.log(sendingData, "l love u   {____} ");
         axios
             .post(`http://localhost:8080/student/update/1234`, sendingData)
             .then((res) => {
                 console.log(res.data);
             });
     };
-
-    
 
     const data1 = {
         userId: "prasanna",
@@ -102,161 +104,10 @@ function ProfileEdit() {
         compId: 1,
     };
 
-    const [skills, setSkills] = useState([data?.skillset]);
+    const [skills, setSkills] = useState();
+    console.log(skills);
     const [internshipArray, setInternshipArray] = useState([]);
     const [certificateArray, setCertificateArray] = useState([]);
-
-    // const marks = [
-    //     {
-    //         userId: "prasanna",
-    //         marksId: 1,
-    //         semester1: [
-    //             {
-    //                 subject: "Maths",
-    //                 marks: 100,
-    //             },
-    //             {
-    //                 subject: "Maths",
-    //                 marks: 100,
-    //             },
-    //             {
-    //                 subject: "Maths",
-    //                 marks: 100,
-    //             },
-    //             {
-    //                 subject: "Maths",
-    //                 marks: 100,
-    //             },
-    //         ],
-    //         semester2: [
-    //             {
-    //                 subject: "Physics",
-    //                 marks: 100,
-    //             },
-    //             {
-    //                 subject: "Tamil",
-    //                 marks: 100,
-    //             },
-    //             {
-    //                 subject: "English",
-    //                 marks: 100,
-    //             },
-    //             {
-    //                 subject: "Maths",
-    //                 marks: 100,
-    //             },
-    //         ],
-    //         semester3: [
-    //             {
-    //                 subject: "Physics",
-    //                 marks: 100,
-    //             },
-    //             {
-    //                 subject: "Physics",
-    //                 marks: 100,
-    //             },
-    //             {
-    //                 subject: "Physics",
-    //                 marks: 100,
-    //             },
-    //             {
-    //                 subject: "Maths",
-    //                 marks: 100,
-    //             },
-    //         ],
-    //         semester4: [
-    //             {
-    //                 subject: "Physics",
-    //                 marks: 100,
-    //             },
-    //             {
-    //                 subject: "Physics",
-    //                 marks: 100,
-    //             },
-    //             {
-    //                 subject: "Physics",
-    //                 marks: 100,
-    //             },
-    //             {
-    //                 subject: "Maths",
-    //                 marks: 100,
-    //             },
-    //         ],
-    //         semester5: [
-    //             {
-    //                 subject: "Physics",
-    //                 marks: 100,
-    //             },
-    //             {
-    //                 subject: "Physics",
-    //                 marks: 100,
-    //             },
-    //             {
-    //                 subject: "Physics",
-    //                 marks: 100,
-    //             },
-    //             {
-    //                 subject: "Maths",
-    //                 marks: 100,
-    //             },
-    //         ],
-    //         semester6: [
-    //             {
-    //                 subject: "Physics",
-    //                 marks: 100,
-    //             },
-    //             {
-    //                 subject: "Physics",
-    //                 marks: 100,
-    //             },
-    //             {
-    //                 subject: "Physics",
-    //                 marks: 100,
-    //             },
-    //             {
-    //                 subject: "Maths",
-    //                 marks: 100,
-    //             },
-    //         ],
-    //         semester7: [
-    //             {
-    //                 subject: "Physics",
-    //                 marks: 100,
-    //             },
-    //             {
-    //                 subject: "Physics",
-    //                 marks: 100,
-    //             },
-    //             {
-    //                 subject: "Physics",
-    //                 marks: 100,
-    //             },
-    //             {
-    //                 subject: "Maths",
-    //                 marks: 100,
-    //             },
-    //         ],
-    //         semester8: [
-    //             {
-    //                 subject: "Physics",
-    //                 marks: 100,
-    //             },
-    //             {
-    //                 subject: "Physics",
-    //                 marks: 100,
-    //             },
-    //             {
-    //                 subject: "Physics",
-    //                 marks: 100,
-    //             },
-    //             {
-    //                 subject: "Maths",
-    //                 marks: 100,
-    //             },
-    //         ],
-    //     },
-    // ];
-
 
     const handleInternship = () => {
         if (singleInternship) {
@@ -273,8 +124,10 @@ function ProfileEdit() {
                 return [...prev, singleCertificate];
             });
         }
-        console.log(internshipArray);
+        console.log(certificateArray);
     };
+
+    console.log(data);
 
     return (
         <>
@@ -282,17 +135,19 @@ function ProfileEdit() {
             <div class="bg-gray-100">
                 <div class="container mx-auto p-5">
                     <div class="md:flex no-wrap md:-mx-2 ">
-                        <SideProfileBar
-                            data={data}
-                            cgpa={cgpa}
-                            setSingleSkill={setSingleSkill}
-                            skills={skills}
-                            singleSkill={singleSkill}
-                            setSkills={setSkills}
-                            handleProfileSubmit={handleProfileSubmit}
-                            sendingData={sendingData}
-                            setSendingData={setSendingData}
-                        />
+                        {data && skills && (
+                            <SideProfileBar
+                                data={data}
+                                cgpa={cgpa}
+                                setSingleSkill={setSingleSkill}
+                                skills={skills}
+                                singleSkill={singleSkill}
+                                setSkills={setSkills}
+                                handleProfileSubmit={handleProfileSubmit}
+                                sendingData={sendingData}
+                                setSendingData={setSendingData}
+                            />
+                        )}
 
                         <div class="w-full md:w-9/12 mx-2 h-64">
                             <SemesterBasic
@@ -307,7 +162,7 @@ function ProfileEdit() {
                                 data={data}
                                 sendingData={sendingData}
                                 setSendingData={setSendingData}
-                                handleProfileSubmit={handleProfileSubmit}
+                                handlePro       fileSubmit={handleProfileSubmit}
                             />
 
                             <div class="my-4"></div>
@@ -439,6 +294,15 @@ function ProfileEdit() {
                                                     }
                                                 )}
                                             </div>
+                                            <button
+                                                type="submit"
+                                                className="w-[25%] text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center"
+                                                onClick={(e) => {
+                                                    handleProfileSubmit(e);
+                                                }}
+                                            >
+                                                Save
+                                            </button>
                                         </div>
                                     </div>
 

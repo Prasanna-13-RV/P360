@@ -4,6 +4,7 @@ import Navbar from "../../../components/Navbar";
 import Footer from "../../../components/Footer";
 import axios from "axios";
 
+
 function Profile() {
     const [data, setData] = useState([]);
 
@@ -14,8 +15,8 @@ function Profile() {
         axios.get(`http://localhost:8080/student/${number}`).then((res) => {
             setData(res.data);
         });
-    });
-
+    }, []);
+    
     const data1 = {
         userId: "solo1",
         fname: "Prasanna",

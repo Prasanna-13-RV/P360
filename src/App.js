@@ -24,6 +24,7 @@ import AddAcademics from "./pages/admin/academics/AddAcademics";
 import Academics from "./pages/admin/academics/Academics";
 import ViewAcademics from "./pages/admin/academics/ViewAcademics";
 import UpdateAcademics from "./pages/admin/academics/UpdateAcademics";
+import ProfilePage from "./pages/student/profile/ProfilePage";
 
 function App() {
     return (
@@ -47,6 +48,8 @@ function App() {
                         path="/profile/update/:id"
                         element={<ProfileEdit />}
                     ></Route>
+
+                    <Route path="/profile1" element={<ProfilePage />}></Route>
 
                     {/* Filter */}
                     {/* <Route path="/student" element={<Filter />}></Route> */}
