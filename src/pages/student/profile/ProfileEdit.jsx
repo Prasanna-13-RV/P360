@@ -21,56 +21,15 @@ function ProfileEdit() {
             setData(res.data);
             setSendingData(res.data);
             setSkills(res.data.skillset);
+            setInternshipArray(res.data.internships)
+            setCertificateArray(res.data.certificates)
         });
     }, []);
 
-    console.log(sendingData);
+    console.log(data);
 
-    const [marks, setMarks] = useState([
-        {
-            semester1: [
-                {
-                    subject: "Maths",
-                    marks: 20,
-                },
-                {
-                    subject: "Physics",
-                    marks: 20,
-                },
-                {
-                    subject: "English",
-                    marks: 20,
-                },
-            ],
-        },
-        {
-            semester2: [
-                {
-                    subject: "Maths",
-                    marks: 20,
-                },
-                {
-                    subject: "Physics",
-                    marks: 20,
-                },
-                {
-                    subject: "English",
-                    marks: 20,
-                },
-            ],
-        },
-        { semester3: [] },
-        { semester4: [] },
-        { semester5: [] },
-        { semester6: [] },
-        { semester7: [] },
-        { semester8: [] },
-    ]);
-
-    // console.log(sendingData);
     const handleProfileSubmit = (e) => {
         e.preventDefault();
-        console.log(sendingData, "l love u   {____} ");
         axios
             .post(`http://localhost:8080/student/update/1234`, sendingData)
             .then((res) => {
@@ -78,56 +37,45 @@ function ProfileEdit() {
             });
     };
 
-    const data1 = {
-        userId: "prasanna",
-        fname: "Prasanna",
-        lname: "RV",
-        email: "prasanna@gmail.com",
-        gender: "male",
-        address: "Beech Creek, PA",
-        paddress: "Beech Creek, PA",
-        contact: "99999",
-        dob: "04/06/2003",
-        schoolName10: "Velammal Matric Higher Secondary School",
-        schoolName12: "Velammal Matric Higher Secondary School",
-        schoolName10Mark: 478,
-        schoolName12Mark: 513,
-        fatherName: "Velmurugan S",
-        fatherPhone: "123456789",
-        motherName: "Rajeswari V",
-        motherPhone: "987654321",
-        passingYear: 2024,
-        joiningYear: 2020,
-        dept: "IT",
-        skills: ["frontend", "backend", "fullstack", "Java"],
-        marksId: 1,
-        compId: 1,
-    };
 
     const [skills, setSkills] = useState();
-    console.log(skills);
     const [internshipArray, setInternshipArray] = useState([]);
     const [certificateArray, setCertificateArray] = useState([]);
 
-    const handleInternship = () => {
-        if (singleInternship) {
-            setInternshipArray((prev) => {
-                return [...prev, singleInternship];
-            });
-        }
-        console.log(internshipArray);
-    };
-
-    const handleCertificate = () => {
-        if (singleCertificate) {
-            setCertificateArray((prev) => {
-                return [...prev, singleCertificate];
-            });
-        }
+    const handleCertificate = async (e) => {
+        e.preventDefault();
+        await setCertificateArray((prev) => {
+            return [...prev, singleCertificate];
+        });
         console.log(certificateArray);
     };
 
-    console.log(data);
+    const handleCertificateSubmit = (e) => {
+        e.preventDefault();
+        var data = sendingData;
+        data.certificates = [...certificateArray];
+        setSendingData(data);
+        console.log(sendingData, "santy");
+        handleProfileSubmit(e)
+    };
+
+    const handleInternship = async (e) => {
+        e.preventDefault();
+        await setInternshipArray((prev) => {
+            return [...prev, singleInternship];
+        });
+    };
+
+    const handleInternshipSubmit = (e) => {
+        e.preventDefault();
+        console.log(sendingData, "l");
+
+        var data = sendingData;
+        data.internships = [...internshipArray];
+        setSendingData(data);
+        handleProfileSubmit(e);
+    };
+
 
     return (
         <>
@@ -298,7 +246,7 @@ function ProfileEdit() {
                                                 type="submit"
                                                 className="w-[25%] text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center"
                                                 onClick={(e) => {
-                                                    handleProfileSubmit(e);
+                                                    handleCertificateSubmit(e)
                                                 }}
                                             >
                                                 Save
@@ -332,10 +280,10 @@ function ProfileEdit() {
                                             <div className="grid grid-cols-2 gap-2 py-4">
                                                 <input
                                                     type="text"
-                                                    id="internshipName"
+                                                    id="internship_name"
                                                     class="w-[90%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 py-1.5"
                                                     placeholder="Add Internship Name"
-                                                    name="internshipName"
+                                                    name="internship_name"
                                                     onChange={(e) => {
                                                         setSingleInternship(
                                                             (res) => {
@@ -353,10 +301,10 @@ function ProfileEdit() {
                                                 />
                                                 <input
                                                     type="text"
-                                                    id="internshipLink"
+                                                    id="inernship_description"
                                                     class="w-[90%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 py-1.5"
                                                     placeholder="Add internship Link"
-                                                    name="internshipLink"
+                                                    name="inernship_description"
                                                     onChange={(e) => {
                                                         setSingleInternship(
                                                             (res) => {
@@ -381,6 +329,7 @@ function ProfileEdit() {
                                                 </button>
                                             </div>
                                             <div>
+                                                
                                                 {internshipArray.map(
                                                     (intern, index) => {
                                                         return (
@@ -399,8 +348,8 @@ function ProfileEdit() {
                                                                                 internship
                                                                             ) => {
                                                                                 return (
-                                                                                    internship.internshipName !==
-                                                                                    intern.internshipName
+                                                                                    internship.internship_name !==
+                                                                                    intern.internship_name
                                                                                 );
                                                                             }
                                                                         )
@@ -412,14 +361,14 @@ function ProfileEdit() {
                                                                     internship
                                                                     Name :{" "}
                                                                     {
-                                                                        intern.internshipName
+                                                                        intern.internship_name
                                                                     }
                                                                 </h1>
                                                                 <p className="">
                                                                     <a
                                                                         target="_blank"
                                                                         href={
-                                                                            intern.internshipLink
+                                                                            intern.inernship_description
                                                                         }
                                                                     >
                                                                         Link
@@ -430,6 +379,15 @@ function ProfileEdit() {
                                                     }
                                                 )}
                                             </div>
+                                            <button
+                                                type="submit"
+                                                className="w-[25%] text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center"
+                                                onClick={(e) => {
+                                                    handleInternshipSubmit(e)
+                                                }}
+                                            >
+                                                Save
+                                            </button>
                                         </div>
                                     </div>
                                 </div>

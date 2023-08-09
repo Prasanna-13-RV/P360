@@ -4,213 +4,22 @@ import Navbar from "../../../components/Navbar";
 import Footer from "../../../components/Footer";
 import axios from "axios";
 
-
 function Profile() {
     const [data, setData] = useState([]);
+    const [skills, setSkills] = useState();
+    const [internshipArray, setInternshipArray] = useState([]);
+    const [certificateArray, setCertificateArray] = useState([]);
 
     useEffect(() => {
-        // const number = localStorage.getItem("rollno");
         const number = 1234;
 
         axios.get(`http://localhost:8080/student/${number}`).then((res) => {
             setData(res.data);
+            setSkills(res.data.skillset);
+            setInternshipArray(res.data.internships);
+            setCertificateArray(res.data.certificates);
         });
     }, []);
-    
-    const data1 = {
-        userId: "solo1",
-        fname: "Prasanna",
-        lname: "RV",
-        email: "prasanna@gmail.com",
-        gender: "male",
-        address: "Beech Creek, PA",
-        paddress: "Beech Creek, PA",
-        contact: "99999",
-        dob: "04/06/2003",
-        schoolName10: "Velammal Matric Higher Secondary School",
-        schoolName12: "Velammal Matric Higher Secondary School",
-        schoolName10Mark: 478,
-        schoolName12Mark: 513,
-        fatherName: "Velmurugan S",
-        fatherPhone: "123456789",
-        motherName: "Rajeswari V",
-        motherPhone: "987654321",
-        passingYear: 2024,
-        joiningYear: 2020,
-        dept: "IT",
-        skills: ["frontend", "backend", "fullstack", "Java"],
-        marksId: 1,
-        compId: 1,
-    };
-
-    const marks = data.marks;
-
-    const marks1 = [
-        {
-            userId: "solo1",
-            marksId: 1,
-            semester1: [
-                {
-                    subject: "Maths",
-                    marks: 100,
-                },
-                {
-                    subject: "Maths",
-                    marks: 100,
-                },
-                {
-                    subject: "Maths",
-                    marks: 100,
-                },
-                {
-                    subject: "Maths",
-                    marks: 100,
-                },
-            ],
-            semester2: [
-                {
-                    subject: "Physics",
-                    marks: 100,
-                },
-                {
-                    subject: "Physics",
-                    marks: 100,
-                },
-                {
-                    subject: "Physics",
-                    marks: 100,
-                },
-                {
-                    subject: "Maths",
-                    marks: 100,
-                },
-            ],
-            semester3: [
-                {
-                    subject: "Physics",
-                    marks: 100,
-                },
-                {
-                    subject: "Physics",
-                    marks: 100,
-                },
-                {
-                    subject: "Physics",
-                    marks: 100,
-                },
-                {
-                    subject: "Maths",
-                    marks: 100,
-                },
-            ],
-            semester4: [
-                {
-                    subject: "Physics",
-                    marks: 100,
-                },
-                {
-                    subject: "Physics",
-                    marks: 100,
-                },
-                {
-                    subject: "Physics",
-                    marks: 100,
-                },
-                {
-                    subject: "Maths",
-                    marks: 100,
-                },
-            ],
-            semester5: [
-                {
-                    subject: "Physics",
-                    marks: 100,
-                },
-                {
-                    subject: "Physics",
-                    marks: 100,
-                },
-                {
-                    subject: "Physics",
-                    marks: 100,
-                },
-                {
-                    subject: "Maths",
-                    marks: 100,
-                },
-            ],
-            semester6: [
-                {
-                    subject: "Physics",
-                    marks: 100,
-                },
-                {
-                    subject: "Physics",
-                    marks: 100,
-                },
-                {
-                    subject: "Physics",
-                    marks: 100,
-                },
-                {
-                    subject: "Maths",
-                    marks: 100,
-                },
-            ],
-            semester7: [
-                {
-                    subject: "Physics",
-                    marks: 100,
-                },
-                {
-                    subject: "Physics",
-                    marks: 100,
-                },
-                {
-                    subject: "Physics",
-                    marks: 100,
-                },
-                {
-                    subject: "Maths",
-                    marks: 100,
-                },
-            ],
-            semester8: [
-                {
-                    subject: "Physics",
-                    marks: 100,
-                },
-                {
-                    subject: "Physics",
-                    marks: 100,
-                },
-                {
-                    subject: "Physics",
-                    marks: 100,
-                },
-                {
-                    subject: "Maths",
-                    marks: 100,
-                },
-            ],
-        },
-    ];
-
-    const compMarks = [
-        {
-            compId: 1,
-            userId: "solo1",
-            p360Score: "100/10000",
-            leetCode: "100/10000",
-            codeChef: "100/10000",
-            codeForces: "100/10000",
-            hackerRank: "100/10000",
-            codeDivision: "100/10000",
-            hackerEarth: "100/10000",
-            interviewBit: "100/10000",
-            gfg: "100/10000",
-        },
-    ];
 
     return (
         <>
@@ -269,7 +78,7 @@ function Profile() {
                                     <span>Skills</span>
                                 </div>
                                 <div className="flex flex-wrap justify-center items-center">
-                                    {data?.skills?.map((res) => {
+                                    {skills?.map((res) => {
                                         return (
                                             <>
                                                 <div class="ml-2 my-1 text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-green-200 text-green-700 rounded-full">
@@ -599,32 +408,6 @@ function Profile() {
                                                     stroke="currentColor"
                                                 >
                                                     <path
-                                                        stroke-linecap="round"
-                                                        stroke-linejoin="round"
-                                                        stroke-width="2"
-                                                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                                                    />
-                                                </svg>
-                                            </span>
-                                            <span class="tracking-wide">
-                                                Semester Marks
-                                            </span>
-                                        </div>
-                                        <ul class="list-inside space-y-2">
-                                            <ProfileSemMarks marks={marks} />
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        <div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">
-                                            <span clas="text-green-500">
-                                                <svg
-                                                    class="h-5"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    fill="none"
-                                                    viewBox="0 0 24 24"
-                                                    stroke="currentColor"
-                                                >
-                                                    <path
                                                         fill="#fff"
                                                         d="M12 14l9-5-9-5-9 5 9 5z"
                                                     />
@@ -641,31 +424,76 @@ function Profile() {
                                                 </svg>
                                             </span>
                                             <span class="tracking-wide">
-                                                Education
+                                                Internship
                                             </span>
                                         </div>
                                         <ul class="list-inside space-y-2">
-                                            <li>
-                                                <div class="text-teal-600">
-                                                    SSLC
-                                                </div>
-                                                <div class="text-gray-500 text-xs">
-                                                    {data?._10th_school_name +
-                                                        " - " +
-                                                        data?._10th_mark}
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="text-teal-600">
-                                                    HSC
-                                                </div>
-                                                <div class="text-gray-500 text-xs">
-                                                    {data?._12th_school_name +
-                                                        " - " +
-                                                        data?._12th_mark}
-                                                </div>
-                                            </li>
+                                            {internshipArray.map((e, index) => {
+                                                return (
+                                                    <>
+                                                        <li>
+                                                            <div class="text-teal-600">
+                                                                {
+                                                                    e.internship_name
+                                                                }
+                                                            </div>
+                                                            <div class="text-gray-500 text-xs">
+                                                                <a
+                                                                    href={
+                                                                        e.inernship_description
+                                                                    }
+                                                                    target="_blank"
+                                                                    rel="noreferrer"
+                                                                >
+                                                                    Internship
+                                                                    Certificate
+                                                                    Link
+                                                                </a>
+                                                            </div>
+                                                        </li>
+                                                    </>
+                                                );
+                                            })}
                                         </ul>
+                                    </div>
+                                    <div class="py-3 sm:order-none order-1">
+                                        <h2 class="text-lg font-poppins font-bold text-top-color">
+                                            Education Background
+                                        </h2>
+                                        <div class="border-2 w-20 border-top-color my-3"></div>
+
+                                        <div class="flex flex-col space-y-1">
+                                            <div class="flex flex-col">
+                                                <p class="font-semibold text-xs text-gray-700">
+                                                    SSLC
+                                                </p>
+                                                <p class="text-sm font-medium">
+                                                    <span class="text-green-700">
+                                                        {
+                                                            data?._10th_school_name
+                                                        }
+                                                    </span>
+                                                </p>
+                                                <p class="font-bold text-xs text-gray-700 mb-2">
+                                                    {data?._10th_mark}
+                                                </p>
+                                            </div>
+                                            <div class="flex flex-col">
+                                                <p class="font-semibold text-xs text-gray-700">
+                                                    HSC
+                                                </p>
+                                                <p class="text-sm font-medium">
+                                                    <span class="text-green-700">
+                                                        {
+                                                            data?._12th_school_name
+                                                        }
+                                                    </span>
+                                                </p>
+                                                <p class="font-bold text-xs text-gray-700 mb-2">
+                                                    {data?._12th_mark}
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -695,67 +523,28 @@ function Profile() {
                                                 Certificates
                                             </span>
                                         </div>
-                                        <div class="text-teal-600">
-                                            Certificate Name
-                                        </div>
-                                        <div class="text-gray-500 text-xs">
-                                            <a
-                                                href={"link"}
-                                                target="_blank"
-                                                rel="noreferrer"
-                                            >
-                                                Certificate Link
-                                            </a>
-                                        </div>
+                                        {certificateArray.map((e, index) => {
+                                            return (
+                                                <>
+                                                    <div class="text-teal-600">
+                                                        {e.certificateName}
+                                                    </div>
+                                                    <div class="text-gray-500 text-xs">
+                                                        <a
+                                                            href={
+                                                                e.certificateLink
+                                                            }
+                                                            target="_blank"
+                                                            rel="noreferrer"
+                                                        >
+                                                            Certificate Link
+                                                        </a>
+                                                    </div>
+                                                </>
+                                            );
+                                        })}
                                     </div>
-                                    <div>
-                                        <div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">
-                                            <span clas="text-green-500">
-                                                <svg
-                                                    class="h-5"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    fill="none"
-                                                    viewBox="0 0 24 24"
-                                                    stroke="currentColor"
-                                                >
-                                                    <path
-                                                        fill="#fff"
-                                                        d="M12 14l9-5-9-5-9 5 9 5z"
-                                                    />
-                                                    <path
-                                                        fill="#fff"
-                                                        d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
-                                                    />
-                                                    <path
-                                                        stroke-linecap="round"
-                                                        stroke-linejoin="round"
-                                                        stroke-width="2"
-                                                        d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
-                                                    />
-                                                </svg>
-                                            </span>
-                                            <span class="tracking-wide">
-                                                Internship
-                                            </span>
-                                        </div>
-                                        <ul class="list-inside space-y-2">
-                                            <li>
-                                                <div class="text-teal-600">
-                                                    Internship Name
-                                                </div>
-                                                <div class="text-gray-500 text-xs">
-                                                    <a
-                                                        href={"link"}
-                                                        target="_blank"
-                                                        rel="noreferrer"
-                                                    >
-                                                        Internship Certificate
-                                                        Link
-                                                    </a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    <div></div>
                                 </div>
                             </div>
                         </div>

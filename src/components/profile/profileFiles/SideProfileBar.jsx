@@ -25,18 +25,9 @@ export const SideProfileBar = ({
         var data = sendingData;
         data.skillset = [...skills];
         setSendingData(data);
-        // setSendingData((res) => {
-        //     return {
-        //         ...res,
-        //         skillset: [...skills],
-        //     };
-        // });
-
-    //    console.log(data,"DAT");
         handleProfileSubmit(e);
     };
 
- 
 
     return (
         <>
@@ -182,7 +173,7 @@ export const SideProfileBar = ({
                     >
                         Submit
                     </button>
-                    <button
+                    {/* <button
                         type="submit"
                         className="w-[25%] text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center"
                         onClick={(e) => {
@@ -190,7 +181,7 @@ export const SideProfileBar = ({
                         }}
                     >
                         Save
-                    </button>
+                    </button> */}
                 </div>
                 <div class="my-4"></div>
 
