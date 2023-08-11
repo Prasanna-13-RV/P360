@@ -1,12 +1,6 @@
 import React, { Fragment, useState } from "react";
 import FooterAdmin from "../../../components/admin/FooterAdmin";
 import NavbarAdmin from "../../../components/admin/NavbarAdmin";
-import {
-    createUserWithEmailAndPassword,
-    GoogleAuthProvider,
-    signInWithPopup,
-} from "firebase/auth";
-import { auth } from "../../../firebase/firebase";
 
 function RegisterAdmin() {
     const [formElements, setFormElements] = useState({});
@@ -26,20 +20,6 @@ function RegisterAdmin() {
     };
 
     function createUser(email, password) {
-        createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                // Signed in
-                const user = userCredential.user;
-                console.log(userCredential, "userCredential");
-                console.log(user, "user");
-                // ...
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                console.log(errorCode, errorMessage);
-                // ..
-            });
     }
 
     return (

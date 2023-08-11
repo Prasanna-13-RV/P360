@@ -2,23 +2,24 @@ import axios from "axios";
 import React, { useState } from "react";
 import Navbar from "../../../components/Navbar";
 import Footer from "../../../components/Footer";
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function Login() {
     const [formElements, setFormElements] = useState({});
-
+    const navigate = useNavigate();
+	const dispatch = useDispatch();
     const handleSubmit = (e) => {
         e.preventDefault();
         try {
-            axios
-                .post(
-                    `http://localhost:8080/student/login`,
-                    formElements
-                )
-                .then((res) => {
-                    console.log("Login Success");
-                    console.log(res);
-                    localStorage.setItem("rollno", formElements.regNo)
-                });
+            // dispatch({
+            //     type: 'SET_USER',
+            //     payload: {
+            //         token: res.data.token,
+            //         isLoggedIn: true,
+            //         user: res.data.user
+            //     }
+            // });
         } catch (error) {
             console.log(error);
         }

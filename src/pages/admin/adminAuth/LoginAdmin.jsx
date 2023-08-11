@@ -1,38 +1,12 @@
 import React, { useState } from "react";
 import FooterAdmin from "../../../components/admin/FooterAdmin";
 import NavbarAdmin from "../../../components/admin/NavbarAdmin";
-import {
-    signInWithEmailAndPassword,
-    GoogleAuthProvider,
-    signInWithPopup,
-} from "firebase/auth";
-import { auth } from "../../../firebase/firebase";
 
 function LoginAdmin() {
     const [formElements, setFormElements] = useState({});
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        signInWithEmailAndPassword(
-            auth,
-            formElements.email,
-            formElements.password
-        )
-            .then((userCredential) => {
-                // Signed in
-                const user = userCredential.user;
-                localStorage.removeItem("token");
-                localStorage.removeItem("admin");
-                localStorage.setItem("token", true);
-                localStorage.setItem("admin", true);
-
-                console.log(user);
-                // ...
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-            });
     };
 
     return (
