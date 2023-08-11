@@ -49,7 +49,7 @@ function App() {
                         element={<ProfileEdit />}
                     ></Route>
 
-                    <Route path="/profile1" element={<ProfilePage />}></Route>
+                    <Route path="/profile/resume/:id" element={<ProfilePage />}></Route>
 
                     {/* Filter */}
                     {/* <Route path="/student" element={<Filter />}></Route> */}

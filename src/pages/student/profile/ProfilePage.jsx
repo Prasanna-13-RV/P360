@@ -11,6 +11,7 @@ const ProfilePage = () => {
     const [skills, setSkills] = useState();
     const [internshipArray, setInternshipArray] = useState([]);
     const [certificateArray, setCertificateArray] = useState([]);
+    const [projectArray, setProjectArray] = useState([]);
 
     useEffect(() => {
         const number = 1234;
@@ -20,6 +21,7 @@ const ProfilePage = () => {
             setSkills(res.data.skillset);
             setInternshipArray(res.data.internships);
             setCertificateArray(res.data.certificates);
+            setProjectArray(res.data.projects);
         });
     }, []);
 
@@ -187,192 +189,30 @@ const ProfilePage = () => {
                                         <div class="border-2 w-20 border-slate-600 my-3"></div>
 
                                         <div class="flex flex-col">
-                                            <div class="flex flex-col">
-                                                <p class="text-lg font-bold text-gray-700">
-                                                    TailwindFlex.com | Lead
-                                                </p>
-                                                <p class="font-semibold text-sm text-gray-700">
-                                                    2020-2021
-                                                </p>
-                                                <p class="font-semibold text-sm text-gray-700 mt-2 mb-1">
-                                                    Key Responsibilities
-                                                </p>
-                                                <ul class="text-sm list-disc pl-4 space-y-1">
-                                                    <li>
-                                                        Developed usable
-                                                        components
-                                                    </li>
-                                                    <li>
-                                                        Solving complex problems
-                                                    </li>
-                                                    <li>
-                                                        Solving critical bugs
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="flex flex-col">
-                                                <p class="text-lg font-bold text-gray-700">
-                                                    TailwindFlex.com | Lead
-                                                </p>
-                                                <p class="font-semibold text-sm text-gray-700">
-                                                    2020-2021
-                                                </p>
-                                                <p class="font-semibold text-sm text-gray-700 mt-2 mb-1">
-                                                    Key Responsibilities
-                                                </p>
-                                                <ul class="text-sm list-disc pl-4 space-y-1">
-                                                    <li>
-                                                        Developed usable
-                                                        components
-                                                    </li>
-                                                    <li>
-                                                        Solving complex problems
-                                                    </li>
-                                                    <li>
-                                                        Solving critical bugs
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="flex flex-col">
-                                                <p class="text-lg font-bold text-gray-700">
-                                                    TailwindFlex.com | Lead
-                                                </p>
-                                                <p class="font-semibold text-sm text-gray-700">
-                                                    2020-2021
-                                                </p>
-                                                <p class="font-semibold text-sm text-gray-700 mt-2 mb-1">
-                                                    Key Responsibilities
-                                                </p>
-                                                <ul class="text-sm list-disc pl-4 space-y-1">
-                                                    <li>
-                                                        Developed usable
-                                                        components
-                                                    </li>
-                                                    <li>
-                                                        Solving complex problems
-                                                    </li>
-                                                    <li>
-                                                        Solving critical bugs
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="flex flex-col">
-                                                <p class="text-lg font-bold text-gray-700">
-                                                    TailwindFlex.com | Lead
-                                                </p>
-                                                <p class="font-semibold text-sm text-gray-700">
-                                                    2020-2021
-                                                </p>
-                                                <p class="font-semibold text-sm text-gray-700 mt-2 mb-1">
-                                                    Key Responsibilities
-                                                </p>
-                                                <ul class="text-sm list-disc pl-4 space-y-1">
-                                                    <li>
-                                                        Developed usable
-                                                        components
-                                                    </li>
-                                                    <li>
-                                                        Solving complex problems
-                                                    </li>
-                                                    <li>
-                                                        Solving critical bugs
-                                                    </li>
-                                                </ul>
-                                            </div>
-
-                                            <div class="flex flex-col">
-                                                <p class="text-lg font-bold text-gray-700">
-                                                    TailwindFlex.com | Lead
-                                                </p>
-                                                <p class="font-semibold text-sm text-gray-700">
-                                                    2020-2021
-                                                </p>
-                                                <p class="font-semibold text-sm text-gray-700 mt-2 mb-1">
-                                                    Key Responsibilities
-                                                </p>
-                                                <ul class="text-sm list-disc pl-4 space-y-1">
-                                                    <li>
-                                                        Developed usable
-                                                        components
-                                                    </li>
-                                                    <li>
-                                                        Solving complex problems
-                                                    </li>
-                                                    <li>
-                                                        Solving critical bugs
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="flex flex-col">
-                                                <p class="text-lg font-bold text-gray-700">
-                                                    TailwindFlex.com | Lead
-                                                </p>
-                                                <p class="font-semibold text-sm text-gray-700">
-                                                    2020-2021
-                                                </p>
-                                                <p class="font-semibold text-sm text-gray-700 mt-2 mb-1">
-                                                    Key Responsibilities
-                                                </p>
-                                                <ul class="text-sm list-disc pl-4 space-y-1">
-                                                    <li>
-                                                        Developed usable
-                                                        components
-                                                    </li>
-                                                    <li>
-                                                        Solving complex problems
-                                                    </li>
-                                                    <li>
-                                                        Solving critical bugs
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="flex flex-col">
-                                                <p class="text-lg font-bold text-gray-700">
-                                                    TailwindFlex.com | Lead
-                                                </p>
-                                                <p class="font-semibold text-sm text-gray-700">
-                                                    2020-2021
-                                                </p>
-                                                <p class="font-semibold text-sm text-gray-700 mt-2 mb-1">
-                                                    Key Responsibilities
-                                                </p>
-                                                <ul class="text-sm list-disc pl-4 space-y-1">
-                                                    <li>
-                                                        Developed usable
-                                                        components
-                                                    </li>
-                                                    <li>
-                                                        Solving complex problems
-                                                    </li>
-                                                    <li>
-                                                        Solving critical bugs
-                                                    </li>
-                                                </ul>
-                                            </div>
-
-                                            <div class="flex flex-col">
-                                                <p class="text-lg font-bold text-gray-700">
-                                                    TailwindFlex.com | Lead
-                                                </p>
-                                                <p class="font-semibold text-sm text-gray-700">
-                                                    2020-2021
-                                                </p>
-                                                <p class="font-semibold text-sm text-gray-700 mt-2 mb-1">
-                                                    Key Responsibilities
-                                                </p>
-                                                <ul class="text-sm list-disc pl-4 space-y-1">
-                                                    <li>
-                                                        Developed usable
-                                                        components
-                                                    </li>
-                                                    <li>
-                                                        Solving complex problems
-                                                    </li>
-                                                    <li>
-                                                        Solving critical bugs
-                                                    </li>
-                                                </ul>
-                                            </div>
+                                            {projectArray.map((project) => {
+                                                return (
+                                                    <>
+                                                        <div class="flex flex-col">
+                                                            <p class="text-lg font-bold text-gray-700">
+                                                                {
+                                                                    project.project_name
+                                                                }
+                                                            </p>
+                                                            <p class="font-semibold text-sm text-gray-700">
+                                                                {
+                                                                    project.project_description
+                                                                }
+                                                            </p>
+                                                            <p class="font-semibold text-sm text-gray-700 mt-2 mb-1">
+                                                                Project Score :{" "}
+                                                                {
+                                                                    project.project_score
+                                                                }
+                                                            </p>
+                                                        </div>
+                                                    </>
+                                                );
+                                            })}
                                         </div>
                                     </div>
                                     <div class="py-3">
@@ -380,7 +220,6 @@ const ProfilePage = () => {
                                             Certificates
                                         </h2>
                                         <div class="border-2 w-20 border-slate-600 my-3"></div>
-
                                         <div class="flex flex-col">
                                             {certificateArray.map(
                                                 (e, index) => {

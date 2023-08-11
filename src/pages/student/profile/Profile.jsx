@@ -9,18 +9,18 @@ function Profile() {
     const [skills, setSkills] = useState();
     const [internshipArray, setInternshipArray] = useState([]);
     const [certificateArray, setCertificateArray] = useState([]);
+    const [projectArray, setProjectArray] = useState([]);
 
+    const number = 1234;
     useEffect(() => {
-        const number = 1234;
-
         axios.get(`http://localhost:8080/student/${number}`).then((res) => {
             setData(res.data);
             setSkills(res.data.skillset);
             setInternshipArray(res.data.internships);
             setCertificateArray(res.data.certificates);
+            setProjectArray(res.data.projects);
         });
     }, []);
-
     return (
         <>
             <Navbar />
@@ -36,9 +36,17 @@ function Profile() {
                                         alt=""
                                     />
                                 </div>
-                                <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">
-                                    {data?.fname + " " + data?.lname}
-                                </h1>
+                                <div className="flex flex-row justify-between items-center">
+                                    <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">
+                                        {data?.fname + " " + data?.lname}
+                                    </h1>
+                                    <a
+                                        href={`/profile/resume/${number}`}
+                                        className="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                                    >
+                                        Download Resume
+                                    </a>
+                                </div>
                                 <ul class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
                                     <li class="flex items-center py-3">
                                         <span>Year of Passing</span>
@@ -544,7 +552,44 @@ function Profile() {
                                             );
                                         })}
                                     </div>
-                                    <div></div>
+                                    <div>
+                                        <div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">
+                                            <span clas="text-green-500">
+                                                <svg
+                                                    class="h-5"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    fill="none"
+                                                    viewBox="0 0 24 24"
+                                                    stroke="currentColor"
+                                                >
+                                                    <path
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                                                    />
+                                                </svg>
+                                            </span>
+                                            <span class="tracking-wide">
+                                                Projects
+                                            </span>
+                                        </div>
+                                        {projectArray.map((e, index) => {
+                                            return (
+                                                <>
+                                                    <div class="text-teal-600">
+                                                        {e.projects}
+                                                    </div>
+                                                    <div class="">
+                                                        {e.project_description}
+                                                    </div>
+                                                    <div class="text-gray-500 text-xs">
+                                                        {e.project_score}
+                                                    </div>
+                                                </>
+                                            );
+                                        })}
+                                    </div>
                                 </div>
                             </div>
                         </div>
