@@ -1,4 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useState } from "react";
 import Home from "./pages/student/home/Home";
 import Login from "./pages/student/auth/Login";
 import Register from "./pages/student/auth/Register";
@@ -27,6 +29,9 @@ import UpdateAcademics from "./pages/admin/academics/UpdateAcademics";
 import ProfilePage from "./pages/student/profile/ProfilePage";
 
 function App() {
+    const { user } = useSelector((state) => ({ ...state }));
+//   const [userLoggedIn, setUserLoggedIn] = useState(null);
+//   const [adminLoggedIn, setAdminLoggedIn] = useState(null);
     return (
         <>
             <Router>

@@ -4,25 +4,45 @@ import Navbar from "../../../components/Navbar";
 import Footer from "../../../components/Footer";
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { signin } from "../../../axios/auth.axios";
 
-function Login() {
+function Login({setUserLoggedIn}) {
     const [formElements, setFormElements] = useState({});
     const navigate = useNavigate();
 	const dispatch = useDispatch();
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log(formElements.regno);
         try {
-            // dispatch({
-            //     type: 'SET_USER',
-            //     payload: {
-            //         token: res.data.token,
-            //         isLoggedIn: true,
-            //         user: res.data.user
-            //     }
-            // });
-        } catch (error) {
-            console.log(error);
-        }
+            signin(formElements.regno,formElements.password).then((res)=>{
+                console.log(res.data);
+                if (res.data && res.data.token) {
+                    setFormElements({})
+                    setUserLoggedIn(true);
+                    
+                    dispatch({
+                      type: "SET_USER",
+                      payload: res.data,
+                    });
+                    navigate("/");
+                  }
+            })
+          } catch (error) {
+            console.error(error.response.data);     // NOTE - use "error.response.data` (not "error")
+          }
+        // try {
+
+        //     // dispatch({
+        //     //     type: 'SET_USER',
+        //     //     payload: {
+        //     //         token: res.data.token,
+        //     //         isLoggedIn: true,
+        //     //         user: res.data.user
+        //     //     }
+        //     // });
+        // } catch (error) {
+        //     console.log(error);
+        // }
     };
 
     return (
@@ -49,17 +69,17 @@ function Login() {
                             >
                                 <div>
                                     <label
-                                        htmlFor="regNo"
+                                        htmlFor="regno"
                                         className="block mb-2 text-sm font-medium text-gray-900 "
                                     >
                                         Your Register Number
                                     </label>
                                     <input
                                         type="text"
-                                        name="regNo"
-                                        id="regNo"
+                                        name="regno"
+                                        id="regno"
                                         className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                                        placeholder="name@company.com"
+                                        placeholder="210420104022"
                                         required=""
                                         onChange={(e) => {
                                             setFormElements((prev) => {
