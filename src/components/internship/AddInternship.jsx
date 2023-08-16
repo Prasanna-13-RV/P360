@@ -171,11 +171,11 @@ function AddInternship({ setAddButton, addButton }) {
                                     >
                                         Eligibility
                                     </label>
-                                    {/* <input
+                                    <input
                                         type="year"
                                         name="eligibilityInternship"
                                         id="eligibilityInternship"
-                                        placeHolder="Eligibility"
+                                        placeHolder="Eligibility year"
                                         className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                         required=""
                                         onChange={(e) => {
@@ -187,8 +187,8 @@ function AddInternship({ setAddButton, addButton }) {
                                                 };
                                             });
                                         }}
-                                    /> */}
-                                    <select
+                                    />
+                                    {/* <select
                                         id="eligibilityInternship"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     >
@@ -199,7 +199,7 @@ function AddInternship({ setAddButton, addButton }) {
                                         <option value="2">2</option>
                                         <option value="3">3</option>
                                         <option value="4">4</option>
-                                    </select>
+                                    </select> */}
                                 </div>
                                 {/* Department */}
                                 <div>
@@ -209,7 +209,7 @@ function AddInternship({ setAddButton, addButton }) {
                                     >
                                         Department
                                     </label>
-                                    <input
+                                    {/* <input
                                         type="text"
                                         name="departmentInternship"
                                         id="departmentInternship"
@@ -225,7 +225,30 @@ function AddInternship({ setAddButton, addButton }) {
                                                 };
                                             });
                                         }}
-                                    />
+                                    /> */}
+                                    <select
+                                        id="eligibilityInternship"
+                                        name="departmentInternship"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                        required=""
+                                        onChange={(e) => {
+                                            setInternDetailes((res) => {
+                                                return {
+                                                    ...res,
+                                                    [e.target.name]:
+                                                        e.target.value,
+                                                };
+                                            });
+                                        }}
+                                    >
+                                        <option selected disabled>
+                                            Choose Department
+                                        </option>
+                                        <option value="IT">IT</option>
+                                        <option value="CSE">CSE</option>
+                                        <option value="ECE">ECE</option>
+                                        <option value="EEE">EEE</option>
+                                    </select>
                                 </div>
                                 {/* Domain */}
                                 <div>
