@@ -3,14 +3,18 @@ import Navbar from "../../../components/Navbar";
 import Footer from "../../../components/Footer";
 import axios from "axios";
 
-function ViewInternship() {
+function ViewInternship({user}) {
     const [addButton, setAddButton] = useState(false);
     const [dataInternship, setDataInternship] = useState([]);
 
     useEffect(() => {
         axios.get("http://localhost:8080/internship").then((res) => {
             setDataInternship(res.data);
-        });
+        },{
+            headers: {
+              Authorization: `Bearer ${user.token}`,
+            }
+          });
     }, []);
 
     return (

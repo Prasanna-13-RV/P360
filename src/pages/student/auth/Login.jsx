@@ -6,7 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { signin } from "../../../axios/auth.axios";
 
-function Login({setUserLoggedIn}) {
+function Login() {
+    // {setUserLoggedIn}
     const [formElements, setFormElements] = useState({});
     const navigate = useNavigate();
 	const dispatch = useDispatch();
@@ -18,11 +19,11 @@ function Login({setUserLoggedIn}) {
                 console.log(res.data);
                 if (res.data && res.data.token) {
                     setFormElements({})
-                    setUserLoggedIn(true);
+                    // setUserLoggedIn(true);
                     
                     dispatch({
                       type: "SET_USER",
-                      payload: res.data,
+                      payload: {...res.data,role:"student"},
                     });
                     navigate("/");
                   }
@@ -30,19 +31,7 @@ function Login({setUserLoggedIn}) {
           } catch (error) {
             console.error(error.response.data);     // NOTE - use "error.response.data` (not "error")
           }
-        // try {
 
-        //     // dispatch({
-        //     //     type: 'SET_USER',
-        //     //     payload: {
-        //     //         token: res.data.token,
-        //     //         isLoggedIn: true,
-        //     //         user: res.data.user
-        //     //     }
-        //     // });
-        // } catch (error) {
-        //     console.log(error);
-        // }
     };
 
     return (

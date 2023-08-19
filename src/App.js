@@ -27,9 +27,11 @@ import Academics from "./pages/admin/academics/Academics";
 import ViewAcademics from "./pages/admin/academics/ViewAcademics";
 import UpdateAcademics from "./pages/admin/academics/UpdateAcademics";
 import ProfilePage from "./pages/student/profile/ProfilePage";
+import Roadmap3 from "./pages/student/home/Roadmap3";
 
 function App() {
     const { user } = useSelector((state) => ({ ...state }));
+
 //   const [userLoggedIn, setUserLoggedIn] = useState(null);
 //   const [adminLoggedIn, setAdminLoggedIn] = useState(null);
     return (
@@ -47,8 +49,14 @@ function App() {
                     ></Route>
                     {/* Filter */}
                     {/* <Route path="/filter" element={<Filter />}></Route> */}
+
+
+                    {/* Student Routes */}
+                    <Route path="/student/roadmap" element={<Roadmap3 user={user} />}></Route>
+
+
                     {/* Profile */}
-                    <Route path="/profile/:id" element={<Profile />}></Route>
+                    <Route path="/profile/:id" element={<Profile user={user} />}></Route>
                     <Route
                         path="/profile/update/:id"
                         element={<ProfileEdit />}

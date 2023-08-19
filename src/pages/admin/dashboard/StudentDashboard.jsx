@@ -154,7 +154,7 @@ ChartJS.register(
   Legend
 );
 
-const StudentDashboard = () => {
+const StudentDashboard = ({user}) => {
   const [mode, setMode] = useState("competitive");
 
   const [cgpaAllDept, setCgpaAllDept] = useState();
@@ -291,7 +291,7 @@ const StudentDashboard = () => {
   };
 
   useEffect(() => {
-    getStudents().then((res) => {
+    getStudents(user.token).then((res) => {
       setStudents(res.data);
       
 

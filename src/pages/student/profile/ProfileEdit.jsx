@@ -8,7 +8,7 @@ import { SemesterMarksProfile } from "../../../components/profile/profileFiles/S
 import { SemesterBasic } from "../../../components/profile/profileFiles/SemesterBasic";
 import { useSearchParams } from "react-router-dom";
 
-function ProfileEdit() {
+function ProfileEdit({user}) {
     const [cgpa, setCgpa] = useState(9.1);
     const [singleSkill, setSingleSkill] = useState("");
     const [singleInternship, setSingleInternship] = useState("");
@@ -25,7 +25,11 @@ function ProfileEdit() {
     console.log(searchParams, "searchParams");
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/student/1234`).then((res) => {
+        axios.get(`http://localhost:8080/student/1234`,{
+            headers: {
+              Authorization: `Bearer ${user.token}`,
+            }
+          }).then((res) => {
             setData(res.data);
             setSendingData(res.data);
             setSkills(res.data.skillset);
@@ -43,7 +47,11 @@ function ProfileEdit() {
             .post(`http://localhost:8080/student/update/1234`, sendingData)
             .then((res) => {
                 console.log(res.data);
-            });
+            },{
+                headers: {
+                  Authorization: `Bearer ${user.token}`,
+                }
+              });
     };
 
     const [skills, setSkills] = useState();

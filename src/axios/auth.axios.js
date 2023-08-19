@@ -7,7 +7,7 @@ export const signin = async (regno, password) => {
   });
 };
 export const adminSignIn = async (regno, password) => {
-  return await axios.post("http://localhost:8080/students/login", {
+  return await axios.post("http://localhost:8080/admin/login", {
     regno,
     password,
   });
