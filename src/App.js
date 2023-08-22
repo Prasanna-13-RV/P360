@@ -38,10 +38,10 @@ function App() {
         <>
             <Router>
                 <Routes>
-                    <Route path="/" element={<StudentDashboard />}></Route>
+                    <Route path="/studentdashboard" element={<StudentDashboard />}></Route>
                     {/* auth */}
                     <Route path="/login" element={<Login />}></Route>
-                    <Route path="/register" element={<Register />}></Route>
+                    <Route path="/" element={<Register />}></Route>
                     {/* internship */}
                     <Route
                         path="/internship"

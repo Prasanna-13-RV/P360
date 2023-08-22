@@ -25,7 +25,7 @@ function Login() {
                       type: "SET_USER",
                       payload: {...res.data,role:"student"},
                     });
-                    navigate("/");
+                    navigate("/studentdashboard");
                   }
             })
           } catch (error) {
@@ -106,7 +106,7 @@ function Login() {
                                         }}
                                     />
                                 </div>
-                                <div className="flex items-center justify-between">
+                                {/* <div className="flex items-center justify-between">
                                     <div className="flex items-start">
                                         <div className="flex items-center h-5">
                                             <input
@@ -141,7 +141,7 @@ function Login() {
                                     >
                                         Forgot password?
                                     </a>
-                                </div>
+                                </div> */}
                                 <button
                                     type="submit"
                                     className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
@@ -151,7 +151,7 @@ function Login() {
                                 <p className="text-sm font-light text-gray-500">
                                     Don't have an account yet?
                                     <a
-                                        href="/register"
+                                        href="/"
                                         className="font-medium text-primary-600 hover:underline"
                                     >
                                         Sign up
