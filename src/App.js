@@ -39,16 +39,16 @@ function App() {
       <Router>
         <Routes>
           {/* auth */}
-          <Route path="/login" element={<Login />}></Route>
+          <Route path="/login" element={<Login />}></Route>{/* Verified*/}
           <Route path="/" element={<Register />}></Route>
 
           {/* Profile */}
-          <Route path="/profile/:id" element={<Profile user={user} />}></Route>
-          <Route path="/profile/update/:id" element={<ProfileEdit />}></Route>
+          <Route path="/profile/:id" element={<Profile user={user} />}></Route>{/* Verified*/}
+          <Route path="/profile/update/:id" element={<ProfileEdit />}></Route> {/* Verified*/}
 
           <Route path="/profile/resume/:id" element={<ProfilePage />}></Route>
           {/* internship */}
-          <Route path="/internship" element={<ViewInternship user={user} />}></Route>
+          <Route path="/internship" element={<ViewInternship user={user} />}></Route>{/* Verified*/}
           {/* Filter */}
           {/* <Route path="/filter" element={<Filter />}></Route> */}
 
@@ -79,8 +79,8 @@ function App() {
           ></Route>
           <Route path="/admin/showroadmap" element={<ShowRoadmaps />}></Route>
           <Route path="/admin/roadmap" element={<Roadmap user={user} />}></Route>
-          <Route path="/admin/dashboard" element={<StudentDashboard user={user}/>}></Route>
-          <Route path="/admin/calender" element={<Calender />}></Route>
+          <Route path="/admin/dashboard" element={<StudentDashboard user={user}/>}></Route>{/* Verified*/}
+          <Route path="/admin/calender" element={<Calender user={user} />}></Route>{/* Verified*/}
           <Route path="/admin/addacademics" element={<AddAcademics />}></Route>
           <Route
             path="/admin/updateacademics"
