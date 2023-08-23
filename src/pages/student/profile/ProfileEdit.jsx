@@ -6,9 +6,9 @@ import axios from "axios";
 import { SideProfileBar } from "../../../components/profile/profileFiles/SideProfileBar";
 import { SemesterMarksProfile } from "../../../components/profile/profileFiles/SemesterMarksProfile";
 import { SemesterBasic } from "../../../components/profile/profileFiles/SemesterBasic";
-import { useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 
-function ProfileEdit({user}) {
+function ProfileEdit({ user }) {
     const [cgpa, setCgpa] = useState(9.1);
     const [singleSkill, setSingleSkill] = useState("");
     const [singleInternship, setSingleInternship] = useState("");
@@ -22,33 +22,44 @@ function ProfileEdit({user}) {
 
     const [searchParams, setSearchParams] = useSearchParams("id");
 
+    const location = useLocation();
+    const studentId = location.pathname.split("/")[3];
+
     console.log(searchParams, "searchParams");
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/student/${user.userDetails.regno}`,{
-            headers: {
-              Authorization: `Bearer ${user.token}`,
-            }
-          }).then((res) => {
-            setData(res.data);
-            setSendingData(res.data);
-            setSkills(res.data.skillset);
-            setInternshipArray(res.data.internships);
-            setCertificateArray(res.data.certificates);
-            setProjectArray(res.data.projects);
-        });
+        axios
+            .get(
+                `http://localhost:8080/student/${studentId}`
+                // {
+                //     headers: {
+                //       Authorization: `Bearer ${user.token}`,
+                //     }
+                //   }
+            )
+            .then((res) => {
+                setData(res.data);
+                setSendingData(res.data);
+                setSkills(res.data.skillset);
+                setInternshipArray(res.data.internships);
+                setCertificateArray(res.data.certificates);
+                setProjectArray(res.data.projects);
+                console.log(res);
+            });
     }, []);
-
-    console.log(data);
 
     const handleProfileSubmit = (e) => {
         e.preventDefault();
         axios
-            .post(`http://localhost:8080/student/update/${user.userDetails.regno}`, sendingData,{
-                headers: {
-                  Authorization: `Bearer ${user.token}`,
-                }
-              })
+            .post(
+                `http://localhost:8080/student/update/${studentId}`,
+                sendingData,
+                // {
+                //     headers: {
+                //         Authorization: `Bearer ${user.token}`,
+                //     },
+                // }
+            )
             .then((res) => {
                 console.log(res.data);
             });
@@ -112,9 +123,9 @@ function ProfileEdit({user}) {
     return (
         <>
             <Navbar />
-            <div class="bg-gray-100">
-                <div class="container mx-auto p-5">
-                    <div class="md:flex no-wrap md:-mx-2 ">
+            <div className="bg-gray-100">
+                <div className="container mx-auto p-5">
+                    <div className="md:flex no-wrap md:-mx-2 ">
                         {data && skills && (
                             <SideProfileBar
                                 data={data}
@@ -129,14 +140,14 @@ function ProfileEdit({user}) {
                             />
                         )}
 
-                        <div class="w-full md:w-9/12 mx-2 h-64">
+                        <div className="w-full md:w-9/12 mx-2 h-64">
                             <SemesterBasic
                                 handleProfileSubmit={handleProfileSubmit}
                                 data={data}
                                 setSendingData={setSendingData}
                             />
 
-                            <div class="my-4"></div>
+                            <div className="my-4"></div>
 
                             <SemesterMarksProfile
                                 data={data}
@@ -146,29 +157,29 @@ function ProfileEdit({user}) {
                                 fileSubmit={handleProfileSubmit}
                             />
 
-                            <div class="my-4"></div>
+                            <div className="my-4"></div>
 
-                            <div class="bg-white p-3 shadow-sm rounded-sm">
-                                <div class="grid grid-cols-2">
+                            <div className="bg-white p-3 shadow-sm rounded-sm">
+                                <div className="grid grid-cols-2">
                                     <div>
-                                        <div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">
+                                        <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">
                                             <span clas="text-green-500">
                                                 <svg
-                                                    class="h-5"
+                                                    className="h-5"
                                                     xmlns="http://www.w3.org/2000/svg"
                                                     fill="none"
                                                     viewBox="0 0 24 24"
                                                     stroke="currentColor"
                                                 >
                                                     <path
-                                                        stroke-linecap="round"
-                                                        stroke-linejoin="round"
-                                                        stroke-width="2"
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                        strokeWidth="2"
                                                         d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                                                     />
                                                 </svg>
                                             </span>
-                                            <span class="tracking-wide">
+                                            <span className="tracking-wide">
                                                 Certificate
                                             </span>
                                         </div>
@@ -177,7 +188,7 @@ function ProfileEdit({user}) {
                                                 <input
                                                     type="text"
                                                     id="certificateName"
-                                                    class="w-[90%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 py-1.5"
+                                                    className="w-[90%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 py-1.5"
                                                     placeholder="Add Certificate Name"
                                                     name="certificateName"
                                                     onChange={(e) => {
@@ -198,7 +209,7 @@ function ProfileEdit({user}) {
                                                 <input
                                                     type="text"
                                                     id="certificateLink"
-                                                    class="w-[90%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 py-1.5"
+                                                    className="w-[90%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 py-1.5"
                                                     placeholder="Add Certificate Link"
                                                     name="certificateLink"
                                                     onChange={(e) => {
@@ -288,24 +299,24 @@ function ProfileEdit({user}) {
                                     </div>
 
                                     <div>
-                                        <div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">
+                                        <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">
                                             <span clas="text-green-500">
                                                 <svg
-                                                    class="h-5"
+                                                    className="h-5"
                                                     xmlns="http://www.w3.org/2000/svg"
                                                     fill="none"
                                                     viewBox="0 0 24 24"
                                                     stroke="currentColor"
                                                 >
                                                     <path
-                                                        stroke-linecap="round"
-                                                        stroke-linejoin="round"
-                                                        stroke-width="2"
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                        strokeWidth="2"
                                                         d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                                                     />
                                                 </svg>
                                             </span>
-                                            <span class="tracking-wide">
+                                            <span className="tracking-wide">
                                                 Internship
                                             </span>
                                         </div>
@@ -314,7 +325,7 @@ function ProfileEdit({user}) {
                                                 <input
                                                     type="text"
                                                     id="internship_name"
-                                                    class="w-[90%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 py-1.5"
+                                                    className="w-[90%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 py-1.5"
                                                     placeholder="Add Internship Name"
                                                     name="internship_name"
                                                     onChange={(e) => {
@@ -335,7 +346,7 @@ function ProfileEdit({user}) {
                                                 <input
                                                     type="text"
                                                     id="inernship_description"
-                                                    class="w-[90%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 py-1.5"
+                                                    className="w-[90%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 py-1.5"
                                                     placeholder="Add internship Link"
                                                     name="inernship_description"
                                                     onChange={(e) => {
@@ -424,29 +435,29 @@ function ProfileEdit({user}) {
                                     </div>
                                 </div>
                             </div>
-                            <div class="my-4"></div>
+                            <div className="my-4"></div>
 
-                            <div class="bg-white p-3 shadow-sm rounded-sm">
-                                <div class="grid grid-cols-2">
+                            <div className="bg-white p-3 shadow-sm rounded-sm">
+                                <div className="grid grid-cols-2">
                                     <div>
-                                        <div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">
+                                        <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">
                                             <span clas="text-green-500">
                                                 <svg
-                                                    class="h-5"
+                                                    className="h-5"
                                                     xmlns="http://www.w3.org/2000/svg"
                                                     fill="none"
                                                     viewBox="0 0 24 24"
                                                     stroke="currentColor"
                                                 >
                                                     <path
-                                                        stroke-linecap="round"
-                                                        stroke-linejoin="round"
-                                                        stroke-width="2"
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                        strokeWidth="2"
                                                         d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                                                     />
                                                 </svg>
                                             </span>
-                                            <span class="tracking-wide">
+                                            <span className="tracking-wide">
                                                 Project
                                             </span>
                                         </div>
@@ -455,7 +466,7 @@ function ProfileEdit({user}) {
                                                 <input
                                                     type="text"
                                                     id="project_name"
-                                                    class="w-[90%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 py-1.5"
+                                                    className="w-[90%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 py-1.5"
                                                     placeholder="Add Project Name"
                                                     name="project_name"
                                                     onChange={(e) => {
@@ -476,7 +487,7 @@ function ProfileEdit({user}) {
                                                 <input
                                                     type="text"
                                                     id="project_description"
-                                                    class="w-[90%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 py-1.5"
+                                                    className="w-[90%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 py-1.5"
                                                     placeholder="Add Project Description"
                                                     name="project_description"
                                                     onChange={(e) => {
@@ -497,7 +508,7 @@ function ProfileEdit({user}) {
                                                 <input
                                                     type="text"
                                                     id="project_score"
-                                                    class="w-[90%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 py-1.5"
+                                                    className="w-[90%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 py-1.5"
                                                     placeholder="Add Project Score"
                                                     name="project_score"
                                                     onChange={(e) => {

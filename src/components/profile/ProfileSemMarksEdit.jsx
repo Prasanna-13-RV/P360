@@ -9,7 +9,7 @@ function ProfileSemMarksEdit({ marks, setSendingData, sendingData , handleProfil
     return (
         <li>
             <details>
-                <summary class="text-teal-600">Semester 1</summary>
+                <summary className="text-teal-600">Semester 1</summary>
                 <div className="w-full flex flex-col justify-center items-center">
                     {marks?.semester1.map((res, i) => {
                         const obj = {};
@@ -54,7 +54,7 @@ function ProfileSemMarksEdit({ marks, setSendingData, sendingData , handleProfil
                 </button>
             </details>
             <details>
-                <summary class="text-teal-600">Semester 2</summary>
+                <summary className="text-teal-600">Semester 2</summary>
                 <div className="w-full flex flex-col justify-center items-center">
                     {marks?.semester2.map((res, i) => {
                         const obj = {};
@@ -99,7 +99,7 @@ function ProfileSemMarksEdit({ marks, setSendingData, sendingData , handleProfil
                 </button>
             </details>
             <details>
-                <summary class="text-teal-600">Semester 3</summary>
+                <summary className="text-teal-600">Semester 3</summary>
                 <div className="w-full flex flex-col justify-center items-center">
                     {marks?.semester3.map((res, i) => {
                         const obj = {};
@@ -144,7 +144,7 @@ function ProfileSemMarksEdit({ marks, setSendingData, sendingData , handleProfil
                 </button>
             </details>
             <details>
-                <summary class="text-teal-600">Semester 4</summary>
+                <summary className="text-teal-600">Semester 4</summary>
                 <div className="w-full flex flex-col justify-center items-center">
                     {marks?.semester4.map((res, i) => {
                         const obj = {};
@@ -189,7 +189,7 @@ function ProfileSemMarksEdit({ marks, setSendingData, sendingData , handleProfil
                 </button>
             </details>
             <details>
-                <summary class="text-teal-600">Semester 5</summary>
+                <summary className="text-teal-600">Semester 5</summary>
                 <div className="w-full flex flex-col justify-center items-center">
                     {marks?.semester5.map((res, i) => {
                         const obj = {};
@@ -234,7 +234,7 @@ function ProfileSemMarksEdit({ marks, setSendingData, sendingData , handleProfil
                 </button>
             </details>
             <details>
-                <summary class="text-teal-600">Semester 6</summary>
+                <summary className="text-teal-600">Semester 6</summary>
                 <div className="w-full flex flex-col justify-center items-center">
                     {marks?.semester6.map((res, i) => {
                         const obj = {};
@@ -279,7 +279,7 @@ function ProfileSemMarksEdit({ marks, setSendingData, sendingData , handleProfil
                 </button>
             </details>
             <details>
-                <summary class="text-teal-600">Semester 7</summary>
+                <summary className="text-teal-600">Semester 7</summary>
                 <div className="w-full flex flex-col justify-center items-center">
                     {marks?.semester7.map((res, i) => {
                         const obj = {};
@@ -324,7 +324,7 @@ function ProfileSemMarksEdit({ marks, setSendingData, sendingData , handleProfil
                 </button>
             </details>
             <details>
-                <summary class="text-teal-600">Semester 8</summary>
+                <summary className="text-teal-600">Semester 8</summary>
                 <div className="w-full flex flex-col justify-center items-center">
                     {marks?.semester8.map((res, i) => {
                         const obj = {};

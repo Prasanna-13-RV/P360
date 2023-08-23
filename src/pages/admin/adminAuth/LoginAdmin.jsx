@@ -49,7 +49,7 @@ function LoginAdmin() {
                 Sign in to your account
               </h1>
               <form
-                class="space-y-4 md:space-y-6"
+                className="space-y-4 md:space-y-6"
                 onSubmit={(e) => {
                   handleSubmit(e);
                 }}
@@ -65,7 +65,7 @@ function LoginAdmin() {
                     type="email"
                     name="regno"
                     id="email"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                     placeholder="name@company.com"
                     required=""
                     onChange={(e) => {
@@ -90,7 +90,7 @@ function LoginAdmin() {
                     name="password"
                     id="password"
                     placeholder="••••••••"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                     required=""
                     onChange={(e) => {
                       setFormElements((prev) => {
@@ -109,7 +109,7 @@ function LoginAdmin() {
                         id="remember"
                         aria-describedby="remember"
                         type="checkbox"
-                        class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300"
+                        className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300"
                         required=""
                         onChange={(e) => {
                           setFormElements((prev) => {
