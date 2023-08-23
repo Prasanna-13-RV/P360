@@ -13,26 +13,26 @@ function Internship({user}) {
 
     useEffect(() => {
         try {
-            axios.get("http://localhost:8080/internship").then((res) => {
-                setDataInternship(res.data);
-            },{
+            axios.get("http://localhost:8080/internship",{
                 headers: {
                   Authorization: `Bearer ${user.token}`,
                 }
-              });
+              }).then((res) => {
+                setDataInternship(res.data);
+            });
         } catch (error) {
             console.log(error);
         }
     }, []);
 
     const handleDelete = (e) => {
-        axios.delete(`http://localhost:8080/internship/${e}`).then((res) => {
-            console.log(res);
-        },{
+        axios.delete(`http://localhost:8080/internship/${e}`,{
             headers: {
               Authorization: `Bearer ${user.token}`,
             }
-          });
+          }).then((res) => {
+            console.log(res);
+        });
         window.location.reload();
     };
 
@@ -72,6 +72,7 @@ function Internship({user}) {
                     <AddInternship
                         setAddButton={setAddButton}
                         addButton={addButton}
+                        user={user}
                     />
                 ) : null}
                 {editButton ? (

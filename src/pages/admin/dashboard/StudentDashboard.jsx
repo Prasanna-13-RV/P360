@@ -291,13 +291,10 @@ const StudentDashboard = ({user}) => {
   };
 
   useEffect(() => {
+    // console.log(user.token)
     getStudents(user.token).then((res) => {
       setStudents(res.data);
       
-
-      
-
-
       segregateScores(
         res.data.filter((student) => parseInt(student.passing_year) == 2024)
       );

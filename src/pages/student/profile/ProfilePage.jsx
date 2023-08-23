@@ -14,10 +14,9 @@ const ProfilePage = ({ user }) => {
   const [projectArray, setProjectArray] = useState([]);
 
   useEffect(() => {
-    const number = 1234;
 
     axios
-      .get(`http://localhost:8080/student/${number}`, {
+      .get(`http://localhost:8080/student/${user.userDetails.regno}`, {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },

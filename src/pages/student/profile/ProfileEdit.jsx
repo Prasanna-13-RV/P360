@@ -25,7 +25,7 @@ function ProfileEdit({user}) {
     console.log(searchParams, "searchParams");
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/student/1234`,{
+        axios.get(`http://localhost:8080/student/${user.userDetails.regno}`,{
             headers: {
               Authorization: `Bearer ${user.token}`,
             }
@@ -44,14 +44,14 @@ function ProfileEdit({user}) {
     const handleProfileSubmit = (e) => {
         e.preventDefault();
         axios
-            .post(`http://localhost:8080/student/update/1234`, sendingData)
-            .then((res) => {
-                console.log(res.data);
-            },{
+            .post(`http://localhost:8080/student/update/${user.userDetails.regno}`, sendingData,{
                 headers: {
                   Authorization: `Bearer ${user.token}`,
                 }
-              });
+              })
+            .then((res) => {
+                console.log(res.data);
+            });
     };
 
     const [skills, setSkills] = useState();

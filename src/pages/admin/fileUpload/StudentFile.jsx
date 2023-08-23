@@ -3,7 +3,7 @@ import NavbarAdmin from '../../../components/admin/NavbarAdmin';
 import FooterAdmin from '../../../components/admin/FooterAdmin';
 import axios from 'axios';
 
-function StudentFile() {
+function StudentFile({user}) {
 	const [fileStudent, setFileStudent] = useState();
 
 	const handleSubmit = (e) => {
@@ -18,7 +18,11 @@ function StudentFile() {
 		console.log(formData, fileStudent);
 
         axios
-            .post("http://localhost:8080/student/create", formData)
+            .post("http://localhost:8080/student/create", formData,{
+                headers: {
+                  Authorization: `Bearer ${user.token}`,
+                }
+              })
             .then((response) => {
                 // Handle the response from the backend
                 console.log(response.data);

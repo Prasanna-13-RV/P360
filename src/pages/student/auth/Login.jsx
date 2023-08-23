@@ -18,6 +18,8 @@ function Login() {
             signin(formElements.regno,formElements.password).then((res)=>{
                 console.log(res.data);
                 if (res.data && res.data.token) {
+                    var id=formElements.regno;
+                    console.log(id);
                     setFormElements({})
                     // setUserLoggedIn(true);
                     
@@ -25,7 +27,8 @@ function Login() {
                       type: "SET_USER",
                       payload: {...res.data,role:"student"},
                     });
-                    navigate("/studentdashboard");
+                    navigate(`/profile/${id}`);
+                    
                   }
             })
           } catch (error) {

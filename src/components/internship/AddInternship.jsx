@@ -1,13 +1,17 @@
 import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
 
-function AddInternship({ setAddButton, addButton }) {
+function AddInternship({ setAddButton, addButton,user }) {
     const [internDetailes, setInternDetailes] = useState({});
 
     const handleSubmit = (e) => {
         e.preventDefault();
         axios
-            .post("http://localhost:8080/addinternship", internDetailes)
+            .post("http://localhost:8080/addinternship", internDetailes,{
+                headers: {
+                  Authorization: `Bearer ${user.token}`,
+                }
+              })
             .then((res) => {
                 console.log(res);
                 setAddButton(false);
