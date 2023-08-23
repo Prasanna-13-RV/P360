@@ -15,7 +15,7 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import { postAcademics } from "../../../axios/academics.axios";
 import NavbarAdmin from "../../../components/admin/NavbarAdmin";
 import FooterAdmin from "../../../components/admin/FooterAdmin";
-const AddAcademics = () => {
+const AddAcademics = ({user}) => {
   const navigate = useNavigate();
   const [topic, setTopic] = useState(" ");
   const [sections, setSections] = useState([]);
@@ -52,7 +52,8 @@ const AddAcademics = () => {
         sections,
         description,
         practice_links,
-        test_link
+        test_link,
+        user.token
       ).then((res) => {
         navigate("/admin/academics");
       });

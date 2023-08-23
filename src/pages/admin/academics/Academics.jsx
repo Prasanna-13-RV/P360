@@ -5,11 +5,11 @@ import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import NavbarAdmin from "../../../components/admin/NavbarAdmin";
 import FooterAdmin from "../../../components/admin/FooterAdmin";
-const Academics = () => {
+const Academics = ({user}) => {
   const [academics, setAcademics] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
-    getAcademics().then((res) => {
+    getAcademics(user.token).then((res) => {
       setAcademics(res.data);
     });
   }, []);

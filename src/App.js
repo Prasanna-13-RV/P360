@@ -70,7 +70,7 @@ function App() {
           {/* file upload */}
           <Route path="/file" element={<FileUpload />}></Route>
           <Route path="/admin/student/file" element={<StudentFile user={user}/>}></Route>
-          <Route path="/admin/marks/file" element={<MarksFile />}></Route>
+          <Route path="/admin/marks/file" element={<MarksFile user={user}/>}></Route>
           {/* Roadmap */}
           <Route path="/admin/addroadmap" element={<AddRoadmap />}></Route>
           <Route
@@ -79,19 +79,22 @@ function App() {
           ></Route>
           <Route path="/admin/showroadmap" element={<ShowRoadmaps />}></Route>
           <Route path="/admin/roadmap" element={<Roadmap user={user} />}></Route>
+
           <Route path="/admin/dashboard" element={<StudentDashboard user={user}/>}></Route>{/* Verified*/}
           <Route path="/admin/calender" element={<Calender user={user} />}></Route>{/* Verified*/}
-          <Route path="/admin/addacademics" element={<AddAcademics />}></Route>
+
+          {/* Academics */}
+          <Route path="/admin/addacademics" element={<AddAcademics user={user}/>}></Route>{/* Verified*/}
           <Route
             path="/admin/updateacademics"
-            element={<UpdateAcademics />}
-          ></Route>
+            element={<UpdateAcademics user={user}/>}
+          ></Route>{/* Verified*/}
 
-          <Route path="/admin/academics" element={<Academics />}></Route>
+          <Route path="/admin/academics" element={<Academics user={user}/>}></Route>{/* Verified*/}
           <Route
             path="/admin/viewacademics"
             element={<ViewAcademics />}
-          ></Route>
+          ></Route>{/* Verified*/}
         </Routes>
       </Router>
     </>
