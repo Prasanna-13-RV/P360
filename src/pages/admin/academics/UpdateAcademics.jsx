@@ -15,7 +15,7 @@ import { Link, Navigate, useNavigate, useLocation } from "react-router-dom";
 import { updateAcademics } from "../../../axios/academics.axios";
 import NavbarAdmin from "../../../components/admin/NavbarAdmin";
 import FooterAdmin from "../../../components/admin/FooterAdmin";
-const UpdateAcademics = () => {
+const UpdateAcademics = ({user}) => {
   const location = useLocation();
   useEffect(() => {
     state?.sections.map((section) => {
@@ -74,7 +74,8 @@ const UpdateAcademics = () => {
         description,
         practice_links,
         test_link,
-        location.state.id
+        location.state.id,
+        user.token
       ).then((res) => {
         navigate("/admin/academics");
       });
