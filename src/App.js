@@ -44,7 +44,7 @@ function App() {
 
           {/* Profile */}
           <Route path="/profile/:id" element={<Profile user={user} />}></Route>{/* Verified*/}
-          <Route path="/profile/update/:id" element={<ProfileEdit />}></Route> {/* Verified*/}
+          <Route path="/profile/update/:id" element={<ProfileEdit user={user}/>}></Route> {/* Verified*/}
 
           <Route path="/profile/resume/:id" element={<ProfilePage />}></Route>
           {/* internship */}
