@@ -82,6 +82,7 @@ function Internship({user}) {
                         setEditData={setEditData}
                         setEditButton={setEditButton}
                         editButton={editButton}
+                        user={user}
                     />
                 ) : null}
 
