@@ -2,16 +2,20 @@ import { useState, useEffect } from "react";
 import { getAcademics } from "../../../axios/academics.axios";
 
 import { Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom";
 import NavbarAdmin from "../../../components/admin/NavbarAdmin";
 import FooterAdmin from "../../../components/admin/FooterAdmin";
 const Academics = () => {
-  const [academics, setAcademics] = useState([]);
+  const location = useLocation();
   const navigate = useNavigate();
+  const [academics, setAcademics] = useState(location.state);
+  
   useEffect(() => {
-    getAcademics().then((res) => {
-      setAcademics(res.data);
-    });
+    // getAcademics().then((res) => {
+    //   setAcademics(res.data);
+    // });
+    
+    
   }, []);
   return (
     <>

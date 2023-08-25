@@ -70,7 +70,7 @@ function ProfileEdit() {
     // console.log(sendingData);
     const handleProfileSubmit = (e) => {
         e.preventDefault();
-        console.log(sendingData, "l love u   {____} ");
+       
         axios
             .post(`http://localhost:8080/student/update/1234`, sendingData)
             .then((res) => {

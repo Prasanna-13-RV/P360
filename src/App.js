@@ -25,6 +25,7 @@ import Academics from "./pages/admin/academics/Academics";
 import ViewAcademics from "./pages/admin/academics/ViewAcademics";
 import UpdateAcademics from "./pages/admin/academics/UpdateAcademics";
 import ProfilePage from "./pages/student/profile/ProfilePage";
+import AcademicType from "./pages/admin/academics/AcademicType";
 
 function App() {
     return (
@@ -114,6 +115,10 @@ function App() {
                     <Route
                         path="/admin/viewacademics"
                         element={<ViewAcademics />}
+                    ></Route>
+                    <Route
+                        path="/admin/academicstype"
+                        element={<AcademicType />}
                     ></Route>
                 </Routes>
             </Router>

@@ -42,11 +42,11 @@ const Calender = () => {
     postEvent(title, date, date2).then((res) => {
       console.log(res);
     });
-    console.log(title, date, date2, "SS");
-    setEvents([...events, { title: title, start: date, end: date2 }]);
-    setTitle("");
-    setDate(null);
-    setDate2(null);
+    // console.log(title, date, date2, "SS");
+    // setEvents([...events, { title: title, start: date, end: date2 }]);
+    // setTitle("");
+    // setDate(null);
+    // setDate2(null);
   };
 
   function getDate(dayString) {
