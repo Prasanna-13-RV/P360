@@ -10,7 +10,7 @@ function classNames(...classes) {
 export default function Navbar({ current }) {
 
     const navigation = [
-        { name: "Home", href: "/", current: current },
+        { name: "Home", href: "/profile/:id", current: current },
         { name: "Internship", href: "/internship", current: current },
         { name: "Student", href: "/student", current: current },
     ];

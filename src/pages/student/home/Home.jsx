@@ -6,7 +6,7 @@ function Home() {
     return (
         <>
             <Navbar />
-            <h1 class="min-h-[50vh] text-3xl font-bold underline">Hello world!</h1>
+            <h1 className="min-h-[50vh] text-3xl font-bold underline">Hello world!</h1>
             <Footer />
         </>
     );

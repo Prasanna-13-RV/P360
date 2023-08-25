@@ -11,14 +11,14 @@ import { getEvents, postEvent } from "../../../axios/calender.axios";
 import NavbarAdmin from "../../../components/admin/NavbarAdmin";
 import FooterAdmin from "../../../components/admin/FooterAdmin";
 
-const Calender = () => {
+const Calender = ({user}) => {
   const [currentEvent, setCurrentEvent] = useState();
   useEffect(() => {
     get();
   }, []);
 
   const get = () => {
-    getEvents().then((res) => {
+    getEvents(user.token).then((res) => {
       console.log(res, "nnrr");
       res.data.forEach((data) => {
         setEvents((old) => [
@@ -38,9 +38,12 @@ const Calender = () => {
   const [date2, setDate2] = useState(null);
   const [events, setEvents] = useState([]);
   const handleEvent = () => {
-    setPopup(false);
-    postEvent(title, date, date2).then((res) => {
+    
+    // axios
+    postEvent(title, date, date2,user.token).then((res) => {
       console.log(res);
+      setPopup(false);
+      window.location.reload();
     });
     // console.log(title, date, date2, "SS");
     // setEvents([...events, { title: title, start: date, end: date2 }]);

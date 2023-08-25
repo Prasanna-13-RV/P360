@@ -4,8 +4,12 @@ export const getStudentsCompetitive = async () => {
   return await axios.get("http://localhost:8080/api/studentscompetitive");
 };
 
-export const getStudents = async () => {
-  return await axios.get("http://localhost:8080/api/students");
+export const getStudents = async (token) => {
+  return await axios.get("http://localhost:8080/api/students",{
+    headers: {
+      Authorization: `Bearer ${token}`,
+    }
+  })
 };
 
 // export const postEvent = async (title, start_time, end_time) => {

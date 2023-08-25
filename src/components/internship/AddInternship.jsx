@@ -1,13 +1,17 @@
 import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
 
-function AddInternship({ setAddButton, addButton }) {
+function AddInternship({ setAddButton, addButton,user }) {
     const [internDetailes, setInternDetailes] = useState({});
 
     const handleSubmit = (e) => {
         e.preventDefault();
         axios
-            .post("http://localhost:8080/addinternship", internDetailes)
+            .post("http://localhost:8080/addinternship", internDetailes,{
+                headers: {
+                  Authorization: `Bearer ${user.token}`,
+                }
+              })
             .then((res) => {
                 console.log(res);
                 setAddButton(false);
@@ -171,11 +175,11 @@ function AddInternship({ setAddButton, addButton }) {
                                     >
                                         Eligibility
                                     </label>
-                                    {/* <input
+                                    <input
                                         type="year"
                                         name="eligibilityInternship"
                                         id="eligibilityInternship"
-                                        placeHolder="Eligibility"
+                                        placeHolder="Eligibility year"
                                         className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                         required=""
                                         onChange={(e) => {
@@ -187,10 +191,10 @@ function AddInternship({ setAddButton, addButton }) {
                                                 };
                                             });
                                         }}
-                                    /> */}
-                                    <select
+                                    />
+                                    {/* <select
                                         id="eligibilityInternship"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     >
                                         <option selected disabled>
                                             Choose year
@@ -199,7 +203,7 @@ function AddInternship({ setAddButton, addButton }) {
                                         <option value="2">2</option>
                                         <option value="3">3</option>
                                         <option value="4">4</option>
-                                    </select>
+                                    </select> */}
                                 </div>
                                 {/* Department */}
                                 <div>
@@ -209,7 +213,7 @@ function AddInternship({ setAddButton, addButton }) {
                                     >
                                         Department
                                     </label>
-                                    <input
+                                    {/* <input
                                         type="text"
                                         name="departmentInternship"
                                         id="departmentInternship"
@@ -225,7 +229,30 @@ function AddInternship({ setAddButton, addButton }) {
                                                 };
                                             });
                                         }}
-                                    />
+                                    /> */}
+                                    <select
+                                        id="eligibilityInternship"
+                                        name="departmentInternship"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                        required=""
+                                        onChange={(e) => {
+                                            setInternDetailes((res) => {
+                                                return {
+                                                    ...res,
+                                                    [e.target.name]:
+                                                        e.target.value,
+                                                };
+                                            });
+                                        }}
+                                    >
+                                        <option selected disabled>
+                                            Choose Department
+                                        </option>
+                                        <option value="IT">IT</option>
+                                        <option value="CSE">CSE</option>
+                                        <option value="ECE">ECE</option>
+                                        <option value="EEE">EEE</option>
+                                    </select>
                                 </div>
                                 {/* Domain */}
                                 <div>
@@ -286,7 +313,7 @@ function AddInternship({ setAddButton, addButton }) {
                                         htmlFor="lastDateInternship"
                                         className="block mb-2 text-sm font-medium text-gray-900 "
                                     >
-                                        Stipend
+                                        Start date
                                     </label>
                                     <input
                                         type="date"

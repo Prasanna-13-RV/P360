@@ -1,12 +1,6 @@
 import React, { Fragment, useState } from "react";
 import FooterAdmin from "../../../components/admin/FooterAdmin";
 import NavbarAdmin from "../../../components/admin/NavbarAdmin";
-import {
-    createUserWithEmailAndPassword,
-    GoogleAuthProvider,
-    signInWithPopup,
-} from "firebase/auth";
-import { auth } from "../../../firebase/firebase";
 
 function RegisterAdmin() {
     const [formElements, setFormElements] = useState({});
@@ -26,20 +20,6 @@ function RegisterAdmin() {
     };
 
     function createUser(email, password) {
-        createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                // Signed in
-                const user = userCredential.user;
-                console.log(userCredential, "userCredential");
-                console.log(user, "user");
-                // ...
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                console.log(errorCode, errorMessage);
-                // ..
-            });
     }
 
     return (
@@ -59,7 +39,7 @@ function RegisterAdmin() {
                                 Sign in to your account
                             </h1>
                             <form
-                                class="space-y-4 md:space-y-6"
+                                className="space-y-4 md:space-y-6"
                                 onSubmit={handleSubmit}
                             >
                                 <div>
@@ -73,7 +53,7 @@ function RegisterAdmin() {
                                         type="email"
                                         name="email"
                                         id="email"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                         placeholder="name@company.com"
                                         required=""
                                         onChange={(e) => {
@@ -98,7 +78,7 @@ function RegisterAdmin() {
                                         type="text"
                                         name="userName"
                                         id="userName"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                         placeholder="Name"
                                         required=""
                                         onChange={(e) => {
@@ -124,7 +104,7 @@ function RegisterAdmin() {
                                         name="password"
                                         id="password"
                                         placeholder="••••••••"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                         required=""
                                         onChange={(e) => {
                                             setFormElements((prev) => {
@@ -149,7 +129,7 @@ function RegisterAdmin() {
                                         name="conpassword"
                                         id="conpassword"
                                         placeholder="••••••••"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                         required=""
                                         onChange={(e) => {
                                             setFormElements((prev) => {
@@ -169,7 +149,7 @@ function RegisterAdmin() {
                                                 id="remember"
                                                 aria-describedby="remember"
                                                 type="checkbox"
-                                                class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300"
+                                                className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300"
                                                 required=""
                                                 onChange={(e) => {
                                                     setFormElements((prev) => {

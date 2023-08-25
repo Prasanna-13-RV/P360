@@ -5,7 +5,7 @@ import FooterAdmin from "../../../components/admin/FooterAdmin";
 import EditInternship from "../../../components/internship/EditInternship";
 import axios from "axios";
 
-function Internship() {
+function Internship({user}) {
     const [addButton, setAddButton] = useState(false);
     const [editButton, setEditButton] = useState(false);
     const [editData, setEditData] = useState({});
@@ -13,7 +13,11 @@ function Internship() {
 
     useEffect(() => {
         try {
-            axios.get("http://localhost:8080/internship").then((res) => {
+            axios.get("http://localhost:8080/internship",{
+                headers: {
+                  Authorization: `Bearer ${user.token}`,
+                }
+              }).then((res) => {
                 setDataInternship(res.data);
             });
         } catch (error) {
@@ -22,7 +26,11 @@ function Internship() {
     }, []);
 
     const handleDelete = (e) => {
-        axios.delete(`http://localhost:8080/internship/${e}`).then((res) => {
+        axios.delete(`http://localhost:8080/internship/${e}`,{
+            headers: {
+              Authorization: `Bearer ${user.token}`,
+            }
+          }).then((res) => {
             console.log(res);
         });
         window.location.reload();
@@ -64,6 +72,7 @@ function Internship() {
                     <AddInternship
                         setAddButton={setAddButton}
                         addButton={addButton}
+                        user={user}
                     />
                 ) : null}
                 {editButton ? (

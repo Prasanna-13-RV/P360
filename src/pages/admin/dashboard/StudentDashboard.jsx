@@ -154,7 +154,7 @@ ChartJS.register(
   Legend
 );
 
-const StudentDashboard = () => {
+const StudentDashboard = ({user}) => {
   const [mode, setMode] = useState("competitive");
 
   const [cgpaAllDept, setCgpaAllDept] = useState();
@@ -291,13 +291,10 @@ const StudentDashboard = () => {
   };
 
   useEffect(() => {
-    getStudents().then((res) => {
+    // console.log(user.token)
+    getStudents(user.token).then((res) => {
       setStudents(res.data);
       
-
-      
-
-
       segregateScores(
         res.data.filter((student) => parseInt(student.passing_year) == 2024)
       );

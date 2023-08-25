@@ -1,7 +1,11 @@
 import axios from "axios";
 
-export const getAcademics = async () => {
-  return await axios.get("http://localhost:8080/api/academics");
+export const getAcademics = async (token) => {
+  return await axios.get("http://localhost:8080/api/academics", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 };
 
 export const postAcademics = async (
@@ -9,15 +13,24 @@ export const postAcademics = async (
   sections,
   descriptions,
   practice_link,
-  test_link
+  test_link,
+  token
 ) => {
-  return await axios.post("http://localhost:8080/api/academics", {
-    topic,
-    sections,
-    descriptions,
-    practice_link,
-    test_link,
-  });
+  return await axios.post(
+    "http://localhost:8080/api/academics",
+    {
+      topic,
+      sections,
+      descriptions,
+      practice_link,
+      test_link,
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
 };
 export const updateAcademics = async (
   topic,
@@ -25,13 +38,22 @@ export const updateAcademics = async (
   descriptions,
   practice_link,
   test_link,
-  id
+  id,
+  token
 ) => {
-  return await axios.put(`http://localhost:8080/api/academics/${id}`, {
-    topic,
-    sections,
-    descriptions,
-    practice_link,
-    test_link,
-  });
+  return await axios.put(
+    `http://localhost:8080/api/academics/${id}`,
+    {
+      topic,
+      sections,
+      descriptions,
+      practice_link,
+      test_link,
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
 };

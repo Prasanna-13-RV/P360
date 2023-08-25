@@ -3,7 +3,7 @@ import NavbarAdmin from '../../../components/admin/NavbarAdmin';
 import FooterAdmin from '../../../components/admin/FooterAdmin';
 import axios from 'axios';
 
-function StudentFile() {
+function StudentFile({user}) {
 	const [fileStudent, setFileStudent] = useState();
 
 	const handleSubmit = (e) => {
@@ -18,7 +18,11 @@ function StudentFile() {
 		console.log(formData, fileStudent);
 
         axios
-            .post("http://localhost:8080/student/create", formData)
+            .post("http://localhost:8080/student/create", formData,{
+                headers: {
+                  Authorization: `Bearer ${user.token}`,
+                }
+              })
             .then((response) => {
                 // Handle the response from the backend
                 console.log(response.data);
@@ -59,9 +63,9 @@ function StudentFile() {
 									xmlns='http://www.w3.org/2000/svg'
 								>
 									<path
-										stroke-linecap='round'
-										stroke-linejoin='round'
-										stroke-width='2'
+										strokeLinecap='round'
+										strokeLinejoin='round'
+										strokeWidth='2'
 										d='M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12'
 									></path>
 								</svg>

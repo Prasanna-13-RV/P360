@@ -11,11 +11,9 @@ const Academics = () => {
   const [academics, setAcademics] = useState(location.state);
   
   useEffect(() => {
-    // getAcademics().then((res) => {
-    //   setAcademics(res.data);
-    // });
-    
-    
+    getAcademics(user.token).then((res) => {
+      setAcademics(res.data);
+    });
   }, []);
   return (
     <>
