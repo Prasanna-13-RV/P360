@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
 
-function EditInternship({ setEditButton, editButton, editData }) {
+function EditInternship({ setEditButton, editButton, editData ,user}) {
     const [internDetailes, setInternDetailes] = useState(editData);
 
     const handleSubmit = (e) => {
@@ -9,7 +9,11 @@ function EditInternship({ setEditButton, editButton, editData }) {
         axios
             .put(
                 `http://localhost:8080/internship/${editData.id}`,
-                internDetailes
+                internDetailes,{
+                    headers: {
+                      Authorization: `Bearer ${user.token}`,
+                    }
+                  }
             )
             .then((res) => {
                 console.log(res);
@@ -363,7 +367,7 @@ function EditInternship({ setEditButton, editButton, editData }) {
                                     type="submit"
                                     className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                                 >
-                                    Add Internship
+                                    Edit Internship
                                 </button>
                             </form>
                         </div>
