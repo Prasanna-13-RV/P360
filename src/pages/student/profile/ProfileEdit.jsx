@@ -54,11 +54,11 @@ function ProfileEdit({ user }) {
             .post(
                 `http://localhost:8080/student/update/${studentId}`,
                 sendingData,
-                // {
-                //     headers: {
-                //         Authorization: `Bearer ${user.token}`,
-                //     },
-                // }
+                {
+                    headers: {
+                        Authorization: `Bearer ${user.token}`,
+                    },
+                }
             )
             .then((res) => {
                 console.log(res.data);
