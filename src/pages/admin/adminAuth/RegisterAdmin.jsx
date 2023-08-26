@@ -59,7 +59,7 @@ function RegisterAdmin() {
           <div className="w-full my-5 bg-white rounded-lg shadow sm:max-w-md xl:p-0">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
-                Sign in to your account
+                Create an admin account
               </h1>
               <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
                 <div>
@@ -199,10 +199,10 @@ function RegisterAdmin() {
                 <p className="text-sm font-light text-gray-500">
                   Already have an account?
                   <a
-                    href="/register"
+                    href="/admin/login"
                     className="font-medium text-primary-600 hover:underline"
                   >
-                    Sign in
+                    Sign In
                   </a>
                 </p>
               </form>
