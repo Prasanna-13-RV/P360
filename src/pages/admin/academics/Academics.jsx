@@ -5,7 +5,7 @@ import { Button } from "@mui/material";
 import { useNavigate,useLocation } from "react-router-dom";
 import NavbarAdmin from "../../../components/admin/NavbarAdmin";
 import FooterAdmin from "../../../components/admin/FooterAdmin";
-const Academics = () => {
+const Academics = ({user}) => {
   const location = useLocation();
   const navigate = useNavigate();
   const [academics, setAcademics] = useState(location.state);
