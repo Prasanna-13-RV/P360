@@ -24,7 +24,7 @@ function Filter({user}) {
   const columns = useMemo(
     () => [
       {
-        accessorKey: "register_number",
+        accessorKey: "regno",
         header: "Register number",
         filterVariant: "text",
       },
