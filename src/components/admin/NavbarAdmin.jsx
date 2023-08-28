@@ -19,8 +19,6 @@ export default function NavbarAdmin({ current }) {
     // { name: "Marks File Upload", href: "/admin/marks/file", current: current },
     // { name: "Roadmap", href: "/admin/showroadmap", current: current },x
     { name: "Calender", href: "/admin/calender", current: current },
-    
-    
   ];
 
   const user = {
@@ -76,7 +74,8 @@ export default function NavbarAdmin({ current }) {
                               : "text-black hover:bg-gray-700 hover:text-white",
                             "px-3 py-2 rounded-md text-sm font-medium"
                           )}
-                          aria-current={item.current ? "page" : undefined}>
+                          aria-current={item.current ? "page" : undefined}
+                        >
                           {item.name}
                         </a>
                       );
@@ -94,7 +93,8 @@ export default function NavbarAdmin({ current }) {
                         enterTo="transform opacity-100 scale-100"
                         leave="transition ease-in duration-75"
                         leaveFrom="transform opacity-100 scale-100"
-                        leaveTo="transform opacity-0 scale-95">
+                        leaveTo="transform opacity-0 scale-95"
+                      >
                         <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                           {user ? (
                             <>
@@ -105,7 +105,8 @@ export default function NavbarAdmin({ current }) {
                                     className={classNames(
                                       active ? "bg-gray-100" : "",
                                       "block px-4 py-2 text-sm text-gray-700"
-                                    )}>
+                                    )}
+                                  >
                                     <Link to={`/admin/student/file`}>
                                       Student File Upload
                                     </Link>
@@ -119,7 +120,8 @@ export default function NavbarAdmin({ current }) {
                                     className={classNames(
                                       active ? "bg-gray-100" : "",
                                       "block px-4 py-2 text-sm text-gray-700"
-                                    )}>
+                                    )}
+                                  >
                                     Marks File Upload
                                   </a>
                                 )}
@@ -134,7 +136,8 @@ export default function NavbarAdmin({ current }) {
                                     className={classNames(
                                       active ? "bg-gray-100" : "",
                                       "block px-4 py-2 text-sm text-gray-700"
-                                    )}>
+                                    )}
+                                  >
                                     Login
                                   </a>
                                 )}
@@ -146,7 +149,8 @@ export default function NavbarAdmin({ current }) {
                                     className={classNames(
                                       active ? "bg-gray-100" : "",
                                       "block px-4 py-2 text-sm text-gray-700"
-                                    )}>
+                                    )}
+                                  >
                                     Register
                                   </a>
                                 )}
@@ -169,7 +173,8 @@ export default function NavbarAdmin({ current }) {
                         enterTo="transform opacity-100 scale-100"
                         leave="transition ease-in duration-75"
                         leaveFrom="transform opacity-100 scale-100"
-                        leaveTo="transform opacity-0 scale-95">
+                        leaveTo="transform opacity-0 scale-95"
+                      >
                         <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                           {user ? (
                             <>
@@ -180,7 +185,8 @@ export default function NavbarAdmin({ current }) {
                                     className={classNames(
                                       active ? "bg-gray-100" : "",
                                       "block px-4 py-2 text-sm text-gray-700"
-                                    )}>
+                                    )}
+                                  >
                                     <Link to={`/admin/addacademics`}>
                                       Add Academics
                                     </Link>
@@ -194,7 +200,8 @@ export default function NavbarAdmin({ current }) {
                                     className={classNames(
                                       active ? "bg-gray-100" : "",
                                       "block px-4 py-2 text-sm text-gray-700"
-                                    )}>
+                                    )}
+                                  >
                                     View Academics
                                   </a>
                                 )}
@@ -209,7 +216,8 @@ export default function NavbarAdmin({ current }) {
                                     className={classNames(
                                       active ? "bg-gray-100" : "",
                                       "block px-4 py-2 text-sm text-gray-700"
-                                    )}>
+                                    )}
+                                  >
                                     Login
                                   </a>
                                 )}
@@ -221,7 +229,8 @@ export default function NavbarAdmin({ current }) {
                                     className={classNames(
                                       active ? "bg-gray-100" : "",
                                       "block px-4 py-2 text-sm text-gray-700"
-                                    )}>
+                                    )}
+                                  >
                                     Register
                                   </a>
                                 )}
@@ -244,7 +253,8 @@ export default function NavbarAdmin({ current }) {
                         enterTo="transform opacity-100 scale-100"
                         leave="transition ease-in duration-75"
                         leaveFrom="transform opacity-100 scale-100"
-                        leaveTo="transform opacity-0 scale-95">
+                        leaveTo="transform opacity-0 scale-95"
+                      >
                         <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                           <Menu.Item>
                             {({ active }) => (
@@ -253,10 +263,9 @@ export default function NavbarAdmin({ current }) {
                                 className={classNames(
                                   active ? "bg-gray-100" : "",
                                   "block px-4 py-2 text-sm text-gray-700"
-                                )}>
-                                <Link to={`/admin/roadmap`}>
-                                  Show Roadmap
-                                </Link>
+                                )}
+                              >
+                                <Link to={`/admin/roadmap`}>Show Roadmap</Link>
                               </a>
                             )}
                           </Menu.Item>
@@ -267,7 +276,8 @@ export default function NavbarAdmin({ current }) {
                                 className={classNames(
                                   active ? "bg-gray-100" : "",
                                   "block px-4 py-2 text-sm text-gray-700"
-                                )}>
+                                )}
+                              >
                                 Add Roadmap
                               </a>
                             )}
@@ -275,11 +285,12 @@ export default function NavbarAdmin({ current }) {
                           <Menu.Item>
                             {({ active }) => (
                               <a
-                                href="/admin/showroadmap"
+                                href="/admin/updateroadmap"
                                 className={classNames(
                                   active ? "bg-gray-100" : "",
                                   "block px-4 py-2 text-sm text-gray-700"
-                                )}>
+                                )}
+                              >
                                 Update Roadmap
                               </a>
                             )}
@@ -287,7 +298,6 @@ export default function NavbarAdmin({ current }) {
                         </Menu.Items>
                       </Transition>
                     </Menu>
-                    
                   </div>
                 </div>
               </div>
@@ -337,7 +347,8 @@ export default function NavbarAdmin({ current }) {
                     enterTo="transform opacity-100 scale-100"
                     leave="transition ease-in duration-75"
                     leaveFrom="transform opacity-100 scale-100"
-                    leaveTo="transform opacity-0 scale-95">
+                    leaveTo="transform opacity-0 scale-95"
+                  >
                     <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       {user ? (
                         <>
@@ -348,7 +359,8 @@ export default function NavbarAdmin({ current }) {
                                 className={classNames(
                                   active ? "bg-gray-100" : "",
                                   "block px-4 py-2 text-sm text-gray-700"
-                                )}>
+                                )}
+                              >
                                 <Link to={`/profile`}>Your Profile</Link>
                               </a>
                             )}
@@ -360,7 +372,8 @@ export default function NavbarAdmin({ current }) {
                                 className={classNames(
                                   active ? "bg-gray-100" : "",
                                   "block px-4 py-2 text-sm text-gray-700"
-                                )}>
+                                )}
+                              >
                                 Sign out
                               </a>
                             )}
@@ -375,7 +388,8 @@ export default function NavbarAdmin({ current }) {
                                 className={classNames(
                                   active ? "bg-gray-100" : "",
                                   "block px-4 py-2 text-sm text-gray-700"
-                                )}>
+                                )}
+                              >
                                 Login
                               </a>
                             )}
@@ -387,7 +401,8 @@ export default function NavbarAdmin({ current }) {
                                 className={classNames(
                                   active ? "bg-gray-100" : "",
                                   "block px-4 py-2 text-sm text-gray-700"
-                                )}>
+                                )}
+                              >
                                 Register
                               </a>
                             )}
@@ -414,7 +429,8 @@ export default function NavbarAdmin({ current }) {
                       : "text-gray-300 hover:bg-gray-700 hover:text-white",
                     "block px-3 py-2 rounded-md text-base font-medium"
                   )}
-                  aria-current={item.current ? "page" : undefined}>
+                  aria-current={item.current ? "page" : undefined}
+                >
                   {item.name}
                 </Disclosure.Button>
               ))}

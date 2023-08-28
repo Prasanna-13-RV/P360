@@ -4,7 +4,7 @@ import { postRoadmap } from "../../../axios/roadmap.axios";
 import FooterAdmin from "../../../components/admin/FooterAdmin";
 import NavbarAdmin from "../../../components/admin/NavbarAdmin";
 import { useNavigate } from "react-router-dom";
-const AddRoadmap = () => {
+const AddRoadmap = ({ user }) => {
   const navigate = useNavigate();
   const [topic, setTopic] = useState([]);
   const [title, setTitle] = useState();
@@ -18,7 +18,7 @@ const AddRoadmap = () => {
         subject_sub: subtopic[index],
       });
     });
-    postRoadmap(title, subject).then((res) => {
+    postRoadmap(title, subject, user.token).then((res) => {
       if (res.status == 200) {
         navigate("/admin/roadmap");
       }
@@ -46,7 +46,8 @@ const AddRoadmap = () => {
                 setSubtopic([...subtopic, []]);
               }}
               variant="contained"
-              sx={{ marginRight: "15px" }}>
+              sx={{ marginRight: "15px" }}
+            >
               +
             </Button>
             <div className="flex flex-col items-start ">
@@ -88,7 +89,8 @@ const AddRoadmap = () => {
                         variant="contained"
                         sx={{
                           margin: "10px 20px 20px 0px",
-                        }}>
+                        }}
+                      >
                         +
                       </Button>
                       <div className="flex flex-col ">
@@ -129,7 +131,8 @@ const AddRoadmap = () => {
             disabled={title && topic.length != 0 ? false : true}
             onClick={handleSubmit}
             variant="contained"
-            sx={{ margin: "10px 20px 20px 0px" }}>
+            sx={{ margin: "10px 20px 20px 0px" }}
+          >
             {title ? `Add Roadmap for ${title}` : "Add Roadmap"}
           </Button>
         </div>
