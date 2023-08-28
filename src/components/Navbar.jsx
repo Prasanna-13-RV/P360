@@ -2,6 +2,7 @@ import { Fragment, useState, useEffect } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
@@ -9,16 +10,15 @@ function classNames(...classes) {
 
 export default function Navbar({ current }) {
 
+    const { user } = useSelector((state) => ({ ...state }));
+    console.log(user.userDetails);
     const navigation = [
-        { name: "Home", href: "/profile/:id", current: current },
+        { name: "Home", href: `/profile/${user.userDetails.regno}`, current: current },
         { name: "Internship", href: "/internship", current: current },
         { name: "Student", href: "/student", current: current },
     ];
 
-	const user = {
-		_id : "1234",
-		img : ""
-	}
+	
 
     const navigate = useNavigate();
 
