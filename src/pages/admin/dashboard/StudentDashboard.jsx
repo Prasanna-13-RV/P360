@@ -154,7 +154,7 @@ ChartJS.register(
   Legend
 );
 
-const StudentDashboard = ({user}) => {
+const StudentDashboard = ({ user }) => {
   const [mode, setMode] = useState("competitive");
 
   const [cgpaAllDept, setCgpaAllDept] = useState();
@@ -173,7 +173,7 @@ const StudentDashboard = ({user}) => {
   const [segregation, setSegregation] = useState();
 
   const segregateScores = (studentsData) => {
-    console.log(studentsData,"Mode");
+    console.log(studentsData, "Mode");
     const newSegregation = {};
 
     const cgpaOfDepts = {};
@@ -191,7 +191,7 @@ const StudentDashboard = ({user}) => {
         code_division_score,
         code_forces_score,
         codechef_score,
-        cgpa
+        cgpa,
       } = student;
 
       updateScoreRange(newSegregation, "leetcode_score", leetcode_score);
@@ -221,12 +221,11 @@ const StudentDashboard = ({user}) => {
       updateScoreRange(newSegregation, "codechef_score", codechef_score);
       updateScoreRange(newSegregation, "code_forces_score", code_forces_score);
 
-      updateCgpaRange(cgpaOfDepts,parseFloat(cgpa));
+      updateCgpaRange(cgpaOfDepts, parseFloat(cgpa));
     });
 
-    
     setSegregation(newSegregation);
-    
+
     setCgpaAllDept({
       labels: Object.keys(cgpaOfDepts["CGPA"]),
       datasets: [
@@ -239,10 +238,8 @@ const StudentDashboard = ({user}) => {
     });
   };
 
-  
-  const updateCgpaRange = (segregationObj,cgpa) => {
-
-    console.log(cgpa,segregationObj,"hi");
+  const updateCgpaRange = (segregationObj, cgpa) => {
+    console.log(cgpa, segregationObj, "hi");
     if (!segregationObj["CGPA"]) {
       segregationObj["CGPA"] = {
         range_6_7: 0,
@@ -252,17 +249,16 @@ const StudentDashboard = ({user}) => {
       };
     }
 
-    if (cgpa >= 6 && cgpa <7) {
+    if (cgpa >= 6 && cgpa < 7) {
       segregationObj["CGPA"].range_6_7++;
     } else if (cgpa >= 7 && cgpa < 8) {
       segregationObj["CGPA"].range_7_8++;
-    } else if (cgpa >=8  && cgpa < 9) {
+    } else if (cgpa >= 8 && cgpa < 9) {
       segregationObj["CGPA"].range_8_9++;
-    } else if (cgpa >=9 && cgpa <= 10) {
+    } else if (cgpa >= 9 && cgpa <= 10) {
       segregationObj["CGPA"].range_9_10++;
-    } 
-
-  }
+    }
+  };
 
   const updateScoreRange = (segregationObj, field, score) => {
     const scoreValue = parseFloat(score);
@@ -294,60 +290,42 @@ const StudentDashboard = ({user}) => {
     // console.log(user.token)
     getStudents(user.token).then((res) => {
       setStudents(res.data);
-      
+
       segregateScores(
         res.data.filter((student) => parseInt(student.passing_year) == 2024)
       );
-      
-
 
       const deptObj = {};
       const cgpaObj = {};
-    
+
       res.data.forEach((student) => {
         //dept
 
-       
-
-
-        
-
-        
-        
         const department = student.dept;
 
         // Check if the department already exists as a key in the object
         if (department in deptObj) {
-
           // Increment the count by 1
           deptObj[department]++;
           cgpaObj[department] += parseFloat(student.cgpa);
         } else {
           // Initialize the count to 1
           deptObj[department] = 1;
-          cgpaObj[department] =   parseFloat(student.cgpa);
-          
+          cgpaObj[department] = parseFloat(student.cgpa);
         }
       });
 
-      
-
-
       console.log(cgpaObj);
 
-      
-      Object.keys(cgpaObj).forEach((dept)=>{
-        cgpaObj[dept] = cgpaObj[dept]/deptObj[dept]
+      Object.keys(cgpaObj).forEach((dept) => {
+        cgpaObj[dept] = cgpaObj[dept] / deptObj[dept];
+      });
 
-
-      })
-
-      setDepartmentCgpa(cgpaObj)
+      setDepartmentCgpa(cgpaObj);
       setDepartmentCount(deptObj);
     });
   }, []);
 
- 
   useEffect(() => {
     setDeptData({
       labels: Object.keys(departmentCount),
@@ -359,9 +337,7 @@ const StudentDashboard = ({user}) => {
         },
       ],
     });
-    
-    
-    
+
     setCgpaData({
       labels: Object.keys(departmentCgpa),
       datasets: [
@@ -372,7 +348,6 @@ const StudentDashboard = ({user}) => {
         },
       ],
     });
-
   }, [departmentCount]);
 
   return (
@@ -405,7 +380,8 @@ const StudentDashboard = ({user}) => {
                 segregateScores(studentsByDept);
               }}
               className="w-full"
-              style={{ border: "solid #454545 1px" }}>
+              style={{ border: "solid #454545 1px" }}
+            >
               <option>2024</option>
               <option>2023</option>
               <option>2022</option>
@@ -423,7 +399,8 @@ const StudentDashboard = ({user}) => {
                 segregateScores(studentsByDept);
               }}
               className="w-full"
-              style={{ border: "solid #454545 1px" }}>
+              style={{ border: "solid #454545 1px" }}
+            >
               <option>IT</option>
               <option>CSE</option>
               <option>EEE</option>
@@ -472,15 +449,16 @@ const StudentDashboard = ({user}) => {
             <div className="w-[400px] h-fit mt-10">
               <Bar options={optionsDept} data={deptData} />
             </div>
-            
+
             <div className="w-[400px] h-fit mt-10">
               <Bar options={optionsCGPA} data={cgpaData} />
             </div>
             {cgpaAllDept && cgpaAllDept.labels.length > 0 && (
-            <div className="w-[400px] h-fit mt-10">
-              <Bar options={optionsCGPA} data={cgpaAllDept} />
-            </div>)}
-            
+              <div className="w-[400px] h-fit mt-10">
+                <Bar options={optionsCGPA} data={cgpaAllDept} />
+              </div>
+            )}
+
             <div className="w-[320px] h-fit mt-10 text-[#454545]">
               <h1 className="text-[1rem] font-bold mb-4">
                 Competitive top 10 students
@@ -588,7 +566,7 @@ const StudentDashboard = ({user}) => {
             </div>
           </>
         )}
-        {mode == "students" && <Filter />}
+        {mode == "students" && <Filter user={user} />}
       </div>
       <FooterAdmin />
     </div>

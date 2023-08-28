@@ -5,12 +5,12 @@ import { useNavigate } from "react-router-dom";
 import NavbarAdmin from "../../../components/admin/NavbarAdmin";
 import FooterAdmin from "../../../components/admin/FooterAdmin";
 
-const ShowRoadmaps = () => {
+const ShowRoadmaps = ({ user }) => {
   const [colors, setColors] = useState([]);
   const navigate = useNavigate();
   const [roadmap, setRoadmap] = useState();
   useEffect(() => {
-    getRoadmaps().then((res) => {
+    getRoadmaps(user.token).then((res) => {
       if (res.status == 200) {
         res.data.map((data) => {
           setRoadmap(res.data);
@@ -36,7 +36,8 @@ const ShowRoadmaps = () => {
                     navigate("/admin/updateroadmap", { state: res })
                   }
                   style={{ backgroundColor: colors[index] }}
-                  className="cursor-pointer relative  mr-6 shadow-lg rounded-md flex justify-center items-center h-[150px] w-[300px]">
+                  className="cursor-pointer relative  mr-6 shadow-lg rounded-md flex justify-center items-center h-[150px] w-[300px]"
+                >
                   <img
                     className="opacity-70  bottom-[-10%] absolute w-full h-full z-0"
                     src={require("../../../images/cloud.png")}
@@ -45,7 +46,6 @@ const ShowRoadmaps = () => {
                   <h1 className="font-bold text-xl z-10">{res.name}</h1>
                 </div>
               </>
-
             );
           })
         ) : (

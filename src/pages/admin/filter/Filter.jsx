@@ -6,10 +6,10 @@ import NavbarAdmin from "../../../components/admin/NavbarAdmin";
 import axios from "axios";
 import { getStudents } from "../../../axios/student.axios";
 
-function Filter() {
+function Filter({user}) {
   const [data, setData] = useState([]);
   useEffect(() => {
-    getStudents().then(({ data: d }) => {
+    getStudents(user.token).then(({ data: d }) => {
       setData(
         d.map((a) => ({
           ...a,

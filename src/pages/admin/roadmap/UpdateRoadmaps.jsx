@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import NavbarAdmin from "../../../components/admin/NavbarAdmin";
 import FooterAdmin from "../../../components/admin/FooterAdmin";
-const UpdateRoadmap = () => {
+const UpdateRoadmap = ({user}) => {
   const navigate = useNavigate();
   const location = useLocation();
   const state = location.state;
@@ -29,7 +29,7 @@ const UpdateRoadmap = () => {
         subject_sub: subtopic[index],
       });
     });
-    updateRoadmap(title, subject, state.id).then((res) => {
+    updateRoadmap(title, subject, state.id,user.token).then((res) => {
       if (res.status == 200) {
         navigate("/admin/roadmap");
       }
