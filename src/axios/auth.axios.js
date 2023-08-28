@@ -12,6 +12,13 @@ export const adminSignIn = async (regno, password) => {
     password,
   });
 };
+export const adminSignUp = async (regno, name, password) => {
+  return await axios.post("http://localhost:8080/admin/signup", {
+    regno,
+    name,
+    password,
+  });
+};
 export const validateUser = async (token) =>
   await axios.get("http://localhost:8080/students/login", {
     headers: { "x-access-token": token },

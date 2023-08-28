@@ -313,7 +313,7 @@ function AddInternship({ setAddButton, addButton,user }) {
                                         htmlFor="lastDateInternship"
                                         className="block mb-2 text-sm font-medium text-gray-900 "
                                     >
-                                        Starting date
+                                        Start date
                                     </label>
                                     <input
                                         type="date"
